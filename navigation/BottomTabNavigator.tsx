@@ -10,6 +10,7 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
 import TabThreeScreen from '../screens/TabThreeScreen';
 import ProfileButton from '../components/ProfileButton';
+import ScanButton from '../components/ScanButton';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -68,6 +69,9 @@ function TabOneNavigator() {
               image=''
             />
           ),
+          headerRight: () => (
+            <ScanButton/>
+          ),
           headerTitle: 'Portals' 
         }}
       />
@@ -90,6 +94,9 @@ function TabTwoNavigator() {
               image=''
             />
           ),
+          headerRight: () => (
+            <ScanButton/>
+          ),
           headerTitle: 'Portals' 
         }}
       />
@@ -111,6 +118,9 @@ function TabThreeNavigator() {
               notification={false}
               image=''
             />
+          ),
+          headerRight: () => (
+            <ScanButton/>
           ),
           headerTitle: 'Portals' 
         }}

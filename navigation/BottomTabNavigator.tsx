@@ -63,13 +63,13 @@ function TabOneNavigator() {
         name="TabOneScreen"
         component={TabOneScreen}
         options={{ 
-          headerLeft: () => (
+          headerRight: () => (
             <ProfileButton
               notification={false}
               image=''
             />
           ),
-          headerRight: () => (
+          headerLeft: () => (
             <ScanButton/>
           ),
           headerTitle: 'Portals' 
@@ -88,13 +88,13 @@ function TabTwoNavigator() {
         name="TabTwoScreen"
         component={TabTwoScreen}
         options={{ 
-          headerLeft: () => (
+          headerRight: () => (
             <ProfileButton
               notification={false}
               image=''
             />
           ),
-          headerRight: () => (
+          headerLeft: () => (
             <ScanButton/>
           ),
           headerTitle: 'Portals' 
@@ -113,13 +113,13 @@ function TabThreeNavigator() {
         name="TabThreeScreen"
         component={TabThreeScreen}
         options={{ 
-          headerLeft: () => (
+          headerRight: () => (
             <ProfileButton
               notification={false}
               image=''
             />
           ),
-          headerRight: () => (
+          headerLeft: () => (
             <ScanButton/>
           ),
           headerTitle: 'Portals' 

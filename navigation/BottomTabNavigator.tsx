@@ -10,6 +10,7 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
 import TabThreeScreen from '../screens/TabThreeScreen';
 import ProfileButton from '../components/ProfileButton';
+import PortalsScreen from '../screens/portals/PortalsScreen';
 import ScanButton from '../components/ScanButton';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -30,7 +31,7 @@ export default function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Portals"
-        component={TabTwoNavigator}
+        component={PortalsScreen}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}

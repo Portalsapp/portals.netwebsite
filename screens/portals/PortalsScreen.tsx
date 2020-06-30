@@ -1,7 +1,20 @@
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import PortalLink from '../../components/portal_link/PortalLink';
-import style from './PortalsStyle'
+import style from './PortalsStyle'  
+import { StackNavigationProp } from '@react-navigation/stack';
+import { TabTwoParamList } from '../../types';
+import Header from '../../components/header/Header';
+import { useNavigation } from '../../hooks/useNavigation';
+
+type ProfileScreenNavigationProp = StackNavigationProp<
+  TabTwoParamList,
+  'Select'
+>;
+
+type Props = {
+  navigation: ProfileScreenNavigationProp;
+};
 
 const portalData = [
   {
@@ -21,29 +34,12 @@ const portalData = [
   },
 ];
 
-export default function PortalsScreen() {
+export default function PortalsScreen(props: Props) {
+  // const navigation = useNavigation();
+
   return (
     <View style={style.container}>
-      <View style={style.header}>
-        <View style={style.headerLogo}>
-          <Text style={style.headerLogoText}>Portals</Text>
-        </View>
-        <View style={style.headerItems}>
-          <Text style={style.headerItemsText}>Username</Text>
-          <TouchableOpacity>
-            <Image
-              source={require('../../assets/images/profile.png')}
-              style={style.headerItemsImage}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              source={require('../../assets/images/settings.png')}
-              style={style.headerItemsImage}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Header />
       <View style={style.portalSelectContainer}>
         <View style={style.portalSelectButtonContainer}>
           <TouchableOpacity>
@@ -64,6 +60,8 @@ export default function PortalsScreen() {
                 title={elem.name}
                 source={elem.pic}
                 selected={elem.selected}
+                size={100}
+                onPress={(options: { title: string }) => props.navigation.navigate('Select', { title: options.title }) }
               />
             ))}
           </View>

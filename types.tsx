@@ -10,13 +10,14 @@ export type BottomTabParamList = {
 };
 
 export type TabOneParamList = {
-  TabOneScreen: undefined;
+  Stuff: undefined;
 };
 
 export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+  Portals: undefined,
+  Select: { title: string },
 };
 
 export type TabThreeParamList = {
-  TabThreeScreen: undefined;
+  Discover: undefined;
 }

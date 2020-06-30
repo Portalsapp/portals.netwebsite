@@ -7,40 +7,58 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
+import { RootStackParamList, BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
 import TabThreeScreen from '../screens/TabThreeScreen';
 import ProfileButton from '../components/ProfileButton';
 import PortalsScreen from '../screens/portals/PortalsScreen';
+import PortalSelectScreen from '../screens/portal_select/PortalSelectScreen';
+import StuffScreen from '../screens/stuff/StuffScreen';
+import DiscoverScreen from '../screens/discover/DiscoverScreen';
 import ScanButton from '../components/ScanButton';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+
+import { RouteProp } from '@react-navigation/native';
+
+type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Root'>;
+
+type RootProps = {
+  route: ProfileScreenRouteProp;
+};
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Portals"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      initialRouteName='Portals'
+      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+    >
       <BottomTab.Screen
-        name="Stuff"
+        name='Stuff'
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name='ios-code' color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
-        name="Portals"
-        component={PortalsScreen}
+        name='Portals'
+        component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name='ios-code' color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
-        name="Discover"
+        name='Discover'
         component={TabThreeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name='ios-code' color={color} />
+          ),
         }}
       />
     </BottomTab.Navigator>
@@ -61,19 +79,20 @@ function TabOneNavigator() {
   return (
     <TabOneStack.Navigator>
       <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
+        name="Stuff"
+        component={StuffScreen}
         options={{ 
-          headerRight: () => (
-            <ProfileButton
-              notification={false}
-              image=''
-            />
-          ),
-          headerLeft: () => (
-            <ScanButton/>
-          ),
-          headerTitle: 'Portals' 
+          // headerRight: () => (
+          //   <ProfileButton
+          //     notification={false}
+          //     image=''
+          //   />
+          // ),
+          // headerLeft: () => (
+          //   <ScanButton/>
+          // ),
+          // headerTitle: 'Portals' 
+          headerShown: false,
         }}
       />
     </TabOneStack.Navigator>
@@ -86,19 +105,22 @@ function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ 
-          headerRight: () => (
-            <ProfileButton
-              notification={false}
-              image=''
-            />
-          ),
-          headerLeft: () => (
-            <ScanButton/>
-          ),
-          headerTitle: 'Portals' 
+        name='Portals'
+        component={PortalsScreen}
+        options={{
+          // headerRight: () => <ProfileButton notification={false} image='' />,
+          // headerLeft: () => <ScanButton />,
+          // headerTitle: 'Portals',
+          headerShown: false,
+        }}
+      />
+      <TabTwoStack.Screen
+        name='Select'
+        component={PortalSelectScreen}
+        options={{
+          // headerRight: () => <ProfileButton notification={false} image='' />,
+          // headerLeft: () => <ScanButton />,
+          headerTitle: 'Portal',
         }}
       />
     </TabTwoStack.Navigator>
@@ -111,19 +133,20 @@ function TabThreeNavigator() {
   return (
     <TabThreeStack.Navigator>
       <TabThreeStack.Screen
-        name="TabThreeScreen"
-        component={TabThreeScreen}
+        name="Discover"
+        component={DiscoverScreen}
         options={{ 
-          headerRight: () => (
-            <ProfileButton
-              notification={false}
-              image=''
-            />
-          ),
-          headerLeft: () => (
-            <ScanButton/>
-          ),
-          headerTitle: 'Portals' 
+          // headerRight: () => (
+          //   <ProfileButton
+          //     notification={false}
+          //     image=''
+          //   />
+          // ),
+          // headerLeft: () => (
+          //   <ScanButton/>
+          // ),
+          // headerTitle: 'Portals' 
+          headerShown: false,
         }}
       />
     </TabThreeStack.Navigator>

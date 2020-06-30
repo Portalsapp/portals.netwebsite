@@ -4,8 +4,8 @@ export default StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: 200,
-    height: 200,
+    // width: 200,
+    // height: 200,
   },
   image: {
     width: 100,

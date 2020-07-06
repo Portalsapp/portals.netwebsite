@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import style from './HeaderStyle';
+import { Auth } from 'aws-amplify';
 
 type Props = {
   signedIn: boolean,
@@ -28,7 +29,10 @@ export default function Header(props: Props) {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => props.setLoginStatus(false)}
+          onPress={async () => {
+            await Auth.signOut();
+            props.setLoginStatus(false);
+          }}
         >
           <Text style={style.headerItemsText}>Logout</Text>
         </TouchableOpacity>

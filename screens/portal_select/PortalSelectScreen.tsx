@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View, Text, Image } from 'react-native'
 import { TabTwoParamList } from '../../types';
-import { NavigationStackProp } from 'react-navigation-stack';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import SocialBar from '../../components/social_bar/SocialBar';
 import style from './PortalSelectStyle';
@@ -12,7 +12,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 type SelectScreenRouteProp = RouteProp<TabTwoParamList, 'Select'>;
 
 type Props = {
-  navigation: NavigationStackProp<{ title: string }>;
+  navigation: StackNavigationProp<TabTwoParamList>;
   route: SelectScreenRouteProp;
 };
 

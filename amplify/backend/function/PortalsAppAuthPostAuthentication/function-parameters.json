@@ -1,0 +1,15 @@
+{
+    "trigger": true,
+    "modules": [
+        "custom"
+    ],
+    "parentResource": "PortalsAppAuth",
+    "functionName": "PortalsAppAuthPostAuthentication",
+    "resourceName": "PortalsAppAuthPostAuthentication",
+    "parentStack": "auth",
+    "triggerEnvs": [],
+    "triggerDir": "/usr/local/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/utils/../triggers/PostAuthentication",
+    "triggerTemplate": "PostAuthentication.json.ejs",
+    "roleName": "PortalsAppAuthPostAuthentication",
+    "skipEdit": true
+}

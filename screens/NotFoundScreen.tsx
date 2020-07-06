@@ -4,6 +4,23 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { RootStackParamList } from '../types';
 
+import { Auth } from 'aws-amplify';
+
+// async function signUp() {
+//   try {
+//     const user = await Auth.signUp({
+//       username: 'testuser',
+//       password: 'password',
+//       attributes: {
+//         email: 'kaimihata@gmail.com', // optional
+//       },
+//     });
+//     console.log({ user });
+//   } catch (error) {
+//     console.log('error signing up:', error);
+//   }
+// }
+
 export default function NotFoundScreen({
   navigation,
 }: StackScreenProps<RootStackParamList, 'NotFound'>) {

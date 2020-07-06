@@ -1,8 +1,13 @@
 import React from 'react'
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native'
-import Header from '../../components/header/Header';
+import Header from '../../components/header/HeaderContainer';
 import DiscoverGroup from '../../components/discover_group/DiscoverGroup'
 import style from './DiscoverStyle';
+
+import { API, graphqlOperation, Auth } from 'aws-amplify';
+import * as queries from '../../src/graphql/queries';
+import gql from 'graphql-tag';
+import client from '../../functions/AWSFunctions';
 
 const data: {
   title: string;
@@ -22,7 +27,26 @@ const data: {
   },
 ];
 
+// async function SignIn() {
+//   try {
+//     const user = await Auth.signIn('testuser1', 'password');
+//     console.log('signed in', user);
+//     const temp = await Auth.currentSession();
+//     console.log(temp);
+//   } catch (error) {
+//     console.log('error signing in', error);
+//   }
+// }
+
 export default function DiscoverScreen() {
+  /*@ts-ignore */
+  // await SignIn();
+  // console.log(await Auth.currentSession())
+  // const todos = await API.graphql({
+  //   query: queries.listAmplifyDataStoreI3fbvvtyknhvzhn6pkkmc3vyomDevs,
+  //   /*@ts-ignore*/
+  //   authMode: 'AMAZON_COGNITO_USER_POOLS',
+  // });
   return (
     <View style={style.container}>
       <Header />

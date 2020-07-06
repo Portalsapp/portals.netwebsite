@@ -1,12 +1,15 @@
 projects:
-  portalsmobileapp:
+  PortalsAppAPI:
     schemaPath: src/graphql/schema.json
     includes:
-      - src/graphql/**/*.js
+      - src/graphql/**/*.ts
     excludes:
       - ./amplify/**
     extensions:
       amplify:
-        codeGenTarget: javascript
-        generatedFileName: ''
+        codeGenTarget: typescript
+        generatedFileName: src/API.ts
         docsFilePath: src/graphql
+        region: us-west-2
+        apiId: xah3vccisfgyhasweu45enfu6i
+        maxDepth: 2

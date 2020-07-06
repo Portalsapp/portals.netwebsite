@@ -1,34 +1,83 @@
 {
-	"auth": {
-		"portalsmobileappc0d802ec": {
-			"service": "Cognito",
+	"function": {
+		"PortalsAppAuthCreateAuthChallenge": {
+			"build": true,
 			"providerPlugin": "awscloudformation",
-			"dependsOn": []
+			"service": "Lambda"
+		},
+		"PortalsAppAuthDefineAuthChallenge": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda"
+		},
+		"PortalsAppAuthPostAuthentication": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda"
+		},
+		"PortalsAppAuthPostConfirmation": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda"
+		},
+		"PortalsAppAuthVerifyAuthChallengeResponse": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda"
 		}
 	},
-	"api": {
-		"portalsmobileapp": {
-			"service": "AppSync",
+	"auth": {
+		"PortalsAppAuth": {
+			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
-			"output": {
-				"authConfig": {
-					"additionalAuthenticationProviders": [
-						{
-							"authenticationType": "AMAZON_COGNITO_USER_POOLS",
-							"userPoolConfig": {
-								"userPoolId": "authportalsmobileappc0d802ec"
-							}
-						}
-					],
-					"defaultAuthentication": {
-						"authenticationType": "API_KEY",
-						"apiKeyConfig": {
-							"description": "",
-							"apiKeyExpirationDays": 7
-						}
-					}
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "PortalsAppAuthCreateAuthChallenge",
+					"triggerProvider": "Cognito",
+					"attributes": [
+						"Arn",
+						"Name"
+					]
+				},
+				{
+					"category": "function",
+					"resourceName": "PortalsAppAuthDefineAuthChallenge",
+					"triggerProvider": "Cognito",
+					"attributes": [
+						"Arn",
+						"Name"
+					]
+				},
+				{
+					"category": "function",
+					"resourceName": "PortalsAppAuthPostAuthentication",
+					"triggerProvider": "Cognito",
+					"attributes": [
+						"Arn",
+						"Name"
+					]
+				},
+				{
+					"category": "function",
+					"resourceName": "PortalsAppAuthPostConfirmation",
+					"triggerProvider": "Cognito",
+					"attributes": [
+						"Arn",
+						"Name"
+					]
+				},
+				{
+					"category": "function",
+					"resourceName": "PortalsAppAuthVerifyAuthChallengeResponse",
+					"triggerProvider": "Cognito",
+					"attributes": [
+						"Arn",
+						"Name"
+					]
 				}
-			}
+			],
+			"customAuth": true
 		}
 	}
 }

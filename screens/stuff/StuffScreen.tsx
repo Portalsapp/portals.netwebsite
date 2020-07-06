@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
-import Header from '../../components/header/Header';
+import Header from '../../components/header/HeaderContainer';
 import Item from '../../components/item_icon/Item';
 import style from './StuffStyle';
 import { TouchableOpacity } from 'react-native-gesture-handler';

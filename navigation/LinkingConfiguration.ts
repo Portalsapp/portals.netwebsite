@@ -1,21 +1,30 @@
 import * as Linking from 'expo-linking';
+import { PathConfigMap } from '@react-navigation/native';
 
 export default {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
-      Root: {
+      Login: 'login',
+      Portals: {
         screens: {
-          TabOne: {
-            screens: {
-              TabOneScreen: 'one',
-            },
-          },
-          TabTwo: {
-            screens: {
-              TabTwoScreen: 'two',
-            },
-          },
+          Portals: 'portals',
+          Select: 'portals/select',
+        },
+      },
+      Stuff: {
+        screens: {
+          Stuff: 'stuff',
+        },
+      },
+      Discover: {
+        screens: {
+          Discover: 'discover',
+        },
+      },
+      Settings: {
+        screens: {
+          Settings: 'settings',
         },
       },
       NotFound: '*',

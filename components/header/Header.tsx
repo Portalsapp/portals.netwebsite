@@ -2,7 +2,12 @@ import React from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import style from './HeaderStyle';
 
-export default function Header() {
+type Props = {
+  signedIn: boolean,
+  setLoginStatus: (status: boolean) => void,
+}
+
+export default function Header(props: Props) {
   return (
     <View style={style.header}>
       <View style={style.headerLogo}>
@@ -21,6 +26,11 @@ export default function Header() {
             source={require('../../assets/images/settings.png')}
             style={style.headerItemsImage}
           />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => props.setLoginStatus(false)}
+        >
+          <Text style={style.headerItemsText}>Logout</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -106,8 +106,9 @@ export default function LoginScreen(props: Props) {
 
                 <TouchableOpacity
                   onPress={() => {
-                    setFormState({ ...formState, verification: true });
-                    signUp(loginData.contact);
+                    // setFormState({ ...formState, verification: true });
+                    // signUp(loginData.contact);
+                    props.setLoginStatus(true);
                   }}
                 >
                   <View style={style.submitButtonContainer}>

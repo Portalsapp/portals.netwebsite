@@ -13,15 +13,14 @@
         },
         "categories": {
             "function": {
-                "PortalsAppAuthCreateAuthChallenge": {
+                "PortalsAppUserPoolCreateAuthChallenge": {
                     "CHALLENGEANSWER": ""
                 },
-                "PortalsAppAuthDefineAuthChallenge": {},
-                "PortalsAppAuthPostAuthentication": {},
-                "PortalsAppAuthPostConfirmation": {},
-                "PortalsAppAuthVerifyAuthChallengeResponse": {
-                    "RECAPTCHASECRET": ""
-                }
+                "PortalsAppUserPoolDefineAuthChallenge": {},
+                "PortalsAppUserPoolVerifyAuthChallengeResponse": {}
+            },
+            "auth": {
+                "PortalsAppUserPool": {}
             }
         }
     }

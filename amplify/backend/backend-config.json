@@ -1,39 +1,29 @@
 {
 	"function": {
-		"PortalsAppAuthCreateAuthChallenge": {
+		"PortalsAppUserPoolCreateAuthChallenge": {
 			"build": true,
 			"providerPlugin": "awscloudformation",
 			"service": "Lambda"
 		},
-		"PortalsAppAuthDefineAuthChallenge": {
+		"PortalsAppUserPoolDefineAuthChallenge": {
 			"build": true,
 			"providerPlugin": "awscloudformation",
 			"service": "Lambda"
 		},
-		"PortalsAppAuthPostAuthentication": {
-			"build": true,
-			"providerPlugin": "awscloudformation",
-			"service": "Lambda"
-		},
-		"PortalsAppAuthPostConfirmation": {
-			"build": true,
-			"providerPlugin": "awscloudformation",
-			"service": "Lambda"
-		},
-		"PortalsAppAuthVerifyAuthChallengeResponse": {
+		"PortalsAppUserPoolVerifyAuthChallengeResponse": {
 			"build": true,
 			"providerPlugin": "awscloudformation",
 			"service": "Lambda"
 		}
 	},
 	"auth": {
-		"PortalsAppAuth": {
+		"PortalsAppUserPool": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [
 				{
 					"category": "function",
-					"resourceName": "PortalsAppAuthCreateAuthChallenge",
+					"resourceName": "PortalsAppUserPoolCreateAuthChallenge",
 					"triggerProvider": "Cognito",
 					"attributes": [
 						"Arn",
@@ -42,7 +32,7 @@
 				},
 				{
 					"category": "function",
-					"resourceName": "PortalsAppAuthDefineAuthChallenge",
+					"resourceName": "PortalsAppUserPoolDefineAuthChallenge",
 					"triggerProvider": "Cognito",
 					"attributes": [
 						"Arn",
@@ -51,25 +41,7 @@
 				},
 				{
 					"category": "function",
-					"resourceName": "PortalsAppAuthPostAuthentication",
-					"triggerProvider": "Cognito",
-					"attributes": [
-						"Arn",
-						"Name"
-					]
-				},
-				{
-					"category": "function",
-					"resourceName": "PortalsAppAuthPostConfirmation",
-					"triggerProvider": "Cognito",
-					"attributes": [
-						"Arn",
-						"Name"
-					]
-				},
-				{
-					"category": "function",
-					"resourceName": "PortalsAppAuthVerifyAuthChallengeResponse",
+					"resourceName": "PortalsAppUserPoolVerifyAuthChallengeResponse",
 					"triggerProvider": "Cognito",
 					"attributes": [
 						"Arn",

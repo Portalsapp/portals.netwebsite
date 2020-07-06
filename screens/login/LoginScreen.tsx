@@ -12,7 +12,7 @@ type Props = {
 }
 
 const initialLoginData = {
-  contact: '',
+  contact: 'kaimihata@gmail.com',
   verification: '',
 };
 
@@ -36,12 +36,14 @@ export default function LoginScreen(props: Props) {
   ) => {
     console.log(contact, typeof contact);
     try {
-      await Auth.signUp({
+      const cognitoUser = await Auth.signUp({
         username: contact,
-        password: Date.now().toString(),
+        // password: Date.now().toString(),
+        password: 'password',
       });
       // signIn(contact);
     } catch (err) {
+      console.log("Sign Up Error: ", err);
       try {
         signIn(contact);
       } catch (error) {
@@ -71,6 +73,7 @@ export default function LoginScreen(props: Props) {
     try {
       const cognitoUser = await Auth.sendCustomChallengeAnswer(user, code);
       setFormState({ ...formState, verification: true });
+      props.setLoginStatus(true);
     } catch (err) {
       // Add handling for 3 incorrect
       console.log('Verification Error:', err);
@@ -80,6 +83,7 @@ export default function LoginScreen(props: Props) {
   const verifyLogin = async () => {
     try {
       const data = await Auth.currentAuthenticatedUser();
+      console.log(data);
       props.setLoginStatus(true);
     } catch {
       console.log('Not logged in yet');
@@ -106,9 +110,9 @@ export default function LoginScreen(props: Props) {
 
                 <TouchableOpacity
                   onPress={() => {
-                    // setFormState({ ...formState, verification: true });
-                    // signUp(loginData.contact);
-                    props.setLoginStatus(true);
+                    setFormState({ ...formState, verification: true });
+                    signUp(loginData.contact);
+                    // props.setLoginStatus(true);
                   }}
                 >
                   <View style={style.submitButtonContainer}>

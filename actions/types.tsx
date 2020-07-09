@@ -19,7 +19,9 @@ export type AppStateTypes = SetLoginStatus | SetModalVisible;
 interface SetUserData {
   type: typeof SET_USER_DATA,
   payload: {
-    displayName: string
+    displayName: string,
+    pic: string,
+    username: string,
   }
 }
 

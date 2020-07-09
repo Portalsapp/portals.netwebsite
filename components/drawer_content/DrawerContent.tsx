@@ -21,7 +21,7 @@ export default function DrawerContent(props) {
             style={style.profileImage}
             />
           <View style={style.usernameTextContainer}>
-            <Text style={style.usernameText}>Username</Text>
+            <Text style={style.usernameText}>{props.userData.displayName}</Text>
           </View>
         </View>
       </View>

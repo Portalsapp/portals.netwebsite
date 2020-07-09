@@ -8,5 +8,7 @@ export interface UserState {
 }
 
 export interface UserData {
-  displayName: string
+  displayName: string,
+  pic: string,
+  username: string,
 }

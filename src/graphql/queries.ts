@@ -136,6 +136,7 @@ export const listAllUserMetadata = /* GraphQL */ `
         ds_pk
         ds_sk
         displayName
+        pic
       }
     }
   }

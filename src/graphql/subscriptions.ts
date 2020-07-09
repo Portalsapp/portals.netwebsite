@@ -96,24 +96,6 @@ export const onUpdateAmplifyDataStoreUserMetadata = /* GraphQL */ `
       ds_sk
       displayName
       pic
-      stripeCustomerId
-      dateOfBirth
-      address {
-        address1
-        address2
-        unit
-        city
-        state
-        zip
-        country
-      }
-      phone
-      email
-      uid
-      catalog
-      description
-      splashPic
-      colorTheme
     }
   }
 `;

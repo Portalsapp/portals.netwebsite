@@ -107,9 +107,9 @@ export default function LoginScreen(props: Props) {
       console.log(data);
       if (!formState.needsToCreateAccount) {
         console.log('changing with verify login');
-        console.log(data.username);
-        const { displayName } = (await getUserMetadata(data.username));
-        props.setUserData({ displayName });
+        const { displayName, pic } = (await getUserMetadata(data.username));
+        console.log(displayName, pic);
+        props.setUserData({ displayName, pic, username: data.username });
         props.setLoginStatus(true);
       }
     } catch {

@@ -19,7 +19,6 @@ import {
   StuffStackParamList,
   DiscoverStackParamList,
   SettingsStackParamList,
-  TradeStackParamList,
   ShopStackParamList,
   AuthStackParamList
 } from '../types';
@@ -31,8 +30,8 @@ import PortalsScreen from '../screens/portals/PortalsScreen';
 import PortalSelectScreen from '../screens/portal_select/PortalSelectScreen'
 import StuffScreen from '../screens/stuff/StuffScreen'
 import DiscoverScreen from '../screens/discover/DiscoverScreen'
-import SettingsScreen from '../screens/settings/SettingsScreen'
-import DrawerContent from '../components/drawer_content/DrawerContent'
+import SettingsScreen from '../screens/settings/SettingsScreenContainer'
+import DrawerContent from '../components/drawer_content/DrawerContentContainer'
 import LoginScreen from '../screens/login/LoginScreenContainer'
 import TradingScreen from '../screens/trade/TradingScreen'
 import ShopScreen from '../screens/shop/ShopScreen'

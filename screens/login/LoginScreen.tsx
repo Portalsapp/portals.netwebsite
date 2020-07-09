@@ -5,10 +5,18 @@ import style from './LoginStyle'
 import { Auth } from 'aws-amplify'
 import { CognitoUser } from '@aws-amplify/auth'
 
+import { useNavigation, CompositeNavigationProp } from '@react-navigation/native';
+import { DrawerNavigationProp } from '@react-navigation/drawer'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { RootDrawerParamList, AuthStackParamList } from '../../types'
+import { getUserMetadata } from '../../functions/AWSFunctions'
+import { UserData } from '../../reducers/types'
+
 
 type Props = {
   signedIn: boolean,
   setLoginStatus: (status: boolean) => void,
+  setUserData: (userData: UserData) => void,
 }
 
 const initialLoginData = {
@@ -16,20 +24,23 @@ const initialLoginData = {
   verification: '',
 };
 
-const initialUserState: { user : CognitoUser | null } = {
+const initialUserState: { user : CognitoUser | null, createAccount: boolean } = {
   user: null,
+  createAccount: false,
 }
 
 const initialFormState = {
   login: true,
   verification: false,
+  needsToCreateAccount: false,
 }
+
 
 export default function LoginScreen(props: Props) {
   const [loginData, setLoginData] = useState(initialLoginData);
   const [formState, setFormState] = useState(initialFormState);
   const [userState, setUserState] = useState(initialUserState);
-
+  const navigation = useNavigation<StackNavigationProp<AuthStackParamList>>();
 
   const signUp = async (
     contact: string,
@@ -41,7 +52,9 @@ export default function LoginScreen(props: Props) {
         // password: Date.now().toString(),
         password: 'password',
       });
-      // signIn(contact);
+      setFormState({ ...formState, needsToCreateAccount: true })
+      signIn(contact, true);
+      console.log('Created Account', formState.needsToCreateAccount);
     } catch (err) {
       console.log("Sign Up Error: ", err);
       try {
@@ -55,11 +68,13 @@ export default function LoginScreen(props: Props) {
 
   const signIn = async (
     contact: string,
+    createAccount = false,
   ) => {
     try {
       const cognitoUser = await Auth.signIn(contact);
-      setUserState(cognitoUser);
-      console.log('User:', cognitoUser);
+      setUserState({ user: cognitoUser, createAccount });
+      console.log('Signed in User:', cognitoUser, formState.needsToCreateAccount);
+      setFormState({ ...formState, verification: true });
     } catch (err) {
       console.log('Sign In Error:', err);
     }
@@ -69,11 +84,17 @@ export default function LoginScreen(props: Props) {
   const submitVerificationCode = async (
     code: string,
     user: CognitoUser,
+    createAccount = false,
   ) => {
     try {
       const cognitoUser = await Auth.sendCustomChallengeAnswer(user, code);
-      setFormState({ ...formState, verification: true });
-      props.setLoginStatus(true);
+      console.log('Form State', formState);
+      if (!formState.needsToCreateAccount && !createAccount) {
+        console.log('changing with submit verification code');
+        props.setLoginStatus(true);
+      } else {
+        navigation.navigate('CreateAccount');
+      }
     } catch (err) {
       // Add handling for 3 incorrect
       console.log('Verification Error:', err);
@@ -84,7 +105,13 @@ export default function LoginScreen(props: Props) {
     try {
       const data = await Auth.currentAuthenticatedUser();
       console.log(data);
-      props.setLoginStatus(true);
+      if (!formState.needsToCreateAccount) {
+        console.log('changing with verify login');
+        console.log(data.username);
+        const { displayName } = (await getUserMetadata(data.username));
+        props.setUserData({ displayName });
+        props.setLoginStatus(true);
+      }
     } catch {
       console.log('Not logged in yet');
     }
@@ -110,9 +137,10 @@ export default function LoginScreen(props: Props) {
 
                 <TouchableOpacity
                   onPress={() => {
-                    setFormState({ ...formState, verification: true });
+                    // setFormState({ ...formState, verification: true });
                     signUp(loginData.contact);
                     // props.setLoginStatus(true);
+                    // navigation.navigate('CreateAccount');
                   }}
                 >
                   <View style={style.submitButtonContainer}>
@@ -136,7 +164,7 @@ export default function LoginScreen(props: Props) {
                 <TouchableOpacity
                   onPress={() => {
                     /*@ts-ignore */
-                    submitVerificationCode(loginData.verification, userState);
+                    submitVerificationCode(loginData.verification, userState.user, userState.createAccount);
                   }}
                 >
                   <View style={style.submitButtonContainer}>

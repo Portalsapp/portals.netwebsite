@@ -7,6 +7,26 @@ export const getAmplifyDataStore = /* GraphQL */ `
     getAmplifyDataStore(ds_pk: $ds_pk, ds_sk: $ds_sk) {
       ds_pk
       ds_sk
+      displayName
+      pic
+      stripeCustomerId
+      dateOfBirth
+      address {
+        address1
+        address2
+        unit
+        city
+        state
+        zip
+        country
+      }
+      phone
+      email
+      uid
+      catalog
+      description
+      splashPic
+      colorTheme
     }
   }
 `;
@@ -24,6 +44,17 @@ export const listAmplifyDataStores = /* GraphQL */ `
       items {
         ds_pk
         ds_sk
+        displayName
+        pic
+        stripeCustomerId
+        dateOfBirth
+        phone
+        email
+        uid
+        catalog
+        description
+        splashPic
+        colorTheme
       }
       nextToken
     }
@@ -43,6 +74,17 @@ export const queryAmplifyDataStoresByInvertedIndex = /* GraphQL */ `
       items {
         ds_pk
         ds_sk
+        displayName
+        pic
+        stripeCustomerId
+        dateOfBirth
+        phone
+        email
+        uid
+        catalog
+        description
+        splashPic
+        colorTheme
       }
       nextToken
     }
@@ -62,6 +104,63 @@ export const queryAmplifyDataStoresByDsPkIndex = /* GraphQL */ `
       items {
         ds_pk
         ds_sk
+        displayName
+        pic
+        stripeCustomerId
+        dateOfBirth
+        phone
+        email
+        uid
+        catalog
+        description
+        splashPic
+        colorTheme
+      }
+      nextToken
+    }
+  }
+`;
+export const listAllUserMetadata = /* GraphQL */ `
+  query listAllUserMetadata($pk:String!, $sk:String!) {
+    listAllUserMetadata(
+      filter: {
+        ds_pk: {
+          contains: $pk
+        }
+        ds_sk: {
+          contains: $sk
+        }
+      }
+    ) {
+      items {
+        ds_pk
+        ds_sk
+        displayName
+      }
+    }
+  }
+`;
+export const listAllEntities = /* GraphQL */ `
+  query ListAllEntities(
+    $filter: SimpleFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAllEntities(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        ds_pk
+        ds_sk
+        displayName
+        pic
+        stripeCustomerId
+        dateOfBirth
+        phone
+        email
+        uid
+        catalog
+        description
+        splashPic
+        colorTheme
       }
       nextToken
     }

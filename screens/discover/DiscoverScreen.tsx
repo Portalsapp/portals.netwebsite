@@ -62,10 +62,11 @@ export default function DiscoverScreen() {
         </TouchableOpacity>
       </View>
       <View style={style.categoryContainer}>
-        {data.map((elem) => 
+        {data.map((elem, index) => 
           <DiscoverGroup 
             title={elem.title}
             count={elem.count}
+            key={index}
           />
         )}
       </View>

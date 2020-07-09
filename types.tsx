@@ -1,6 +1,6 @@
 export type RootStackParamList = {
-  Root: undefined;
-  NotFound: undefined;
+  Main: undefined;
+  Modal: undefined;
 };
 
 export type BottomTabParamList = {
@@ -33,6 +33,7 @@ export type RootDrawerParamList = {
   Portals: undefined,
   Stuff: undefined,
   Discover: undefined,
+  Shop: undefined,
   Settings: undefined,
   NotFound: undefined,
 }
@@ -44,6 +45,7 @@ export type PortalsStackParamList = {
 
 export type StuffStackParamList = {
   Stuff: undefined,
+  Trade: undefined,
 }
 
 export type DiscoverStackParamList = {
@@ -54,6 +56,11 @@ export type SettingsStackParamList = {
   Settings: undefined,
 }
 
+export type ShopStackParamList = {
+  Shop: undefined;
+};
+
 export type AuthStackParamList = {
   Login: undefined,
+  CreateAccount: undefined,
 }

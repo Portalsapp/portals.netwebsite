@@ -91,7 +91,7 @@ function PortalSelectScreen({ navigation, route }: Props) {
             <Text style={style.linkTitle}>Connected Portals</Text>
           </View>
           <View style={style.linksContainer}>
-            {portalData.map((elem) => (
+            {portalData.map((elem, index) => (
               <View style={style.linkContainer}>
                 <PortalLink
                   title={elem.name}
@@ -102,6 +102,7 @@ function PortalSelectScreen({ navigation, route }: Props) {
                   // onPress={(options: { title: string }) =>
                   //   props.navigation.navigate('Select', { title: options.title })
                   // }
+                  key={index}
                 />
               </View>
             ))}

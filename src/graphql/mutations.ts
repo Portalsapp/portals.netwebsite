@@ -7,6 +7,26 @@ export const createAmplifyDataStore = /* GraphQL */ `
     createAmplifyDataStore(input: $input) {
       ds_pk
       ds_sk
+      displayName
+      pic
+      stripeCustomerId
+      dateOfBirth
+      address {
+        address1
+        address2
+        unit
+        city
+        state
+        zip
+        country
+      }
+      phone
+      email
+      uid
+      catalog
+      description
+      splashPic
+      colorTheme
     }
   }
 `;
@@ -15,6 +35,26 @@ export const updateAmplifyDataStore = /* GraphQL */ `
     updateAmplifyDataStore(input: $input) {
       ds_pk
       ds_sk
+      displayName
+      pic
+      stripeCustomerId
+      dateOfBirth
+      address {
+        address1
+        address2
+        unit
+        city
+        state
+        zip
+        country
+      }
+      phone
+      email
+      uid
+      catalog
+      description
+      splashPic
+      colorTheme
     }
   }
 `;
@@ -23,6 +63,86 @@ export const deleteAmplifyDataStore = /* GraphQL */ `
     deleteAmplifyDataStore(input: $input) {
       ds_pk
       ds_sk
+      displayName
+      pic
+      stripeCustomerId
+      dateOfBirth
+      address {
+        address1
+        address2
+        unit
+        city
+        state
+        zip
+        country
+      }
+      phone
+      email
+      uid
+      catalog
+      description
+      splashPic
+      colorTheme
+    }
+  }
+`;
+export const updateAmplifyDataStoreUserMetadata = /* GraphQL */ `
+  mutation UpdateAmplifyDataStoreUserMetadata(
+    $input: UpdateAmplifyDataStoreUserMetadataInput!
+  ) {
+    updateAmplifyDataStoreUserMetadata(input: $input) {
+      ds_pk
+      ds_sk
+      displayName
+      pic
+      stripeCustomerId
+      dateOfBirth
+      address {
+        address1
+        address2
+        unit
+        city
+        state
+        zip
+        country
+      }
+      phone
+      email
+      uid
+      catalog
+      description
+      splashPic
+      colorTheme
+    }
+  }
+`;
+export const createNewUserMetadata = /* GraphQL */ `
+  mutation CreateNewUserMetadata(
+    $input: UpdateAmplifyDataStoreUserMetadataInput!
+  ) {
+    createNewUserMetadata(input: $input) {
+      ds_pk
+      ds_sk
+      displayName
+      pic
+      stripeCustomerId
+      dateOfBirth
+      address {
+        address1
+        address2
+        unit
+        city
+        state
+        zip
+        country
+      }
+      phone
+      email
+      uid
+      catalog
+      description
+      splashPic
+      colorTheme
     }
   }
 `;

@@ -5,29 +5,39 @@ export default {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
-      Login: 'login',
-      Portals: {
-        screens: {
-          Portals: 'portals',
-          Select: 'portals/select',
+        Login: 'login',
+        Root: {
+          screens: {
+        Portals: {
+          screens: {
+            Portals: 'portals',
+            Select: 'portals/select',
+          },
         },
-      },
-      Stuff: {
-        screens: {
-          Stuff: 'stuff',
+        Stuff: {
+          screens: {
+            Stuff: 'stuff',
+            Trading: 'stuff/trade',
+          },
         },
-      },
-      Discover: {
-        screens: {
-          Discover: 'discover',
+        Discover: {
+          screens: {
+            Discover: 'discover',
+          },
         },
-      },
-      Settings: {
-        screens: {
-          Settings: 'settings',
+        Shop: {
+          screens: {
+            Shop: 'shop',
+          }
         },
+        Settings: {
+          screens: {
+            Settings: 'settings',
+          },
+        },
+        NotFound: '*',
       },
-      NotFound: '*',
-    },
+      }
+    }
   },
 };

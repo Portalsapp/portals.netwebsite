@@ -5,6 +5,7 @@
 export type CreateAmplifyDataStoreInput = {
   ds_pk: string,
   ds_sk: string,
+  displayName?: string | null,
 };
 
 export type UpdateAmplifyDataStoreInput = {
@@ -15,6 +16,13 @@ export type UpdateAmplifyDataStoreInput = {
 export type DeleteAmplifyDataStoreInput = {
   ds_pk: string,
   ds_sk: string,
+};
+
+export type UpdateAmplifyDataStoreUserMetadataInput = {
+  ds_pk: string,
+  ds_sk: string,
+  displayName?: string | null,
+  pic?: string | null,
 };
 
 export type TableAmplifyDataStoreFilterInput = {
@@ -35,6 +43,16 @@ export type TableStringFilterInput = {
   beginsWith?: string | null,
 };
 
+export type AllUserMetadataFilterInput = {
+  ds_pk?: TableStringFilterInput | null,
+  ds_sk?: TableStringFilterInput | null,
+};
+
+export type SimpleFilterInput = {
+  ds_pk?: TableStringFilterInput | null,
+  ds_sk?: TableStringFilterInput | null,
+};
+
 export type CreateAmplifyDataStoreMutationVariables = {
   input: CreateAmplifyDataStoreInput,
 };
@@ -44,6 +62,27 @@ export type CreateAmplifyDataStoreMutation = {
     __typename: "AmplifyDataStore",
     ds_pk: string,
     ds_sk: string,
+    displayName: string | null,
+    pic: string | null,
+    stripeCustomerId: string | null,
+    dateOfBirth: string | null,
+    address:  {
+      __typename: "Address",
+      address1: string,
+      address2: string | null,
+      unit: string | null,
+      city: string,
+      state: string,
+      zip: string,
+      country: string | null,
+    } | null,
+    phone: string | null,
+    email: string | null,
+    uid: string | null,
+    catalog: string | null,
+    description: string | null,
+    splashPic: string | null,
+    colorTheme: string | null,
   } | null,
 };
 
@@ -56,6 +95,27 @@ export type UpdateAmplifyDataStoreMutation = {
     __typename: "AmplifyDataStore",
     ds_pk: string,
     ds_sk: string,
+    displayName: string | null,
+    pic: string | null,
+    stripeCustomerId: string | null,
+    dateOfBirth: string | null,
+    address:  {
+      __typename: "Address",
+      address1: string,
+      address2: string | null,
+      unit: string | null,
+      city: string,
+      state: string,
+      zip: string,
+      country: string | null,
+    } | null,
+    phone: string | null,
+    email: string | null,
+    uid: string | null,
+    catalog: string | null,
+    description: string | null,
+    splashPic: string | null,
+    colorTheme: string | null,
   } | null,
 };
 
@@ -68,6 +128,93 @@ export type DeleteAmplifyDataStoreMutation = {
     __typename: "AmplifyDataStore",
     ds_pk: string,
     ds_sk: string,
+    displayName: string | null,
+    pic: string | null,
+    stripeCustomerId: string | null,
+    dateOfBirth: string | null,
+    address:  {
+      __typename: "Address",
+      address1: string,
+      address2: string | null,
+      unit: string | null,
+      city: string,
+      state: string,
+      zip: string,
+      country: string | null,
+    } | null,
+    phone: string | null,
+    email: string | null,
+    uid: string | null,
+    catalog: string | null,
+    description: string | null,
+    splashPic: string | null,
+    colorTheme: string | null,
+  } | null,
+};
+
+export type UpdateAmplifyDataStoreUserMetadataMutationVariables = {
+  input: UpdateAmplifyDataStoreUserMetadataInput,
+};
+
+export type UpdateAmplifyDataStoreUserMetadataMutation = {
+  updateAmplifyDataStoreUserMetadata:  {
+    __typename: "AmplifyDataStore",
+    ds_pk: string,
+    ds_sk: string,
+    displayName: string | null,
+    pic: string | null,
+    stripeCustomerId: string | null,
+    dateOfBirth: string | null,
+    address:  {
+      __typename: "Address",
+      address1: string,
+      address2: string | null,
+      unit: string | null,
+      city: string,
+      state: string,
+      zip: string,
+      country: string | null,
+    } | null,
+    phone: string | null,
+    email: string | null,
+    uid: string | null,
+    catalog: string | null,
+    description: string | null,
+    splashPic: string | null,
+    colorTheme: string | null,
+  } | null,
+};
+
+export type CreateNewUserMetadataMutationVariables = {
+  input: UpdateAmplifyDataStoreUserMetadataInput,
+};
+
+export type CreateNewUserMetadataMutation = {
+  createNewUserMetadata:  {
+    __typename: "AmplifyDataStore",
+    ds_pk: string,
+    ds_sk: string,
+    displayName: string | null,
+    pic: string | null,
+    stripeCustomerId: string | null,
+    dateOfBirth: string | null,
+    address:  {
+      __typename: "Address",
+      address1: string,
+      address2: string | null,
+      unit: string | null,
+      city: string,
+      state: string,
+      zip: string,
+      country: string | null,
+    } | null,
+    phone: string | null,
+    email: string | null,
+    uid: string | null,
+    catalog: string | null,
+    description: string | null,
+    splashPic: string | null,
+    colorTheme: string | null,
   } | null,
 };
 
@@ -81,6 +228,27 @@ export type GetAmplifyDataStoreQuery = {
     __typename: "AmplifyDataStore",
     ds_pk: string,
     ds_sk: string,
+    displayName: string | null,
+    pic: string | null,
+    stripeCustomerId: string | null,
+    dateOfBirth: string | null,
+    address:  {
+      __typename: "Address",
+      address1: string,
+      address2: string | null,
+      unit: string | null,
+      city: string,
+      state: string,
+      zip: string,
+      country: string | null,
+    } | null,
+    phone: string | null,
+    email: string | null,
+    uid: string | null,
+    catalog: string | null,
+    description: string | null,
+    splashPic: string | null,
+    colorTheme: string | null,
   } | null,
 };
 
@@ -97,6 +265,17 @@ export type ListAmplifyDataStoresQuery = {
       __typename: "AmplifyDataStore",
       ds_pk: string,
       ds_sk: string,
+      displayName: string | null,
+      pic: string | null,
+      stripeCustomerId: string | null,
+      dateOfBirth: string | null,
+      phone: string | null,
+      email: string | null,
+      uid: string | null,
+      catalog: string | null,
+      description: string | null,
+      splashPic: string | null,
+      colorTheme: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -115,6 +294,17 @@ export type QueryAmplifyDataStoresByInvertedIndexQuery = {
       __typename: "AmplifyDataStore",
       ds_pk: string,
       ds_sk: string,
+      displayName: string | null,
+      pic: string | null,
+      stripeCustomerId: string | null,
+      dateOfBirth: string | null,
+      phone: string | null,
+      email: string | null,
+      uid: string | null,
+      catalog: string | null,
+      description: string | null,
+      splashPic: string | null,
+      colorTheme: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -133,6 +323,75 @@ export type QueryAmplifyDataStoresByDsPkIndexQuery = {
       __typename: "AmplifyDataStore",
       ds_pk: string,
       ds_sk: string,
+      displayName: string | null,
+      pic: string | null,
+      stripeCustomerId: string | null,
+      dateOfBirth: string | null,
+      phone: string | null,
+      email: string | null,
+      uid: string | null,
+      catalog: string | null,
+      description: string | null,
+      splashPic: string | null,
+      colorTheme: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type ListAllUserMetadataQueryVariables = {
+  filter?: AllUserMetadataFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListAllUserMetadataQuery = {
+  listAllUserMetadata:  {
+    __typename: "AmplifyDataStoreConnection",
+    items:  Array< {
+      __typename: "AmplifyDataStore",
+      ds_pk: string,
+      ds_sk: string,
+      displayName: string | null,
+      pic: string | null,
+      stripeCustomerId: string | null,
+      dateOfBirth: string | null,
+      phone: string | null,
+      email: string | null,
+      uid: string | null,
+      catalog: string | null,
+      description: string | null,
+      splashPic: string | null,
+      colorTheme: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type ListAllEntitiesQueryVariables = {
+  filter?: SimpleFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListAllEntitiesQuery = {
+  listAllEntities:  {
+    __typename: "AmplifyDataStoreConnection",
+    items:  Array< {
+      __typename: "AmplifyDataStore",
+      ds_pk: string,
+      ds_sk: string,
+      displayName: string | null,
+      pic: string | null,
+      stripeCustomerId: string | null,
+      dateOfBirth: string | null,
+      phone: string | null,
+      email: string | null,
+      uid: string | null,
+      catalog: string | null,
+      description: string | null,
+      splashPic: string | null,
+      colorTheme: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -148,6 +407,27 @@ export type OnCreateAmplifyDataStoreSubscription = {
     __typename: "AmplifyDataStore",
     ds_pk: string,
     ds_sk: string,
+    displayName: string | null,
+    pic: string | null,
+    stripeCustomerId: string | null,
+    dateOfBirth: string | null,
+    address:  {
+      __typename: "Address",
+      address1: string,
+      address2: string | null,
+      unit: string | null,
+      city: string,
+      state: string,
+      zip: string,
+      country: string | null,
+    } | null,
+    phone: string | null,
+    email: string | null,
+    uid: string | null,
+    catalog: string | null,
+    description: string | null,
+    splashPic: string | null,
+    colorTheme: string | null,
   } | null,
 };
 
@@ -161,6 +441,27 @@ export type OnUpdateAmplifyDataStoreSubscription = {
     __typename: "AmplifyDataStore",
     ds_pk: string,
     ds_sk: string,
+    displayName: string | null,
+    pic: string | null,
+    stripeCustomerId: string | null,
+    dateOfBirth: string | null,
+    address:  {
+      __typename: "Address",
+      address1: string,
+      address2: string | null,
+      unit: string | null,
+      city: string,
+      state: string,
+      zip: string,
+      country: string | null,
+    } | null,
+    phone: string | null,
+    email: string | null,
+    uid: string | null,
+    catalog: string | null,
+    description: string | null,
+    splashPic: string | null,
+    colorTheme: string | null,
   } | null,
 };
 
@@ -174,5 +475,60 @@ export type OnDeleteAmplifyDataStoreSubscription = {
     __typename: "AmplifyDataStore",
     ds_pk: string,
     ds_sk: string,
+    displayName: string | null,
+    pic: string | null,
+    stripeCustomerId: string | null,
+    dateOfBirth: string | null,
+    address:  {
+      __typename: "Address",
+      address1: string,
+      address2: string | null,
+      unit: string | null,
+      city: string,
+      state: string,
+      zip: string,
+      country: string | null,
+    } | null,
+    phone: string | null,
+    email: string | null,
+    uid: string | null,
+    catalog: string | null,
+    description: string | null,
+    splashPic: string | null,
+    colorTheme: string | null,
+  } | null,
+};
+
+export type OnUpdateAmplifyDataStoreUserMetadataSubscriptionVariables = {
+  ds_pk: string,
+  ds_sk: string,
+};
+
+export type OnUpdateAmplifyDataStoreUserMetadataSubscription = {
+  onUpdateAmplifyDataStoreUserMetadata:  {
+    __typename: "AmplifyDataStore",
+    ds_pk: string,
+    ds_sk: string,
+    displayName: string | null,
+    pic: string | null,
+    stripeCustomerId: string | null,
+    dateOfBirth: string | null,
+    address:  {
+      __typename: "Address",
+      address1: string,
+      address2: string | null,
+      unit: string | null,
+      city: string,
+      state: string,
+      zip: string,
+      country: string | null,
+    } | null,
+    phone: string | null,
+    email: string | null,
+    uid: string | null,
+    catalog: string | null,
+    description: string | null,
+    splashPic: string | null,
+    colorTheme: string | null,
   } | null,
 };

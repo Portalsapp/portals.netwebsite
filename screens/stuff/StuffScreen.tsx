@@ -38,8 +38,8 @@ export default function StuffScreen() {
         </View>
       </View>
       <View style={style.itemsContainer}>
-        {items.map((elem) => (
-          <Item size={100}/>
+        {items.map((elem, index) => (
+          <Item size={100} key={index} />
         ))}
       </View>
     </View>

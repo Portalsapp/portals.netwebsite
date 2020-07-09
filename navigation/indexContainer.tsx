@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import index from './index';
-import { setLoginStatus } from '../actions/appStateActions';
+import { setLoginStatus, setModalVisbility } from '../actions/appStateActions';
 import { RootState } from '../reducers/index';
 
 const mapStateToProps = (state: RootState) => ({

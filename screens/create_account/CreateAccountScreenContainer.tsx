@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux'
-import LoginScreen from './LoginScreen';
+import { Dispatch } from 'redux';
+import CreateAccount from './CreateAccountScreen';
 import { setLoginStatus } from '../../actions/appStateActions';
 import { setUserData } from '../../actions/userStateActions';
-import { UserData } from '../../reducers/types';
 import { RootState } from '../../reducers/index';
 
 const mapStateToProps = (state: RootState) => ({
@@ -13,9 +12,11 @@ const mapStateToProps = (state: RootState) => ({
 /*@ts-ignore*/
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    setLoginStatus: (loginStatus: boolean) => dispatch(setLoginStatus(loginStatus)),
-    setUserData: (userData: UserData) => dispatch(setUserData(userData)),
+    setLoginStatus: (loginStatus: boolean) =>
+      dispatch(setLoginStatus(loginStatus)),
+    setUserData: (userData: { displayName: string }) =>
+      dispatch(setUserData(userData)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateAccount);

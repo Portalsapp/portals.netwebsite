@@ -7,6 +7,26 @@ export const onCreateAmplifyDataStore = /* GraphQL */ `
     onCreateAmplifyDataStore(ds_pk: $ds_pk, ds_sk: $ds_sk) {
       ds_pk
       ds_sk
+      displayName
+      pic
+      stripeCustomerId
+      dateOfBirth
+      address {
+        address1
+        address2
+        unit
+        city
+        state
+        zip
+        country
+      }
+      phone
+      email
+      uid
+      catalog
+      description
+      splashPic
+      colorTheme
     }
   }
 `;
@@ -15,6 +35,26 @@ export const onUpdateAmplifyDataStore = /* GraphQL */ `
     onUpdateAmplifyDataStore(ds_pk: $ds_pk, ds_sk: $ds_sk) {
       ds_pk
       ds_sk
+      displayName
+      pic
+      stripeCustomerId
+      dateOfBirth
+      address {
+        address1
+        address2
+        unit
+        city
+        state
+        zip
+        country
+      }
+      phone
+      email
+      uid
+      catalog
+      description
+      splashPic
+      colorTheme
     }
   }
 `;
@@ -23,6 +63,57 @@ export const onDeleteAmplifyDataStore = /* GraphQL */ `
     onDeleteAmplifyDataStore(ds_pk: $ds_pk, ds_sk: $ds_sk) {
       ds_pk
       ds_sk
+      displayName
+      pic
+      stripeCustomerId
+      dateOfBirth
+      address {
+        address1
+        address2
+        unit
+        city
+        state
+        zip
+        country
+      }
+      phone
+      email
+      uid
+      catalog
+      description
+      splashPic
+      colorTheme
+    }
+  }
+`;
+export const onUpdateAmplifyDataStoreUserMetadata = /* GraphQL */ `
+  subscription OnUpdateAmplifyDataStoreUserMetadata(
+    $ds_pk: String!
+    $ds_sk: String!
+  ) {
+    onUpdateAmplifyDataStoreUserMetadata(ds_pk: $ds_pk, ds_sk: $ds_sk) {
+      ds_pk
+      ds_sk
+      displayName
+      pic
+      stripeCustomerId
+      dateOfBirth
+      address {
+        address1
+        address2
+        unit
+        city
+        state
+        zip
+        country
+      }
+      phone
+      email
+      uid
+      catalog
+      description
+      splashPic
+      colorTheme
     }
   }
 `;

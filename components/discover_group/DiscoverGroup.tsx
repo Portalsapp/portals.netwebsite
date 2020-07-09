@@ -15,7 +15,7 @@ export default function DiscoverGroup(props: Props) {
         <Text style={style.titleText}>{props.title}</Text>
       </View>
       <View style={style.linkContainer}>
-        {[...Array(props.count)].map(() => (
+        {[...Array(props.count)].map((elem, index) => (
           <PortalLink
             title={'Portal'}
             source={
@@ -27,6 +27,7 @@ export default function DiscoverGroup(props: Props) {
             selected={false}
             onPress={() => {}}
             size={50}
+            key={index}
           />
         ))}
       </View>

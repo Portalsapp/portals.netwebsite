@@ -1,17 +1,43 @@
-import React from 'react'
-import { View, Text, Modal } from 'react-native'
-import style from './PortalsModalStyle'
+import React, { FunctionComponent } from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import style from './PortalsModalStyle';
+/*@ts-ignore*/
+import Modal from 'modal-react-native-web';
 
 type Props = {
   modalVisible: boolean,
-}
+  setModalVisbility: (modalVisible: boolean) => void,
+};
 
-export default function PortalsModal(props : Props) {
+const PortalsModal:FunctionComponent<Props> =  (props) => {
+  console.log(props);
   return (
-    <Modal animationType='slide' visible={true}>
-      <View style={style.container}>
-        <Text>Modal!</Text>
-      </View>
+    <Modal visible={props.modalVisible} transparent={true}>
+      <TouchableOpacity
+        onPress={() => {
+          props.setModalVisbility(false);
+          console.log('outer press', props.modalVisible);
+        }}
+        style={style.outerContainer}
+        activeOpacity={1}
+      >
+          <TouchableWithoutFeedback onPress={() => {
+            props.setModalVisbility(true);
+            console.log('inner press', props.modalVisible)
+          }} style={style.modal}>
+            <View style={style.modal}>
+              <Text>Modal!</Text>
+              {props.children}
+            </View>
+          </TouchableWithoutFeedback>
+      </TouchableOpacity>
     </Modal>
   );
 }
+
+export default PortalsModal;

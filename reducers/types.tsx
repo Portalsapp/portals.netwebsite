@@ -1,6 +1,5 @@
 export interface AppState {
   signedIn: boolean,
-  modalVisible: boolean,
 }
 
 export interface UserState {

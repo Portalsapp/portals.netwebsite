@@ -5,15 +5,15 @@ import { setLoginStatus, setModalVisbility } from '../../actions/appStateActions
 import { RootState } from '../../reducers/index';
 
 const mapStateToProps = (state: RootState) => ({
-  // modalVisible: state.appState.modalVisible,
+  modalVisible: state.appState.modalVisible,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     // setLoginStatus: (loginStatus: boolean) =>
     //   dispatch(setLoginStatus(loginStatus)),
-    // setModalVisbility: (modalVisbility: boolean) =>
-    //   dispatch(setModalVisbility(modalVisbility)),
+    setModalVisbility: (modalVisbility: boolean) =>
+      dispatch(setModalVisbility(modalVisbility)),
   };
 };
 

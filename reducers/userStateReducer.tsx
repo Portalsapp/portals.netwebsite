@@ -7,6 +7,8 @@ import { UserStateTypes } from '../actions/types';
 const initialState: UserState = {
   userData: { 
     displayName: '',
+    pic: '',
+    username: '',
   },
 };
 

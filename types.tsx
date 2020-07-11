@@ -29,13 +29,13 @@ export type MainTabParams = {
 };
 
 export type RootDrawerParamList = {
-  // Root: { title: string },
   Portals: undefined,
   Stuff: undefined,
   Discover: undefined,
   Shop: undefined,
   Settings: undefined,
   NotFound: undefined,
+  Publisher: undefined,
 }
 
 export type PortalsStackParamList = {
@@ -57,8 +57,14 @@ export type SettingsStackParamList = {
 }
 
 export type ShopStackParamList = {
-  Shop: undefined;
+  Shop: undefined,
 };
+
+export type PublisherStackParamList = {
+  Publisher: undefined,
+  CreatePortal: undefined,
+  ManagePortal: undefined,
+}
 
 export type AuthStackParamList = {
   Login: undefined,

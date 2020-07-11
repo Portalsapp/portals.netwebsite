@@ -1,16 +1,32 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-  container: {
-    backgroundColor: 'red',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+  outerContainer: {
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    // backgroundColor: 'red',
   },
   modal: {
-    margin: 0,
-    backgroundColor: 'green',
+    backgroundColor: '#f4f4f4',
+    padding: 50,
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    width: '50%',
+    height: '50%',
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.46,
+    shadowRadius: 11.14,
+
+    elevation: 17,
+    // marginTop: '10%',
   },
 });

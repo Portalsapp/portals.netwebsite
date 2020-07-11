@@ -1,7 +1,8 @@
 import {
   SET_LOGIN_STATUS,
   SET_MODAL_VISIBILITY,
-  SET_USER_DATA
+  SET_USER_DATA,
+  SET_MODAL_CONTENT,
 } from '../constants/ActionTypes';
 
 interface SetLoginStatus {
@@ -22,6 +23,14 @@ interface SetUserData {
     displayName: string,
     pic: string,
     username: string,
+  }
+}
+
+interface SetModalContent {
+  type: typeof SET_MODAL_CONTENT,
+  payload: {
+    title: string,
+    bodyText: string,
   }
 }
 

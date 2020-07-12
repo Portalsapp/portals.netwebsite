@@ -13,38 +13,6 @@ type Props = {
 }
 
 export default function SettingsScreen(props: Props) {
-  console.log(props.userData.username);
-  useFocusEffect(
-    React.useCallback(() => {
-      // Do something when the screen is focused
-      const subscription = client
-        .subscribe({
-          query: gql(subscriptions.onUpdateAmplifyDataStoreUserMetadata),
-          variables: {
-            ds_pk: 'USER#' + props.userData.username,
-            ds_sk: '#METADATA#' + props.userData.username,
-          },
-        })
-        .subscribe({
-          next: (data) => {
-            console.log('new data:', data);
-            props.setUserData({ ...props.userData, displayName: data.displayName, pic: data.pic });
-          },
-          error: (error) => {
-            console.log('userDataSubscription Error:', error);
-          },
-        });
-      return () => {
-        // Do something when the screen is unfocused
-        // Useful for cleanup functions
-        /*@ts-ignore */
-        // subscription.unsubscribe();
-        console.log('unsub');
-        subscription.unsubscribe();
-      };
-    }, [])
-  );
-
   return (
     <View>
       <Text>Settings</Text>

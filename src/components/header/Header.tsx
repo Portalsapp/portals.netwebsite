@@ -11,6 +11,7 @@ type Props = {
 }
 
 export default function Header(props: Props) {
+  console.log(props.userData);
   return (
     <View style={style.header}>
       <View style={style.headerLogo}>

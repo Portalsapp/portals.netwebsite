@@ -26,7 +26,7 @@ import {
 import LoginScreen from '../screens/login/LoginScreenContainer'
 import CreateAccountScreen from '../screens/create_account/CreateAccountScreenContainer'
 import LinkingConfiguration from './LinkingConfiguration';
-import RootNavigator from './MainStack'
+import RootNavigator from './MainStackContainer'
 
 
 // If you are not familiar with React Navigation, we recommend going through the

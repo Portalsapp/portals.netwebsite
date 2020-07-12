@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
 import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
+  useFocusEffect,
 } from '@react-navigation/native';
 
 import PortalsScreen from '../screens/portals/PortalsScreenContainer';
@@ -16,6 +17,7 @@ import ShopScreen from '../screens/shop/ShopScreen';
 import PublisherScreen from '../screens/publisher/PublisherScreenContainer';
 import CreatePortalScreen from '../screens/create_portal/CreatePortalScreenContainer';
 import ManagePortalScreen from '../screens/manage_portal/ManagePortalScreenContainer';
+import * as subscriptions from '../graphql/subscriptions';
 
 import { Platform, ColorSchemeName, Modal } from 'react-native';
 import {
@@ -27,7 +29,6 @@ import {
   StackScreenProps,
 } from '@react-navigation/stack';
 
-
 import {
   RootStackParamList,
   RootDrawerParamList,
@@ -38,6 +39,9 @@ import {
   ShopStackParamList,
   PublisherStackParamList,
 } from '../../types';
+import client from '../../functions/AWSFunctions';
+import gql from 'graphql-tag';
+import { UserData } from '../reducers/types';
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -50,7 +54,46 @@ const SettingsStack = createStackNavigator<SettingsStackParamList>();
 const ShopStack = createStackNavigator<ShopStackParamList>();
 const PublisherStack = createStackNavigator<PublisherStackParamList>();
 
-export default function RootNavigator() {
+type Props = {
+  userData: UserData;
+  setUserData: (userData: UserData) => void;
+};
+
+export default function RootNavigator(props: Props) {
+    React.useEffect(() => {
+      // Do something when the screen is focused
+      const subscription = client
+        .subscribe({
+          query: gql(subscriptions.onUpdateAmplifyDataStoreUserMetadata),
+          variables: {
+            ds_pk: 'USER#' + props.userData.username,
+            ds_sk: '#METADATA#' + props.userData.username,
+          },
+        })
+        .subscribe({
+          next: (data) => {
+            console.log('new data:', data);
+            props.setUserData({
+              ...props.userData,
+              displayName: data.displayName,
+              pic: data.pic,
+            });
+            console.log('props', props.userData);
+          },
+          error: (error) => {
+            console.log('userDataSubscription Error:', error);
+          },
+        });
+      return () => {
+        // Do something when the screen is unfocused
+        // Useful for cleanup functions
+        /*@ts-ignore */
+        // subscription.unsubscribe();
+        console.log('unsub');
+        subscription.unsubscribe();
+      };
+    }, []);
+
   return (
     <RootStack.Navigator headerMode='none'>
       <RootStack.Screen name='Main'>

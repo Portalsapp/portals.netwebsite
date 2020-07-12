@@ -28,6 +28,7 @@ export default function SettingsScreen(props: Props) {
         .subscribe({
           next: (data) => {
             console.log('new data:', data);
+            props.setUserData({ ...props.userData, displayName: data.displayName, pic: data.pic });
           },
           error: (error) => {
             console.log('userDataSubscription Error:', error);

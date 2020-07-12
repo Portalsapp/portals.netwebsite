@@ -3,9 +3,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation/indexContainer';
+import useCachedResources from './src/hooks/useCachedResources';
+import useColorScheme from './src/hooks/useColorScheme';
+import Navigation from './src/navigation/indexContainer';
 import {
   useFonts,
   OpenSans_300Light,
@@ -19,7 +19,7 @@ import {
   OpenSans_800ExtraBold,
   OpenSans_800ExtraBold_Italic,
 } from '@expo-google-fonts/open-sans';
-import reducer from './reducers/index';
+import reducer from './src/reducers/index';
 import { createStore } from 'redux';
 import Amplify from 'aws-amplify';
 /*@ts-ignore */

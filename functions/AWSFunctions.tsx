@@ -38,8 +38,25 @@ export const getUserMetadata = async(username: string) => {
     );
 }
 
-export const getUserPortals = async(username: string) => {
-
+export const getUserPortalConnections = async(username: string) => {
+  // Query
+  // return await client
+  //   .query({
+  //     query: gql(queries.listAllUserMetadata),
+  //     variables: {
+  //       pk: 'USER#' + username,
+  //       sk: '#PORTAL_CONNECTION#',
+  //     },
+  //   })
+  //   .then(
+  //     /*@ts-ignore */
+  //     ({ data: { listAllUserMetadata } }) => {
+  //       const items = listAllUserMetadata.items;
+  //       if (Array.isArray(items) && items.length > 0) {
+  //         // Query for all entries with
+  //       }
+  //     }
+  //   );
 }
 
 export const userDataSubscription = async(username: string) => {

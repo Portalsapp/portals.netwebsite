@@ -15,8 +15,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     setLoginStatus: (loginStatus: boolean) =>
       dispatch(setLoginStatus(loginStatus)),
-    setUserData: (userData: UserData) =>
-      dispatch(setUserData(userData)),
+    setUserData: (userData: UserData) => dispatch(setUserData(userData)),
   };
 };
 

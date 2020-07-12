@@ -56,7 +56,7 @@ const PublisherStack = createStackNavigator<PublisherStackParamList>();
 
 type Props = {
   userData: UserData;
-  setUserData: (userData: UserData) => void;
+  setUserData: (userData: UserData) => void,
 };
 
 export default function RootNavigator(props: Props) {
@@ -71,14 +71,13 @@ export default function RootNavigator(props: Props) {
           },
         })
         .subscribe({
-          next: (data) => {
-            console.log('new data:', data);
+          next: ({ data }) => {
+            const result = data.onUpdateAmplifyDataStoreUserMetadata;
             props.setUserData({
               ...props.userData,
-              displayName: data.displayName,
-              pic: data.pic,
+              displayName: result.displayName,
+              pic: result.pic,
             });
-            console.log('props', props.userData);
           },
           error: (error) => {
             console.log('userDataSubscription Error:', error);

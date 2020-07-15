@@ -9,14 +9,14 @@ type Props = {
 
 export default function SocialBar(props : Props) {
   const images : JSX.Element[] = [];
-  props.socialMedia.forEach((elem) => {
+  props.socialMedia.forEach((elem, index) => {
     images.push(
-      <View style={style.imageContainer}>
+      <View style={style.imageContainer} key={index}>
         <TouchableOpacity>
           <Image source={require('../../assets/images/' + elem + '.png')} style={style.socialIcon} />
         </TouchableOpacity>
       </View>
-      );
+    );
   });
   return (
     <View style={style.container}>

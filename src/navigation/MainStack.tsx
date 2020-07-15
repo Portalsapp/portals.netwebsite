@@ -39,9 +39,9 @@ import {
   ShopStackParamList,
   PublisherStackParamList,
 } from '../../types';
-import client from '../../functions/AWSFunctions';
+import client, { getUserPortalConnections } from '../../functions/AWSFunctions';
 import gql from 'graphql-tag';
-import { UserData } from '../reducers/types';
+import { UserData, Portal } from '../reducers/types';
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -57,6 +57,7 @@ const PublisherStack = createStackNavigator<PublisherStackParamList>();
 type Props = {
   userData: UserData;
   setUserData: (userData: UserData) => void,
+  setPortals: (portals: Portal[]) => void,
 };
 
 export default function RootNavigator(props: Props) {
@@ -83,6 +84,9 @@ export default function RootNavigator(props: Props) {
             console.log('userDataSubscription Error:', error);
           },
         });
+        
+      // Update the user's portals
+      updateUserPortals();
       return () => {
         // Do something when the screen is unfocused
         // Useful for cleanup functions
@@ -92,6 +96,11 @@ export default function RootNavigator(props: Props) {
         subscription.unsubscribe();
       };
     }, []);
+
+  const updateUserPortals = async () => {
+    const portalConnections = await getUserPortalConnections(props.userData.username);
+    props.setPortals(portalConnections);
+  }
 
   return (
     <RootStack.Navigator headerMode='none'>

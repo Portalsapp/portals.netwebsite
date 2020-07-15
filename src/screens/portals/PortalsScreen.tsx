@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -16,11 +16,14 @@ import Header from '../../components/header/HeaderContainer';
 import { useNavigation } from '../../hooks/useNavigation';
 import * as queries from '../../graphql/queries';
 import gql from 'graphql-tag';
-import client from '../../../functions/AWSFunctions';
+import client, {
+  getUserPortalConnections,
+} from '../../../functions/AWSFunctions';
 import PortalsModal from '../../components/modal/PortalsModal'
 import { set } from 'react-native-reanimated';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import modalStyle from '../../components/modal/PortalsModalStyle';
+import { UserData, Portal } from '../../reducers/types';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   TabTwoParamList,
@@ -31,6 +34,8 @@ type Props = {
   navigation: ProfileScreenNavigationProp;
   setModalVisbility: (modalVisible: boolean) => void,
   modalVisible: boolean,
+  userData: UserData,
+  portals: Portal[],
 };
 
 const portalData = [
@@ -66,38 +71,21 @@ const portalData = [
   },
 ];
 
-const initialState: string[] = [];
+// const initialState: Portal[] = [];
 
 export default function PortalsScreen(props: Props) {
-  const [portals, setPortals] = useState(initialState);
+  const [portals, setPortals] = useState(props.portals);
   const [modalVisible, setModalVisible] = useState(false);
 
-  // const portals: string[] = [];
-  console.log('b', portals === []);
-  if (portals === initialState) {
-    console.log('a');
-    client
-      .query({
-        query: gql(queries.listAmplifyDataStores),
-      })
-      .then(
-        /*@ts-ignore */
-        ({ data: { listAmplifyDataStores } }) => {
-          const items = listAmplifyDataStores.items;
-          const p: string[] = [];
-          items.forEach((item: { ds_pk: string; ds_sk: string }) => {
-            if (
-              item.ds_pk.includes('ENTITY#TestExperience') &&
-              item.ds_sk.includes('#PORTAL_CONNECTION')
-            ) {
-              p.push(item.ds_sk.split('#PORTAL_CONNECTION#')[1]);
-            }
-          });
-          setPortals(p);
-          console.log(portals);
-        }
-      );
-  }
+  /*
+  * Updates state with any portals props changes
+  */
+  useEffect(() => {
+    if (portals !== props.portals) {
+      setPortals(props.portals);
+    }
+  }, [props.portals])
+
   return (
     <View style={style.container}>
       <Header />
@@ -123,16 +111,16 @@ export default function PortalsScreen(props: Props) {
       <View style={{ flexDirection: 'row', flex: 1 }}>
         <View style={style.portalsArea}>
           <View style={style.portalsContainer}>
-            {portals.map((elem: string) => (
+            {portals.map((elem: Portal, index) => (
               <PortalLink
-                title={elem}
+                title={elem.displayName}
                 source={portalData[0].pic}
                 selected={false}
                 size={100}
                 onPress={(options: { title: string }) =>
                   props.navigation.navigate('Select', { title: options.title })
                 }
-                key={elem}
+                key={index}
               />
             ))}
           </View>

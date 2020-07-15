@@ -70,3 +70,9 @@ export type AuthStackParamList = {
   Login: undefined,
   CreateAccount: undefined,
 }
+
+export type MainTabNavigatorParamList = {
+  Shop: undefined,
+  Portals: undefined,
+  Discover: undefined,
+}

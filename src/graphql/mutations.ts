@@ -146,3 +146,32 @@ export const createNewUserMetadata = /* GraphQL */ `
     }
   }
 `;
+
+export const createNewPortalMetadata = /* GraphQL */ `
+  mutation createNewPortalMetadata($createNewPortalMetadata: CreatePortalMetadata) {
+    createNewPortalMetadata (input: $createNewPortalMetadata) {
+      ds_pk
+      ds_sk
+      displayName
+      pic
+      stripeCustomerId
+      dateOfBirth
+      address {
+        address1
+        address2
+        unit
+        city
+        state
+        zip
+        country
+      }
+      phone
+      email
+      uid
+      catalog
+      description
+      splashPic
+      colorTheme
+    }
+  }
+`

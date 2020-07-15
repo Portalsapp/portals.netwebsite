@@ -27,6 +27,8 @@ import LoginScreen from '../screens/login/LoginScreenContainer'
 import CreateAccountScreen from '../screens/create_account/CreateAccountScreenContainer'
 import LinkingConfiguration from './LinkingConfiguration';
 import RootNavigator from './MainStackContainer'
+import MobileMainTabNavigator from './MobileMainTabNavigator';
+import { Portal } from '../reducers/types';
 
 
 // If you are not familiar with React Navigation, we recommend going through the

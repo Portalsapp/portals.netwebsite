@@ -15,7 +15,7 @@ const initialState: UserState = {
 export default (state = initialState, action: UserStateTypes) => {
   switch (action.type) {
     case SET_USER_DATA:
-      return { ...state, userData: action.payload };
+      return { ...state, userData: { ...action.payload } };
     default:
       return { ...state };
   }

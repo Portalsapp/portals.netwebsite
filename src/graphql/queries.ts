@@ -167,3 +167,64 @@ export const listAllEntities = /* GraphQL */ `
     }
   }
 `;
+
+export const getPortalMetadata = /* GraphQL */ `
+  query getPortalMetadata($getPortalMetadataInput: PortalMetadataInput) {
+    getPortalMetadata(
+      input: $getPortalMetadataInput
+    ) {
+      ds_pk
+      ds_sk
+      displayName
+      pic
+      stripeCustomerId
+      dateOfBirth
+      address {
+        address1
+        address2
+        unit
+        city
+        state
+        zip
+        country
+      }
+      phone
+      email
+      uid
+      catalog
+      description
+      splashPic
+      colorTheme
+    }
+  }
+`
+
+export const listEntityConnections = /* GraphQL */ `
+  query listEntityConnections($listEntityConnections: PKSKInput) {
+    listEntityConnections(input: $listEntityConnections) {
+      items {
+        ds_pk
+        ds_sk	displayName
+        pic
+        stripeCustomerId
+        dateOfBirth
+        address {
+          address1
+          address2
+          unit
+          city
+          state
+          zip
+          country
+        }
+        phone
+        email
+        uid
+        catalog
+        description
+        splashPic
+        colorTheme
+      }
+    }
+  }
+`

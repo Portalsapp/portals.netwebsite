@@ -3,12 +3,14 @@ import { Dispatch } from 'redux';
 import MainStack from './MainStack';
 import { setLoginStatus } from '../actions/appStateActions';
 import { setUserData } from '../actions/userStateActions';
+import { setPortals } from '../actions/portalStateActions';
 import { RootState } from '../reducers/index';
-import { UserData } from '../reducers/types';
+import { UserData, Portal } from '../reducers/types';
 
 const mapStateToProps = (state: RootState) => ({
   signedIn: state.appState.signedIn,
   userData: state.userState.userData,
+  portals: state.portalState.portals,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
@@ -16,6 +18,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     setLoginStatus: (loginStatus: boolean) =>
       dispatch(setLoginStatus(loginStatus)),
     setUserData: (userData: UserData) => dispatch(setUserData(userData)),
+    setPortals: (portals: Portal[]) => dispatch(setPortals(portals)),
   };
 };
 

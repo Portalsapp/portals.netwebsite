@@ -11,11 +11,6 @@ type Props = {
 }
 
 export default function Header(props: Props) {
-  console.log(props.userData);
-  React.useEffect(() => {
-    console.log('useEffect props', props.userData);
-  })
-
   return (
     <View style={style.header}>
       <View style={style.headerLogo}>

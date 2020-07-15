@@ -1,16 +1,60 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text } from 'react-native'
 import style from './CreatePortalScreenStyle'
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 const initialFormState = {
-  name: '',
-  description: '',
+	displayName: '',
+	pic: '',
+	stripeCustomerId: '',
+	dateOfBirth: '',
+	address: {
+    address1: '',
+    address2: '',
+    unit: '',
+    city: '',
+    state: '',
+    zip: '',
+    country: '',
+  },
+	phone: '',
+	email: '',
+	uid: '',
+	catalog: '',
+	description: '',
+	splashPic: '',
+	colorTheme: '',
 }
 
 export default function CreatePortalScreen() {
+  const [formState, setformState] = useState(initialFormState);
+  const createPortal = async () => {
+    console.log(formState);
+  }
   return (
-    <View>
-      <Text>Create Portal</Text>
+    <View style={style.container}>
+      <View style={style.formContainer}>
+        <Text style={style.titleText}>Create New Portal</Text>
+        <TextInput
+          style={style.textInput}
+          value={formState.displayName}
+          placeholder='Portal Name'
+          onChangeText={(displayName) =>
+            setformState({ ...formState, displayName })
+          }
+        />
+        <TextInput
+          style={style.textInput}
+          placeholder='Color Theme'
+          value={formState.colorTheme}
+          onChangeText={(colorTheme) =>
+            setformState({ ...formState, colorTheme })
+          }
+        />
+        <TouchableOpacity onPress={() => createPortal()} style={style.button}>
+          <Text style={style.buttonText}>Create Portal</Text>
+        </TouchableOpacity>
+      </View>
     </View>
-  )
+  );
 }

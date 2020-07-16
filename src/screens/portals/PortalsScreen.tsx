@@ -5,7 +5,7 @@ import {
   Image,
   TouchableOpacity,
   TouchableHighlight,
-  ListRenderItem
+  ListRenderItem,
 } from 'react-native';
 /*@ts-ignore*/
 import Modal from 'modal-react-native-web';
@@ -20,9 +20,12 @@ import gql from 'graphql-tag';
 import client, {
   getUserPortalConnections,
 } from '../../../functions/AWSFunctions';
-import PortalsModal from '../../components/modal/PortalsModal'
+import PortalsModal from '../../components/modal/PortalsModal';
 import { set } from 'react-native-reanimated';
-import { TouchableWithoutFeedback, FlatList } from 'react-native-gesture-handler';
+import {
+  TouchableWithoutFeedback,
+  FlatList,
+} from 'react-native-gesture-handler';
 import modalStyle from '../../components/modal/PortalsModalStyle';
 import { UserData, Portal } from '../../reducers/types';
 
@@ -33,10 +36,10 @@ type ProfileScreenNavigationProp = StackNavigationProp<
 
 type Props = {
   navigation: ProfileScreenNavigationProp;
-  setModalVisbility: (modalVisible: boolean) => void,
-  modalVisible: boolean,
-  userData: UserData,
-  portals: Portal[],
+  setModalVisbility: (modalVisible: boolean) => void;
+  modalVisible: boolean;
+  userData: UserData;
+  portals: Portal[];
 };
 
 const portalData: Portal[] = [
@@ -50,13 +53,30 @@ export default function PortalsScreen(props: Props) {
   const [modalVisible, setModalVisible] = useState(false);
 
   /*
-  * Updates state with any portals props changes
-  */
+   * Updates state with any portals props changes
+   */
   useEffect(() => {
     if (portals !== props.portals) {
       setPortals([...portalData, ...props.portals]);
     }
-  }, [props.portals])
+  }, [props.portals]);
+
+  /*@ts-ignore*/
+  const renderItem = ({ item }) => (
+    <PortalLink
+      title={item.displayName}
+      // source={portalData[0].pic}
+      selected={false}
+      size={50}
+      onPress={(options: { title: string }) =>
+        props.navigation.navigate('Select', {
+          title: options.title,
+        })
+      }
+    />
+  );
+  /*@ts-ignore*/
+  const keyExtractor = (item, index) => index.toString();
 
   return (
     <View style={style.container}>
@@ -81,7 +101,6 @@ export default function PortalsScreen(props: Props) {
       </View> */}
       <View style={{ flexDirection: 'row', flex: 1 }}>
         <View style={style.portalsArea}>
-          {/* <View style={style.portalsContainer}> */}
           <FlatList
             contentContainerStyle={{
               flex: 1,
@@ -89,34 +108,9 @@ export default function PortalsScreen(props: Props) {
             }}
             data={portals}
             numColumns={3}
-            renderItem={({ item }) => (
-              <PortalLink
-                title={item.displayName}
-                // source={portalData[0].pic}
-                selected={false}
-                size={50}
-                onPress={(options: { title: string }) =>
-                  props.navigation.navigate('Select', {
-                    title: options.title,
-                  })
-                }
-              />
-            )}
-            keyExtractor={(item, index) => index.toString()}
+            renderItem={renderItem}
+            keyExtractor={keyExtractor}
           />
-          {/* {portals.map((elem: Portal, index) => (
-              <PortalLink
-                title={elem.displayName}
-                // source={portalData[0].pic}
-                selected={false}
-                size={50}
-                onPress={(options: { title: string }) =>
-                  props.navigation.navigate('Select', { title: options.title })
-                }
-                key={index}
-              />
-            ))} */}
-          {/* </View> */}
         </View>
       </View>
 

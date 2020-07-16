@@ -1,4 +1,5 @@
 export const SET_LOGIN_STATUS = "SET_LOGIN_STATUS";
 export const SET_USER_DATA = "SET_USER_DATA";
+export const SET_USER_ITEMS = "SET_USER_ITEMS";
 export const SET_PORTALS = "SET_PORTALS";
 export const SET_BUSINESSES = "SET_BUSINESSES";

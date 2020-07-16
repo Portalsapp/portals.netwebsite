@@ -3,16 +3,16 @@ import { View, Text } from 'react-native'
 
 import PortalsScreen from '../screens/portals/PortalsScreenContainer'
 import DiscoverScreen from '../screens/discover/DiscoverScreen'
-import ShopScreen from '../screens/shop/ShopScreen'
+import ShopScreen from '../screens/shop/ShopScreenContainer'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { MainTabNavigatorParamList, PortalsStackParamList, StuffStackParamList, DiscoverStackParamList, ShopStackParamList } from '../../types'
 import { createStackNavigator, StackScreenProps } from '@react-navigation/stack'
 import PortalSelectScreen from '../screens/portal_select/PortalSelectScreen'
 import { Ionicons } from '@expo/vector-icons';
-import client, { getUserPortalConnections } from '../../functions/AWSFunctions'
+import client, { getUserPortalConnections, getUserItems } from '../../functions/AWSFunctions'
 import gql from 'graphql-tag'
-import { UserData, Portal } from '../reducers/types'
+import { UserData, Portal, VirtualItem } from '../reducers/types'
 import * as subscriptions from '../graphql/subscriptions'
 
 
@@ -22,9 +22,11 @@ const ShopStack = createStackNavigator<ShopStackParamList>();
 const DiscoverStack = createStackNavigator<DiscoverStackParamList>();
 
 type Props = {
-  userData: UserData;
+  userData: UserData,
+  items: VirtualItem[],
   setUserData: (userData: UserData) => void,
   setPortals: (portals: Portal[]) => void,
+  setUserItems: (items: VirtualItem[]) => void,
 }
 
 export default function MobileMainTabNavigator(props: Props) {
@@ -54,6 +56,8 @@ export default function MobileMainTabNavigator(props: Props) {
 
     // Update the user's portals
     updateUserPortals();
+    // Update the user's virtual items
+    updateUserItems();
     return () => {
       // Do something when the screen is unfocused
       // Useful for cleanup functions
@@ -70,10 +74,15 @@ export default function MobileMainTabNavigator(props: Props) {
     );
     props.setPortals(portalConnections);
   };
+
+  const updateUserItems = async () => {
+    const items = await getUserItems(props.userData.username);
+    console.log('items', items);
+    props.setUserItems(items);
+  }
+
   return (
-    <MainTabNavigator.Navigator
-      initialRouteName="Portals"
-    >
+    <MainTabNavigator.Navigator initialRouteName='Portals'>
       <MainTabNavigator.Screen
         name='Shop'
         options={{
@@ -89,7 +98,15 @@ export default function MobileMainTabNavigator(props: Props) {
       >
         {({ navigation }: StackScreenProps<ShopStackParamList>) => (
           <ShopStack.Navigator>
-            <ShopStack.Screen name='Shop' component={ShopScreen} />
+            <ShopStack.Screen
+              name='Shop'
+              component={ShopScreen}
+              options={{
+                headerLeft: () => <Text>BANK</Text>,
+                headerTitle: () => null,
+                headerRight: () => <Text>QR</Text>,
+              }}
+            />
           </ShopStack.Navigator>
         )}
       </MainTabNavigator.Screen>
@@ -112,7 +129,7 @@ export default function MobileMainTabNavigator(props: Props) {
               name='Portals'
               component={PortalsScreen}
               options={{
-                headerLeft: () => <Text>USER</Text>,
+                headerLeft: () => <Text>{props.userData.displayName}</Text>,
                 headerTitle: () => null,
                 headerRight: () => <Text>CART</Text>,
               }}

@@ -43,9 +43,6 @@ export const getUserMetadata = async (username: string) => {
 };
 
 export const getUserPortalConnections = async (username: string) => {
-  console.log('client', client);
-  console.log('query', queries);
-  console.log('username', username);
   return await client.query({
     query: gql(queries.listEntityConnections),
     variables: {
@@ -57,9 +54,7 @@ export const getUserPortalConnections = async (username: string) => {
   /*@ts-ignore*/
   }).then(({ data }) => {
     /*@ts-ignore*/
-    console.log('data', data);
     const items = data.listEntityConnections.items;
-    console.log('query items', items);
     return items;
   });
 };
@@ -112,4 +107,18 @@ export const createNewPortalMetadata = async (portalName: string, portalData: Po
   .then(({ data }) => {
     return data.createNewPortalMetadata;
   })
+}
+
+export const getUserItems = async (username: string) => {
+  return client.query({
+    query: gql(queries.retrieveUserItems),
+    variables: {
+      invUID: username,
+    },
+  })
+  .then(({ data }) => {
+    /*@ts-ignore*/
+    return data.retrieveUserInventory.items;
+  })
+  ;
 }

@@ -2,9 +2,10 @@ import {
   SET_LOGIN_STATUS,
   SET_USER_DATA,
   SET_PORTALS,
-  SET_BUSINESSES
+  SET_BUSINESSES,
+  SET_USER_ITEMS
 } from '../constants/ActionTypes';
-import { Portal, Business } from '../reducers/types';
+import { Portal, Business, VirtualItem } from '../reducers/types';
 
 interface SetLoginStatus {
   type: typeof SET_LOGIN_STATUS,
@@ -22,7 +23,14 @@ interface SetUserData {
   }
 }
 
-export type UserStateTypes = SetUserData;
+interface SetUserItems {
+  type: typeof SET_USER_ITEMS,
+  payload: {
+    items: VirtualItem[],
+  }
+}
+
+export type UserStateTypes = SetUserData | SetUserItems;
 
 interface SetPortals {
   type: typeof SET_PORTALS,

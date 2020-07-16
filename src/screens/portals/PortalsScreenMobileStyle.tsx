@@ -1,14 +1,13 @@
-import { StyleSheet, Platform } from 'react-native';
-import mobileStyle from './PortalsScreenMobileStyle';
+import { StyleSheet } from 'react-native';
 
-const webStyle = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
   },
 
   portalSelectContainer: {
     flex: 0.15,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   portalSelectButtonContainer: {
     paddingHorizontal: 40,
@@ -29,15 +28,20 @@ const webStyle = StyleSheet.create({
     fontFamily: 'OpenSans_300Light',
   },
 
-
   portalsArea: {
-    flex: 0.7,
+    flex: 1,
   },
   portalsContainer: {
     padding: 40,
-    flexDirection: 'row',
-  }
+    // flexDirection: 'row',
+    backgroundColor: 'red',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  portalsContentContainerStyle: {
+    flex: 1,
+    backgroundColor: 'red',
+    justifyContent: 'center',
+  },
 });
-
-const style = Platform.OS === 'web' ? webStyle : mobileStyle;
-export default style;

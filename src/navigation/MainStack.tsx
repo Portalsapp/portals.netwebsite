@@ -107,7 +107,7 @@ export default function RootNavigator(props: Props) {
       <RootStack.Screen name='Main'>
         {({ navigation }: StackScreenProps<RootStackParamList>) => (
           <Drawer.Navigator
-            drawerType={'permanent'}
+            drawerType={Platform.OS === 'web' ? 'permanent' : 'slide'}
             initialRouteName='Portals'
             drawerContent={(props) => <DrawerContent {...props} />}
           >

@@ -15,6 +15,7 @@ const client = new AWSAppSyncClient({
     type: AUTH_TYPE.API_KEY,
     apiKey: awsconfig.aws_appsync_apiKey,
   },
+  disableOffline: true,
 });
 
 export default client;
@@ -36,10 +37,15 @@ export const getUserMetadata = async (username: string) => {
           return items[0];
         }
       }
-    );
+    ).catch((err) => {
+      console.log('Get User Metadata Error:', err);
+    });
 };
 
 export const getUserPortalConnections = async (username: string) => {
+  console.log('client', client);
+  console.log('query', queries);
+  console.log('username', username);
   return await client.query({
     query: gql(queries.listEntityConnections),
     variables: {

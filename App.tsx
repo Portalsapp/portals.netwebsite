@@ -29,7 +29,7 @@ const store = createStore(reducer);
 Amplify.configure(awsmobile);
 
 function App() {
-  const fontsLoaded = useFonts({
+  const [fontsLoaded] = useFonts({
     OpenSans_300Light,
     OpenSans_300Light_Italic,
     OpenSans_400Regular,

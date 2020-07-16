@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import style from './PortalsModalStyle';
 /*@ts-ignore*/
-import Modal from 'modal-react-native-web';
+import Modal from './ModalBase';
 
 type Props = {
   modalVisible: boolean,
@@ -15,20 +15,17 @@ type Props = {
 };
 
 const PortalsModal:FunctionComponent<Props> =  (props) => {
-  console.log(props);
   return (
     <Modal visible={props.modalVisible} transparent={true}>
       <TouchableOpacity
         onPress={() => {
           props.setModalVisbility(false);
-          console.log('outer press', props.modalVisible);
         }}
         style={style.outerContainer}
         activeOpacity={1}
       >
           <TouchableWithoutFeedback onPress={() => {
             props.setModalVisbility(true);
-            console.log('inner press', props.modalVisible)
           }} style={style.modal}>
             <View style={style.modal}>
               <Text>Modal!</Text>

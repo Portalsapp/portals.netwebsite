@@ -18,7 +18,7 @@
             "output": {
                 "authConfig": {
                     "defaultAuthentication": {
-                        "authenticationType": "API_KEY"
+                        "authenticationType": "AWS_IAM"
                     },
                     "additionalAuthenticationProviders": [
                         {
@@ -28,6 +28,9 @@
                                 "awsRegion": "us-west-2",
                                 "appIdClientRegex": null
                             }
+                        },
+                        {
+                            "authenticationType": "API_KEY"
                         }
                     ]
                 },
@@ -37,7 +40,7 @@
                 "region": "us-west-2",
                 "GraphQLAPIKeyOutput": "da2-ugnrplvu5rb4rgqxceiffsnuxe"
             },
-            "lastPushTimeStamp": "2020-07-09T00:18:02.250Z"
+            "lastPushTimeStamp": "2020-07-15T22:47:09.488Z"
         }
     },
     "function": {

@@ -27,7 +27,7 @@ import LoginScreen from '../screens/login/LoginScreenContainer'
 import CreateAccountScreen from '../screens/create_account/CreateAccountScreenContainer'
 import LinkingConfiguration from './LinkingConfiguration';
 import RootNavigator from './MainStackContainer'
-import MobileMainTabNavigator from './MobileMainTabNavigator';
+import MobileMainTabNavigator from './MobileMainTabNavigatorContainer';
 import { Portal } from '../reducers/types';
 
 
@@ -36,8 +36,6 @@ import { Portal } from '../reducers/types';
 type Props = {
   colorScheme: ColorSchemeName,
   signedIn: boolean,
-  modalVisible: boolean,
-  setModalVisibility: (modalVisible: boolean) => void,
 }
 
 // export default function Navigation({ colorScheme, } : { colorScheme: ColorSchemeName;}, signedIn: boolean) {
@@ -49,9 +47,11 @@ export default function Navigation(props : Props) {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={props.colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+      // theme={props.colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+      theme={DefaultTheme}
     >
-      {props.signedIn === true ? <RootNavigator /> : <LoginNavigator />}
+      {/* {props.signedIn === true ? <RootNavigator /> : <LoginNavigator />} */}
+      {props.signedIn === true ? <MobileMainTabNavigator /> : <LoginNavigator />}
     </NavigationContainer>
   );
 }

@@ -17,7 +17,7 @@ interface NavigationParams {
 type Navigation = NavigationScreenProp<NavigationState, NavigationParams>;
 
 type Props = {
-  source: JSX.Element,
+  source?: JSX.Element,
   title: string,
   selected: boolean,
   onPress: Function,
@@ -35,9 +35,17 @@ function PortalLink(props : Props) {
   return (
     <TouchableOpacity onPress={() => props.onPress({ title: props.title }) }>
       <View style={[style.container, { width: props.size * 2, height: props.size * 2} ]}>
-        {props.source}
+        {/* {props.source ? props.source : null} */}
+        <Image
+          source={require('../../../src/assets/images/profile.png')}
+          style={{
+            width: props.size,
+            height: props.size,
+            borderRadius: props.size,
+          }}
+        />
         <View style={style.titleContainer}>
-          <Text style={style.title}>{props.title}</Text>
+          <Text style={[style.title, { fontSize: props.size / 4 }]}>{props.title}</Text>
         </View>
       </View>
     </TouchableOpacity>

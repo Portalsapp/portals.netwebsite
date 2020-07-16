@@ -228,3 +228,22 @@ export const listEntityConnections = /* GraphQL */ `
     }
   }
 `
+
+export const retrieveUserItems = /* GraphQL */ `
+  query retrieveUserInventory($invUID: String!) {
+    retrieveUserInventory(
+      userId: $invUID
+    ) {
+      items {
+      ds_pk
+      ds_sk
+      displayName
+      pic
+      uid
+      description
+      splashPic
+      colorTheme
+      }
+    }
+  }
+`;

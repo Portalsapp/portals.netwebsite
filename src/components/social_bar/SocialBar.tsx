@@ -13,7 +13,7 @@ export default function SocialBar(props : Props) {
     images.push(
       <View style={style.imageContainer} key={index}>
         <TouchableOpacity>
-          <Image source={require('../../assets/images/' + elem + '.png')} style={style.socialIcon} />
+          <Image source={require('../../assets/images/' + 'profile' + '.png')} style={style.socialIcon} />
         </TouchableOpacity>
       </View>
     );

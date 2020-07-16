@@ -1,6 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
+import mobileStyle from './LoginScreenStyleMobile';
 
-export default StyleSheet.create({
+const webStyle = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -41,7 +42,6 @@ export default StyleSheet.create({
   },
   formInput: {
     backgroundColor: 'white',
-    borderColor: 'none',
     height: 50,
     padding: 10,
     borderRadius: 4,
@@ -65,3 +65,6 @@ export default StyleSheet.create({
     fontFamily: 'OpenSans_400Regular',
   }
 });
+
+const style = Platform.OS === 'web' ? webStyle : mobileStyle;
+export default style;

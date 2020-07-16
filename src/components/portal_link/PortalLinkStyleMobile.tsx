@@ -1,7 +1,6 @@
-import { StyleSheet, Platform } from 'react-native';
-import mobileStyle from './PortalLinkStyleMobile'
+import { StyleSheet } from 'react-native';
 
-const webStyle = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -21,6 +20,3 @@ const webStyle = StyleSheet.create({
     fontFamily: 'OpenSans_300Light',
   },
 });
-
-const style = Platform.OS === 'web' ? webStyle : mobileStyle;
-export default style;

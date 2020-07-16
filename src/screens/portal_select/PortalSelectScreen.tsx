@@ -69,7 +69,7 @@ function PortalSelectScreen({ navigation, route }: Props) {
           <Text style={style.headerSubtitleText}>Epic Games</Text>
         </View>
       ),
-      headerRight: () => <SocialBar socialMedia={socialMedia}/>,
+      // headerRight: () => <SocialBar socialMedia={socialMedia}/>,
     });
   }, [navigation, route]);
   // props.navigation.setOptions({ headertTitle: props.route.params.title });

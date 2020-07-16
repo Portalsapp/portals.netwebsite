@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   TouchableHighlight,
+  ListRenderItem
 } from 'react-native';
 /*@ts-ignore*/
 import Modal from 'modal-react-native-web';
@@ -21,7 +22,7 @@ import client, {
 } from '../../../functions/AWSFunctions';
 import PortalsModal from '../../components/modal/PortalsModal'
 import { set } from 'react-native-reanimated';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { TouchableWithoutFeedback, FlatList } from 'react-native-gesture-handler';
 import modalStyle from '../../components/modal/PortalsModalStyle';
 import { UserData, Portal } from '../../reducers/types';
 
@@ -38,40 +39,11 @@ type Props = {
   portals: Portal[],
 };
 
-const portalData = [
+const portalData: Portal[] = [
   {
-    name: 'Fortnite',
-    pic: (
-      <Image
-        source={require('../../assets/images/profile.png')}
-        style={{ width: 100, height: 100, borderRadius: 100 }}
-      />
-    ),
-    selected: true,
-  },
-  {
-    name: 'Portal 2',
-    pic: (
-      <Image
-        source={require('../../assets/images/profile.png')}
-        style={{ width: 100, height: 100, borderRadius: 100 }}
-      />
-    ),
-    selected: true,
-  },
-  {
-    name: 'Portal 3',
-    pic: (
-      <Image
-        source={require('../../assets/images/profile.png')}
-        style={{ width: 100, height: 100, borderRadius: 100 }}
-      />
-    ),
-    selected: true,
+    displayName: 'Add Portal',
   },
 ];
-
-// const initialState: Portal[] = [];
 
 export default function PortalsScreen(props: Props) {
   const [portals, setPortals] = useState(props.portals);
@@ -82,21 +54,20 @@ export default function PortalsScreen(props: Props) {
   */
   useEffect(() => {
     if (portals !== props.portals) {
-      setPortals(props.portals);
+      setPortals([...portalData, ...props.portals]);
     }
   }, [props.portals])
 
   return (
     <View style={style.container}>
-      <Header />
+      {/* <Header /> */}
       {/* <PortalsModal modalVisible={modalVisible} closeModal={() => setModalVisible(false)}/> */}
-      <View style={style.portalSelectContainer}>
+      {/* <View style={style.portalSelectContainer}>
         <View style={style.portalSelectButtonContainer}>
           <TouchableOpacity
             onPress={() => {
               // props.setModalVisbility(true);
               setModalVisible(true);
-              console.log(modalVisible);
             }}
           >
             <View style={style.portalSelectButton}>
@@ -107,29 +78,51 @@ export default function PortalsScreen(props: Props) {
             </View>
           </TouchableOpacity>
         </View>
-      </View>
+      </View> */}
       <View style={{ flexDirection: 'row', flex: 1 }}>
         <View style={style.portalsArea}>
-          <View style={style.portalsContainer}>
-            {portals.map((elem: Portal, index) => (
+          {/* <View style={style.portalsContainer}> */}
+          <FlatList
+            contentContainerStyle={{
+              flex: 1,
+              alignItems: 'center',
+            }}
+            data={portals}
+            numColumns={3}
+            renderItem={({ item }) => (
+              <PortalLink
+                title={item.displayName}
+                // source={portalData[0].pic}
+                selected={false}
+                size={50}
+                onPress={(options: { title: string }) =>
+                  props.navigation.navigate('Select', {
+                    title: options.title,
+                  })
+                }
+              />
+            )}
+            keyExtractor={(item, index) => index.toString()}
+          />
+          {/* {portals.map((elem: Portal, index) => (
               <PortalLink
                 title={elem.displayName}
-                source={portalData[0].pic}
+                // source={portalData[0].pic}
                 selected={false}
-                size={100}
+                size={50}
                 onPress={(options: { title: string }) =>
                   props.navigation.navigate('Select', { title: options.title })
                 }
                 key={index}
               />
-            ))}
-          </View>
+            ))} */}
+          {/* </View> */}
         </View>
       </View>
 
       <PortalsModal
         modalVisible={modalVisible}
-        setModalVisbility={(visibility: boolean) => setModalVisible(visibility) }
+        setModalVisbility={(visibility: boolean) => setModalVisible(visibility)}
       >
         <Text>Portals Screen</Text>
       </PortalsModal>

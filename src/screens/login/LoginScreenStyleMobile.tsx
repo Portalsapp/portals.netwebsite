@@ -1,18 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  mainContainer: {
+  container: {
     flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#55b9f3',
-  },
-  formContainer: {
-    flex: 0.5,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#55b9f3',
   },
   outerFormShadow: {
-    borderRadius: 50,
+    borderRadius: 30,
     // background: #55b9f3;
     // box-shadow:  20px 20px 60px #489dcf,
     //             -20px -20px 60px #62d5ff;
@@ -26,7 +22,7 @@ export default StyleSheet.create({
     elevation: 20,
   },
   innerFormShadow: {
-    borderRadius: 50,
+    borderRadius: 30,
     shadowColor: '#62d5ff',
     shadowOffset: {
       width: -20,
@@ -37,22 +33,35 @@ export default StyleSheet.create({
     elevation: 20,
   },
   formBox: {
-    padding: 30,
+    paddingHorizontal: 30,
+    paddingVertical: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 500,
   },
   formInput: {
     backgroundColor: 'white',
-    height: 40,
+    height: 50,
     padding: 10,
     borderRadius: 4,
     marginVertical: 8,
+    width: '80%',
+    fontSize: 16,
+    fontFamily: 'OpenSans_300Light',
+    color: 'black',
   },
-  formSubmit: {
-    backgroundColor: 'white',
-    height: 40,
+  titleText: {
+    fontSize: 48,
+    fontFamily: 'OpenSans_300Light',
+    color: 'white',
+  },
+  submitButtonContainer: {
     padding: 10,
-    borderRadius: 4,
-    marginVertical: 8,
-    width: 100,
-    textAlign: 'center',
+    borderRadius: 10,
+    backgroundColor: 'white',
+  },
+  submitButtonText: {
+    fontSize: 16,
+    fontFamily: 'OpenSans_400Regular',
   },
 });

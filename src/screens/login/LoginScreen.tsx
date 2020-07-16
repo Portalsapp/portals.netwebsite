@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import style from './LoginStyle'
 import { Auth } from 'aws-amplify'
 import { CognitoUser } from '@aws-amplify/auth'
@@ -91,7 +90,8 @@ export default function LoginScreen(props: Props) {
       console.log('Form State', formState);
       if (!formState.needsToCreateAccount && !createAccount) {
         console.log('changing with submit verification code');
-        props.setLoginStatus(true);
+        // props.setLoginStatus(true);
+        verifyLogin();
       } else {
         navigation.navigate('CreateAccount');
       }
@@ -104,11 +104,11 @@ export default function LoginScreen(props: Props) {
   const verifyLogin = async () => {
     try {
       const data = await Auth.currentAuthenticatedUser();
-      console.log(data);
+      // console.log('login data', data);
       if (!formState.needsToCreateAccount) {
         console.log('changing with verify login');
         const { displayName, pic } = (await getUserMetadata(data.username));
-        console.log(displayName, pic);
+        console.log('display name, pic', displayName, pic);
         props.setUserData({ displayName, pic, username: data.username });
         props.setLoginStatus(true);
       }
@@ -119,63 +119,72 @@ export default function LoginScreen(props: Props) {
 
   verifyLogin();
   return (
-    <View style={style.container}>
-      <View style={style.outerFormShadow}>
-        <View style={style.innerFormShadow}>
-          <View style={style.formBox}>
-            {!formState.verification ? (
-              <>
-                <Text style={style.titleText}>Portals Sign In</Text>
-                <TextInput
-                  style={style.formInput}
-                  placeholder='Email or Phone Number'
-                  value={loginData.contact}
-                  onChangeText={(contact) => {
-                    setLoginData({ ...loginData, contact });
-                  }}
-                />
+    <TouchableWithoutFeedback
+      onPress={() => Keyboard.dismiss() }
+    >
+      <View style={style.container}>
+        <View style={style.outerFormShadow}>
+          <View style={style.innerFormShadow}>
+            <View style={style.formBox}>
+              {!formState.verification ? (
+                <>
+                  <Text style={style.titleText}>Portals Sign In</Text>
+                  <TextInput
+                    style={style.formInput}
+                    placeholder='Email or Phone Number'
+                    value={loginData.contact}
+                    onChangeText={(contact) => {
+                      setLoginData({ ...loginData, contact });
+                    }}
+                  />
 
-                <TouchableOpacity
-                  onPress={() => {
-                    // setFormState({ ...formState, verification: true });
-                    signUp(loginData.contact);
-                    // props.setLoginStatus(true);
-                    // navigation.navigate('CreateAccount');
-                  }}
-                >
-                  <View style={style.submitButtonContainer}>
-                    <Text style={style.submitButtonText}>
-                      Send Verification Code
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              </>
-            ) : (
-              <>
-                <Text style={style.titleText}>Verification Code</Text>
-                <TextInput
-                  style={style.formInput}
-                  placeholder='6 Digit Verification Code'
-                  value={loginData.verification}
-                  onChangeText={(verification) => {
-                    setLoginData({ ...loginData, verification });
-                  }}
-                />
-                <TouchableOpacity
-                  onPress={() => {
-                    /*@ts-ignore */
-                    submitVerificationCode(loginData.verification, userState.user, userState.createAccount);
-                  }}
-                >
-                  <View style={style.submitButtonContainer}>
-                    <Text style={style.submitButtonText}>Submit Code</Text>
-                  </View>
-                </TouchableOpacity>
-              </>
-            )}
+                  <TouchableOpacity
+                    onPress={() => {
+                      // setFormState({ ...formState, verification: true });
+                      signUp(loginData.contact);
+                      // props.setLoginStatus(true);
+                      // navigation.navigate('CreateAccount');
+                    }}
+                  >
+                    <View style={style.submitButtonContainer}>
+                      <Text style={style.submitButtonText}>
+                        Send Verification Code
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                </>
+              ) : (
+                <>
+                  <Text style={style.titleText}>Verification Code</Text>
+                  <TextInput
+                    style={style.formInput}
+                    placeholder='6 Digit Verification Code'
+                    value={loginData.verification}
+                    onChangeText={(verification) => {
+                      setLoginData({ ...loginData, verification });
+                    }}
+                  />
+                  <TouchableOpacity
+                    onPress={() => {
+                      /*@ts-ignore */
+                      submitVerificationCode(
+                        loginData.verification,
+                        /*@ts-ignore*/
+                        userState.user,
+                        userState.createAccount
+                      );
+                    }}
+                  >
+                    <View style={style.submitButtonContainer}>
+                      <Text style={style.submitButtonText}>Submit Code</Text>
+                    </View>
+                  </TouchableOpacity>
+                </>
+              )}
+            </View>
           </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }

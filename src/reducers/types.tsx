@@ -18,6 +18,7 @@ export interface UserData {
 
 export interface Portal {
   displayName: string,
+  pic?: string,
 }
 
 export interface Business {

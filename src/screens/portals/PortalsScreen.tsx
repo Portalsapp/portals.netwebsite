@@ -12,7 +12,7 @@ import Modal from 'modal-react-native-web';
 import PortalLink from '../../components/portal_link/PortalLink';
 import style from './PortalsStyle';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { TabTwoParamList } from '../../../types';
+import { TabTwoParamList, PortalsStackParamList } from '../../../types';
 import Header from '../../components/header/HeaderContainer';
 import { useNavigation } from '../../hooks/useNavigation';
 import * as queries from '../../graphql/queries';
@@ -30,7 +30,7 @@ import modalStyle from '../../components/modal/PortalsModalStyle';
 import { UserData, Portal } from '../../reducers/types';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
-  TabTwoParamList,
+  PortalsStackParamList,
   'Select'
 >;
 
@@ -70,35 +70,18 @@ export default function PortalsScreen(props: Props) {
       size={50}
       onPress={(options: { title: string }) =>
         props.navigation.navigate('Select', {
-          title: options.title,
+          // title: options.title,
+          title: '',
+          data: item,
         })
       }
+      pic={item.pic}
     />
   );
   /*@ts-ignore*/
   const keyExtractor = (item, index) => index.toString();
-
   return (
     <View style={style.container}>
-      {/* <Header /> */}
-      {/* <PortalsModal modalVisible={modalVisible} closeModal={() => setModalVisible(false)}/> */}
-      {/* <View style={style.portalSelectContainer}>
-        <View style={style.portalSelectButtonContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              // props.setModalVisbility(true);
-              setModalVisible(true);
-            }}
-          >
-            <View style={style.portalSelectButton}>
-              <Text style={style.portalSelectButtonText}>Fortnite</Text>
-              <View style={{ justifyContent: 'center' }}>
-                <Text style={{ fontSize: 30 }}>V</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View> */}
       <View style={{ flexDirection: 'row', flex: 1 }}>
         <View style={style.portalsArea}>
           <FlatList

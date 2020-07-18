@@ -23,9 +23,14 @@ type Props = {
   onPress: Function,
   navigation?: Navigation,
   size: number,
+  pic?: string,
 }
 
 function PortalLink(props : Props) {
+  const imgSource = props.pic
+    ? { uri: props.pic }
+    : require('../../assets/images/fortnite.jpg');
+
   // const navigation = useNavigation<NavigationParams>();
   // const {
   //   state: { params }
@@ -37,7 +42,7 @@ function PortalLink(props : Props) {
       <View style={[style.container, { width: props.size * 2, height: props.size * 2} ]}>
         {/* {props.source ? props.source : null} */}
         <Image
-          source={require('../../../src/assets/images/profile.png')}
+          source={imgSource}
           style={{
             width: props.size,
             height: props.size,

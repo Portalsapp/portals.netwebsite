@@ -1,3 +1,5 @@
+import { Portal } from "./src/reducers/types";
+
 export type RootStackParamList = {
   Main: undefined;
   Modal: undefined;
@@ -40,7 +42,10 @@ export type RootDrawerParamList = {
 
 export type PortalsStackParamList = {
   Portals: undefined,
-  Select: { title: string },
+  Select: {
+    title: string,
+    data: Portal,
+  },
 }
 
 export type StuffStackParamList = {

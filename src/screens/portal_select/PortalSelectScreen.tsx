@@ -1,64 +1,60 @@
 import React, { useState } from 'react'
-import { View, Text, Image } from 'react-native'
-import { TabTwoParamList } from '../../../types';
+import { View, Text, Image, Platform } from 'react-native'
+import { PortalsStackParamList } from '../../../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import SocialBar from '../../components/social_bar/SocialBar';
-import style from './PortalSelectStyle';
+import webStyle from './PortalSelectStyle';
+import mobileStyle from './PortalSelectMobileStyle';
 import PortalLink from '../../components/portal_link/PortalLink';
 import PortalAction from '../../components/portal_action/PortalAction';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-handler';
+import { VirtualItem } from '../../reducers/types';
+import VirtualItemButton from '../../components/virtual_item/VirtualItemButton';
 
-type SelectScreenRouteProp = RouteProp<TabTwoParamList, 'Select'>;
+type SelectScreenRouteProp = RouteProp<PortalsStackParamList, 'Select'>;
+
+// const style = Platform.OS === 'web' ? webStyle : mobileStyle;
+const style = mobileStyle;
 
 type Props = {
-  navigation: StackNavigationProp<TabTwoParamList>;
+  navigation: StackNavigationProp<PortalsStackParamList>;
   route: SelectScreenRouteProp;
 };
 
-const socialMedia = [
-  'twitter', 
-  'snapchat',
-  'youtube',
-  'twitch'
-];
-
-const portalData: { name: string, pic: JSX.Element, selected: boolean }[] = [
+const itemData: VirtualItem[] = [
   {
-    name: 'Fortnite',
-    pic: (
-      <Image
-        source={require('../../assets/images/profile.png')}
-        style={{ width: 50, height: 50, borderRadius: 100 }}
-      />
-    ),
-    selected: true,
+    displayName: 'item',
+    pic:
+      'https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/peach.png',
   },
   {
-    name: 'Portal 2',
-    pic: (
-      <Image
-        source={require('../../assets/images/profile.png')}
-        style={{ width: 50, height: 50, borderRadius: 100 }}
-      />
-    ),
-    selected: true,
+    displayName: 'item',
+    pic:
+      'https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/peach.png',
   },
   {
-    name: 'Portal 3',
-    pic: (
-      <Image
-        source={require('../../assets/images/profile.png')}
-        style={{ width: 50, height: 50, borderRadius: 100 }}
-      />
-    ),
-    selected: true,
+    displayName: 'item',
+    pic:
+      'https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/peach.png',
+  },
+  {
+    displayName: 'item',
+    pic:
+      'https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/peach.png',
+  },
+  {
+    displayName: 'item',
+    pic:
+      'https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/peach.png',
   },
 ];
 
 function PortalSelectScreen({ navigation, route }: Props) {
-
   const [orderActive, setOrderActive] = useState(false);
+  const imgSource = route.params.data.pic
+    ? { uri: route.params.data.pic }
+    : require('../../assets/images/fortnite.jpg');
 
   React.useLayoutEffect(() => {
     /*@ts-ignore*/
@@ -66,7 +62,6 @@ function PortalSelectScreen({ navigation, route }: Props) {
       headerTitle: () => (
         <View style={style.headerTitleContainer}>
           <Text style={style.headerTitleText}>{route.params.title}</Text>
-          <Text style={style.headerSubtitleText}>Epic Games</Text>
         </View>
       ),
       // headerRight: () => <SocialBar socialMedia={socialMedia}/>,
@@ -75,48 +70,62 @@ function PortalSelectScreen({ navigation, route }: Props) {
   // props.navigation.setOptions({ headertTitle: props.route.params.title });
   return (
     <View style={{ flex: 1 }}>
-      <View style={style.mainContainer}>
-        {orderActive ? 
-          <PortalAction onClose={() => setOrderActive(false) }/>
-          : <TouchableOpacity onPress={() => setOrderActive(true) }>
-            <View style={{ padding: 10, borderRadius: 5, borderColor: 'green', borderWidth: 1 }}>
-              <Text style={{ fontSize: 24, fontFamily: 'OpenSans_300Light', color: 'green' }}>Order pizza</Text>
-            </View>
-          </TouchableOpacity>
-         }
-      </View>
-      <View style={style.bottomRowContainer}>
-        <View>
-          <View style={style.linkTitleContainer}>
-            <Text style={style.linkTitle}>Connected Portals</Text>
-          </View>
-          <View style={style.linksContainer}>
-            {portalData.map((elem, index) => (
-              <View style={style.linkContainer}>
-                <PortalLink
-                  title={elem.name}
-                  source={elem.pic}
-                  selected={elem.selected}
-                  onPress={() => {}}
-                  size={50}
-                  // onPress={(options: { title: string }) =>
-                  //   props.navigation.navigate('Select', { title: options.title })
-                  // }
-                  key={index}
-                />
-              </View>
-            ))}
-          </View>
-        </View>
-        <View style={style.rightContainer}>
-          <TouchableOpacity>
+      <ScrollView
+        style={style.mainContainer}
+        contentContainerStyle={style.mainContentContainer}
+      >
+        <View style={style.splashContainer}>
+          <Image source={imgSource} style={style.mainImage} />
+          <Text style={style.splashTitleText}>
+            {route.params.data.displayName}
+          </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             <Image
-              source={require('../../assets/images/info.png')}
-              style={{ width: 50, height: 50, borderRadius: 100 }}
+              source={require('../../assets/images/profile.png')}
+              style={{ width: 20, height: 20, marginHorizontal: 10 }}
             />
-          </TouchableOpacity>
+            <Text style={style.splashSubtitleText}>10,000,000</Text>
+          </View>
+          <View style={style.contentListContainer}>
+            <Text style={style.listTitleText}>Top Items</Text>
+            <FlatList
+              style={style.listStyle}
+              data={itemData}
+              renderItem={({ item }) => (
+                <VirtualItemButton
+                  size={100}
+                  pic={item.pic ? item.pic : ''}
+                  item={item}
+                />
+              )}
+              keyExtractor={(item, index) => index.toString()}
+              horizontal={true}
+            />
+          </View>
+          <View style={style.contentListContainer}>
+            <Text style={style.listTitleText}>Top Connections</Text>
+            <FlatList
+              style={style.listStyle}
+              data={itemData}
+              renderItem={({ item }) => (
+                <VirtualItemButton
+                  size={100}
+                  pic={item.pic ? item.pic : ''}
+                  item={item}
+                />
+              )}
+              keyExtractor={(item, index) => index.toString()}
+              horizontal={true}
+            />
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }

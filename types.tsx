@@ -46,6 +46,7 @@ export type PortalsStackParamList = {
     title: string,
     data: Portal,
   },
+  AddPortal: undefined,
 }
 
 export type StuffStackParamList = {

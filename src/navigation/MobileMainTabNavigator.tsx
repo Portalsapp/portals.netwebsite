@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 
 import PortalsScreen from '../screens/portals/PortalsScreenContainer'
+import AddPortalScreen from '../screens/add_portal/AddPortalContainer'
 import DiscoverScreen from '../screens/discover/DiscoverScreen'
 import ShopScreen from '../screens/shop/ShopScreenContainer'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -135,6 +136,13 @@ export default function MobileMainTabNavigator(props: Props) {
               }}
             />
             <PortalStack.Screen name='Select' component={PortalSelectScreen} />
+            <PortalStack.Screen
+              name='AddPortal'
+              component={AddPortalScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
           </PortalStack.Navigator>
         )}
       </MainTabNavigator.Screen>

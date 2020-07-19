@@ -62,22 +62,34 @@ export default function PortalsScreen(props: Props) {
   }, [props.portals]);
 
   /*@ts-ignore*/
-  const renderItem = ({ item }) => (
-    <PortalLink
-      title={item.displayName}
-      // source={portalData[0].pic}
-      selected={false}
-      size={50}
-      onPress={(options: { title: string }) =>
-        props.navigation.navigate('Select', {
-          // title: options.title,
-          title: '',
-          data: item,
-        })
-      }
-      pic={item.pic}
-    />
-  );
+  const renderItem = ({ item }) =>
+    item.displayName === 'Add Portal' ? (
+      <PortalLink
+        title={item.displayName}
+        // source={portalData[0].pic}
+        selected={false}
+        size={50}
+        onPress={(options: { title: string }) =>
+          props.navigation.navigate('AddPortal')
+        }
+        pic={'https://img.icons8.com/pastel-glyph/2x/plus.png'}
+      />
+    ) : (
+      <PortalLink
+        title={item.displayName}
+        // source={portalData[0].pic}
+        selected={false}
+        size={50}
+        onPress={(options: { title: string }) =>
+          props.navigation.navigate('Select', {
+            // title: options.title,
+            title: '',
+            data: item,
+          })
+        }
+        pic={item.pic}
+      />
+    );
   /*@ts-ignore*/
   const keyExtractor = (item, index) => index.toString();
   return (

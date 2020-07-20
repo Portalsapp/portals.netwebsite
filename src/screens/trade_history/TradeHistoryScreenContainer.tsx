@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import TradingScreen from './TradingScreen';
+import TradeHistoryScreen from './TradeHistoryScreen';
 import { setLoginStatus } from '../../actions/appStateActions';
-import { setUserData } from '../../actions/userStateActions';
-import { UserData } from '../../reducers/types';
 import { RootState } from '../../reducers/index';
 
 const mapStateToProps = (state: RootState) => ({
-  items: state.userState.items,
+  signedIn: state.appState.signedIn,
 });
 
-/*@ts-ignore*/
 const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {};
+  return {
+    setLoginStatus: (loginStatus: boolean) =>
+      dispatch(setLoginStatus(loginStatus)),
+  };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TradingScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(TradeHistoryScreen);

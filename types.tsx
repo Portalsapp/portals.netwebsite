@@ -68,7 +68,7 @@ export type ShopStackParamList = {
   Trade: {
     title: string,
   }
-
+  History: undefined,
 };
 
 export type PublisherStackParamList = {

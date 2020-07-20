@@ -8,6 +8,7 @@ type Props = {
   size: number,
   item: VirtualItem,
   pic: string,
+  onPress: () => void,
 }
 
 export default function VirtualItemButton(props: Props) {
@@ -15,6 +16,7 @@ export default function VirtualItemButton(props: Props) {
   return (
     <TouchableOpacity
       style={[style.container, { width: props.size, height: props.size }]}
+      onPress={() => props.onPress()}
     >
       <Image
         source={imgSource}

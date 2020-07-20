@@ -3,23 +3,24 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 20,
   },
   closeContainer: {
-    flex: 0.2,
     alignItems: 'flex-end',
+    position: 'absolute',
+    top: 20,
+    right: 0,
+    zIndex: 10,
   },
   closeButton: {
-    padding: 10,
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 20,
-    margin: 10,
+    width: 50,
+    height: 50,
   },
   mainContainer: {
     flex: 0.8,
     // justifyContent: 'center',
     alignItems: 'center',
-    marginTop: -50,
+    paddingTop: 50,
   },
   image: {
     width: 200,

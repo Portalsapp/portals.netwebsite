@@ -28,7 +28,10 @@ export default function InitiateTradeScreen(props: Props) {
             style={style.closeButton}
             onPress={() => props.navigation.goBack()}
           >
-            <Text style={{ fontSize: 36 }}>X</Text>
+            <Image
+              style={style.closeButton}
+              source={require('../../assets/images/close.png')}
+            />
           </TouchableOpacity>
         </View>
         <View style={style.mainContainer}>
@@ -47,8 +50,11 @@ export default function InitiateTradeScreen(props: Props) {
               setUsername(username);
             }}
           />
-          <TouchableOpacity style={style.submitButtonContainer}
-            onPress={() => props.navigation.navigate('Trade', { title: 'friend name' })}
+          <TouchableOpacity
+            style={style.submitButtonContainer}
+            onPress={() =>
+              props.navigation.navigate('Trade', { title: 'friend name' })
+            }
           >
             <Text style={style.submitButtonText}>Submit</Text>
           </TouchableOpacity>

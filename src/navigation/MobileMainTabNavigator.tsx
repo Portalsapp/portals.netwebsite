@@ -7,10 +7,11 @@ import DiscoverScreen from '../screens/discover/DiscoverScreen'
 import ShopScreen from '../screens/shop/ShopScreenContainer'
 import InitiateTradeScreen from '../screens/initiate_trade/InitiateTradeContainer'
 import TradingScreen from '../screens/trade/TradingContainer'
+import TradeHistoryScreen from '../screens/trade_history/TradeHistoryScreenContainer'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { MainTabNavigatorParamList, PortalsStackParamList, StuffStackParamList, DiscoverStackParamList, ShopStackParamList } from '../../types'
-import { createStackNavigator, StackScreenProps } from '@react-navigation/stack'
+import { createStackNavigator, StackScreenProps, TransitionPresets } from '@react-navigation/stack'
 import PortalSelectScreen from '../screens/portal_select/PortalSelectScreen'
 import { Ionicons } from '@expo/vector-icons';
 import client, { getUserPortalConnections, getUserItems } from '../../functions/AWSFunctions'
@@ -117,9 +118,14 @@ export default function MobileMainTabNavigator(props: Props) {
                 headerShown: false,
               }}
             />
+            <ShopStack.Screen name='Trade' component={TradingScreen} />
             <ShopStack.Screen
-              name='Trade'
-              component={TradingScreen}
+              name='History'
+              component={TradeHistoryScreen}
+              options={{
+                ...TransitionPresets.ModalPresentationIOS,
+                headerShown: false,
+              }}
             />
           </ShopStack.Navigator>
         )}

@@ -7,6 +7,7 @@ import VirtualItemButton from '../../components/virtual_item/VirtualItemButton'
 import ListButton from '../../components/list_button/ListButton'
 import { ShopStackParamList } from '../../../types'
 import { StackNavigationProp } from '@react-navigation/stack'
+import ItemList from '../../components/item_list/ItemList'
 
 const screenWidth = Dimensions.get('window').width;
 const initialItems: VirtualItem[] = [
@@ -26,23 +27,15 @@ type Props = {
 }
 
 export default function ShopScreen(props: Props) {
-
-  // const [items, setItems] = useState(props.items);
-
-  /*@ts-ignore*/
-  const renderItem = ({ item }) => (
-    <VirtualItemButton 
-      item={item}
-      size={screenWidth / 3}
-      pic={item.pic}
-    />
-  );
-  /*@ts-ignore*/
-  const keyExtractor = (item, index) => item.ds_sk ? item.ds_sk : index.toString();
-
   return (
     <View style={style.container}>
-      <FlatList
+      <ItemList
+        headerComponent={() => <HeaderComponent navigation={props.navigation}/>}
+        columns={3}
+        onPress={(item: VirtualItem) => null}
+        items={props.items}
+      />
+      {/* <FlatList
         contentContainerStyle={{
           flex: 1,
           alignItems: 'center',
@@ -53,7 +46,7 @@ export default function ShopScreen(props: Props) {
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         ListHeaderComponent={() => <HeaderComponent navigation={props.navigation}/>}
-      />
+      /> */}
     </View>
   );
 }
@@ -75,7 +68,7 @@ const HeaderComponent = (props: HeaderProps) => {
         title='History'
         width={(screenWidth / 2) - 20}
         height={40}
-        onPress={() => null}
+        onPress={() => props.navigation.navigate('History')}
       />
     </View>
   );

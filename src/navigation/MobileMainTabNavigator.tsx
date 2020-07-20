@@ -5,6 +5,8 @@ import PortalsScreen from '../screens/portals/PortalsScreenContainer'
 import AddPortalScreen from '../screens/add_portal/AddPortalContainer'
 import DiscoverScreen from '../screens/discover/DiscoverScreen'
 import ShopScreen from '../screens/shop/ShopScreenContainer'
+import InitiateTradeScreen from '../screens/initiate_trade/InitiateTradeContainer'
+import TradingScreen from '../screens/trade/TradingContainer'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { MainTabNavigatorParamList, PortalsStackParamList, StuffStackParamList, DiscoverStackParamList, ShopStackParamList } from '../../types'
@@ -107,6 +109,17 @@ export default function MobileMainTabNavigator(props: Props) {
                 headerTitle: () => null,
                 headerRight: () => <Text>QR</Text>,
               }}
+            />
+            <ShopStack.Screen
+              name='InitiateTrade'
+              component={InitiateTradeScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <ShopStack.Screen
+              name='Trade'
+              component={TradingScreen}
             />
           </ShopStack.Navigator>
         )}

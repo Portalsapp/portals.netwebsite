@@ -64,6 +64,11 @@ export type SettingsStackParamList = {
 
 export type ShopStackParamList = {
   Shop: undefined,
+  InitiateTrade: undefined,
+  Trade: {
+    title: string,
+  }
+
 };
 
 export type PublisherStackParamList = {

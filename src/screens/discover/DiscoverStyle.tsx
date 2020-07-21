@@ -1,30 +1,32 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const screenWidth = Dimensions.get('screen').width;
 
 export default StyleSheet.create({
   container: {
     flex: 1,
   },
-  searchContainer: {
-    flex: 0.1,
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    paddingHorizontal: 40
+  scrollContainer: {
+    // flex: 1,
+    paddingTop: 10,
   },
-  searchWrapper: {
-    flexDirection: 'row',
+  collectionContainer: {},
+  collectionButton: {
+    width: screenWidth / 2 - 20,
+    height: 70,
+    margin: 10,
+    backgroundColor: '#b19cd9',
+    borderRadius: 15,
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  searchImage: {
-    width: 50,
-    height: 50,
-  },
-  searchText: {
-    fontSize: 22,
+  collectionButtonText: {
+    fontSize: 16,
     fontFamily: 'OpenSans_300Light',
-    paddingHorizontal: 10,
   },
-  categoryContainer: {
-    flex: 0.9,
-    paddingRight: 40,
-  },
+  titleText: {
+    fontSize: 24,
+    fontFamily: 'OpenSans_300Light',
+    marginLeft: 20,
+  }
 });

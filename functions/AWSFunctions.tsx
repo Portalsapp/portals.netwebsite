@@ -118,6 +118,7 @@ export const getUserItems = async (username: string) => {
   })
   .then(({ data }) => {
     /*@ts-ignore*/
+    console.log('item data', data);
     return data.retrieveUserInventory.items;
   })
   ;

@@ -1,75 +1,55 @@
-import React from 'react'
-import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native'
+import React from 'react';
+import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import Header from '../../components/header/HeaderContainer';
-import DiscoverGroup from '../../components/discover_group/DiscoverGroup'
+import DiscoverGroup from '../../components/discover_group/DiscoverGroup';
 import style from './DiscoverStyle';
 
 import { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import gql from 'graphql-tag';
 import client from '../../../functions/AWSFunctions';
+import { ScrollView } from 'react-native-gesture-handler';
+import { Portal, VirtualItem } from '../../reducers/types';
+import ItemList from '../../components/item_list/ItemList';
 
-const data: {
-  title: string;
-  count: number;
-}[] = [
-  {
-    title: 'Featured Portals',
-    count: 5,
-  },
-  {
-    title: 'You May Like',
-    count: 5,
-  },
-  {
-    title: 'Entertainment',
-    count: 4,
-  },
-];
+type Props = {
+  portals: Portal[];
+};
 
-// async function SignIn() {
-//   try {
-//     const user = await Auth.signIn('testuser1', 'password');
-//     console.log('signed in', user);
-//     const temp = await Auth.currentSession();
-//     console.log(temp);
-//   } catch (error) {
-//     console.log('error signing in', error);
-//   }
-// }
-
-export default function DiscoverScreen() {
-  /*@ts-ignore */
-  // await SignIn();
-  // console.log(await Auth.currentSession())
-  // const todos = await API.graphql({
-  //   query: queries.listAmplifyDataStoreI3fbvvtyknhvzhn6pkkmc3vyomDevs,
-  //   /*@ts-ignore*/
-  //   authMode: 'AMAZON_COGNITO_USER_POOLS',
-  // });
+export default function DiscoverScreen(props: Props) {
   return (
     <View style={style.container}>
-      <Header />
-      <View style={style.searchContainer}>
-        <TouchableOpacity>
-          <View style={style.searchWrapper}>
-            <Image
-              source={require('../../assets/images/search.png')}
-              style={style.searchImage}
-            />
-            <Text style={style.searchText}>Search</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View style={style.categoryContainer}>
-        {data.map((elem, index) => 
-          <DiscoverGroup 
-            title={elem.title}
-            count={elem.count}
-            key={index}
-          />
-        )}
-      </View>
+      <ScrollView contentContainerStyle={style.scrollContainer}>
+        <Text style={style.titleText}>Collections for You</Text>
+        <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity style={style.collectionButton}>
+            <Text style={style.collectionButtonText}>Fortnite x Pepsi</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={style.collectionButton}>
+            <Text style={style.collectionButtonText}>Fortnite x Pepsi</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity style={style.collectionButton}>
+            <Text style={style.collectionButtonText}>Fortnite x Pepsi</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={style.collectionButton}>
+            <Text style={style.collectionButtonText}>Fortnite x Pepsi</Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={style.titleText}>Recommended Portals</Text>
+        <ItemList
+          items={props.portals as VirtualItem[]}
+          horizontal={true}
+          onPress={(item: VirtualItem) => null}
+        />
+        <Text style={style.titleText}>Popular</Text>
+        <ItemList
+          items={props.portals as VirtualItem[]}
+          horizontal={true}
+          onPress={(item: VirtualItem) => null}
+        />
+      </ScrollView>
     </View>
   );
 }

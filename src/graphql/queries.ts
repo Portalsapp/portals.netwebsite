@@ -236,7 +236,6 @@ export const retrieveUserItems = /* GraphQL */ `
     ) {
       items {
       ds_pk
-      ds_sk
       displayName
       pic
       uid

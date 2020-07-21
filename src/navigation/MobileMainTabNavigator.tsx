@@ -3,11 +3,12 @@ import { View, Text } from 'react-native'
 
 import PortalsScreen from '../screens/portals/PortalsScreenContainer'
 import AddPortalScreen from '../screens/add_portal/AddPortalContainer'
-import DiscoverScreen from '../screens/discover/DiscoverScreen'
+import DiscoverScreen from '../screens/discover/DiscoverScreenContainer'
 import ShopScreen from '../screens/shop/ShopScreenContainer'
 import InitiateTradeScreen from '../screens/initiate_trade/InitiateTradeContainer'
 import TradingScreen from '../screens/trade/TradingContainer'
 import TradeHistoryScreen from '../screens/trade_history/TradeHistoryScreenContainer'
+import SettingsScreen from '../screens/settings/SettingsScreenContainer'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { MainTabNavigatorParamList, PortalsStackParamList, StuffStackParamList, DiscoverStackParamList, ShopStackParamList } from '../../types'
@@ -18,6 +19,7 @@ import client, { getUserPortalConnections, getUserItems } from '../../functions/
 import gql from 'graphql-tag'
 import { UserData, Portal, VirtualItem } from '../reducers/types'
 import * as subscriptions from '../graphql/subscriptions'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 
 const MainTabNavigator = createBottomTabNavigator<MainTabNavigatorParamList>();
@@ -149,7 +151,13 @@ export default function MobileMainTabNavigator(props: Props) {
               name='Portals'
               component={PortalsScreen}
               options={{
-                headerLeft: () => <Text>{props.userData.displayName}</Text>,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('Settings')}
+                  >
+                    <Text>{props.userData.displayName}</Text>
+                  </TouchableOpacity>
+                ),
                 headerTitle: () => null,
                 headerRight: () => <Text>CART</Text>,
               }}
@@ -160,6 +168,13 @@ export default function MobileMainTabNavigator(props: Props) {
               component={AddPortalScreen}
               options={{
                 headerShown: false,
+              }}
+            />
+            <PortalStack.Screen
+              name='Settings'
+              component={SettingsScreen}
+              options={{
+                ...TransitionPresets.ModalPresentationIOS,
               }}
             />
           </PortalStack.Navigator>
@@ -184,7 +199,11 @@ export default function MobileMainTabNavigator(props: Props) {
               name='Discover'
               component={DiscoverScreen}
               options={{
-                headerShown: false,
+                headerLeft: () => (
+                  <Text>Discover</Text>
+                ),
+                headerTitle: () => null,
+                headerRight: () => <Text>CART</Text>,
               }}
             />
           </DiscoverStack.Navigator>

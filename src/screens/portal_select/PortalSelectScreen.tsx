@@ -102,6 +102,7 @@ function PortalSelectScreen({ navigation, route }: Props) {
                   size={100}
                   pic={item.pic ? item.pic : ''}
                   item={item}
+                  onPress={(item: VirtualItem) => null}
                 />
               )}
               keyExtractor={(item, index) => index.toString()}

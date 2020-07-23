@@ -261,6 +261,7 @@ export const retrieveBankHistory = /* GraphWL */ `
           displayName
           pic
         }
+        transferType
         createdAt
         item {
           ds_pk

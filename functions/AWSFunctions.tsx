@@ -60,7 +60,6 @@ export const getUserPortalConnections = async (username: string) => {
 };
 
 export const userDataSubscription = async (username: string) => {
-  console.log('subscription');
   return client
     .subscribe({
       query: gql(subscriptions.onUpdateAmplifyDataStoreUserMetadata),

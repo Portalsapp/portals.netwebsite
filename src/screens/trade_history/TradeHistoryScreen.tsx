@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import style from './TradeHistoryScreenStyle'
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -11,33 +11,36 @@ type ShopScreenNavigationProp = StackNavigationProp<ShopStackParamList, 'Shop'>;
 
 type Props = {
   navigation: ShopScreenNavigationProp;
-  bankHistory: BankHistory[],
+  tradeHistory: BankHistory[],
   userData: UserData,
+  setUserTradeHistory: (tradeHistory: BankHistory[]) => void,
 }
 
 export default function TradeHistoryScreen(props: Props) {
-  console.log(props.bankHistory);
+  const [tradeHistory, setTradeHistory] = useState(props.tradeHistory);
 
-  const renderItem = ({ item }) => (
-    <HistoryItem data={item} username={props.userData.username}/>
+  useEffect(() => {
+    setTradeHistory(props.tradeHistory);
+  }, [props.tradeHistory])
+
+  const renderItem = ({ item, index }) => (
+    <HistoryItem
+      data={item}
+      username={props.userData.username}
+      onLikePress={(updItem: BankHistory) => {
+        const upd = [...tradeHistory];
+        upd[index] = updItem;
+        props.setUserTradeHistory(upd);
+      }}
+    />
   );
   /*@ts-ignore*/
   const keyExtractor = (item, index) => index.toString();
 
   return (
     <View style={style.container}>
-      <View style={style.closeContainer}>
-        <TouchableOpacity
-          style={style.closeButton}
-          onPress={() => props.navigation.goBack()}
-        >
-          <Image style={style.closeButton} source={require('../../assets/images/close.png')} />
-        </TouchableOpacity>
-      </View>
-      <Text style={style.titleText}>History</Text>
       <FlatList
-        data={props.bankHistory}
-        contentContainerStyle={{ flex: 1}}
+        data={tradeHistory}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
       />

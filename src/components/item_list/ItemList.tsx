@@ -46,7 +46,6 @@ export default function ItemList(props: Props) {
   return (
     <FlatList
       contentContainerStyle={{
-        flex: 1,
         alignItems: 'center',
         marginTop: 20,
       }}

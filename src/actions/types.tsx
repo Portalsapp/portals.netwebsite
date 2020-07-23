@@ -4,7 +4,8 @@ import {
   SET_PORTALS,
   SET_BUSINESSES,
   SET_USER_ITEMS,
-  SET_USER_BANK_HISTORY
+  SET_USER_BANK_HISTORY,
+  SET_USER_TRADE_HISTORY
 } from '../constants/ActionTypes';
 import { Portal, Business, VirtualItem, BankHistory } from '../reducers/types';
 
@@ -38,7 +39,14 @@ interface SetUserBankHistory {
   }
 }
 
-export type UserStateTypes = SetUserData | SetUserItems | SetUserBankHistory;
+interface SetUserTradeHistory {
+  type: typeof SET_USER_TRADE_HISTORY,
+  payload: {
+    items: BankHistory[],
+  }
+}
+
+export type UserStateTypes = SetUserData | SetUserItems | SetUserBankHistory | SetUserTradeHistory;
 
 interface SetPortals {
   type: typeof SET_PORTALS,

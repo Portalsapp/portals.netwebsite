@@ -11,7 +11,7 @@ export default StyleSheet.create({
     paddingTop: 10,
   },
   offerContainer: {
-    flex: 1.5,
+    height: '50%',
     backgroundColor: 'white',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,

@@ -53,6 +53,7 @@ type Props = {
   setPortals: (portals: Portal[]) => void;
   setUserItems: (items: VirtualItem[]) => void;
   setUserBankHistory: (bankHistory: BankHistory[]) => void;
+  setUserTradeHistory: (tradeHistory: BankHistory[]) => void;
 };
 
 export default function MobileMainTabNavigator(props: Props) {
@@ -110,6 +111,8 @@ export default function MobileMainTabNavigator(props: Props) {
 
   const getBankHistory = async () => {
     const items: BankHistory[] = await getBankItems(props.userData.username);
+    console.log(items);
+    props.setUserTradeHistory(items.filter((element) => element.transferType === "TRADE"));
     props.setUserBankHistory(items);
   }
 
@@ -181,7 +184,30 @@ export default function MobileMainTabNavigator(props: Props) {
                     component={TradeHistoryScreen}
                     options={{
                       ...TransitionPresets.ModalPresentationIOS,
-                      headerShown: false,
+                      headerLeft: () => (
+                        <Text
+                          style={{
+                            fontSize: 24,
+                            fontFamily: 'OpenSans_300Light',
+                            marginLeft: 20,
+                          }}
+                        >
+                          History
+                        </Text>
+                      ),
+                      headerTitle: () => null,
+                      headerRight: () => (
+                        <TouchableOpacity
+                          onPress={() => navigation.pop()}
+                          style={{ marginRight: 20 }}
+                        >
+                          <Ionicons
+                            size={50}
+                            name='ios-close'
+                            color={'#a4a4a4'}
+                          />
+                        </TouchableOpacity>
+                      ),
                     }}
                   />
                 </ShopStack.Navigator>

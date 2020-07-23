@@ -8,6 +8,7 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
     position: 'absolute',
     right: 0,
+    zIndex: 10,
   },
   closeButton: {
     width: 50,

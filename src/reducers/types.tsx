@@ -6,6 +6,7 @@ export interface UserState {
   userData: UserData,
   items: VirtualItem[],
   bankHistory: BankHistory[],
+  tradeHistory: BankHistory[],
 }
 
 export interface PortalState {
@@ -36,6 +37,8 @@ export interface BankHistory {
   },
   createdAt: number,
   item: VirtualItem,
+  transferType: string,
+  liked?: boolean,
 }
 
 export interface VirtualItem {

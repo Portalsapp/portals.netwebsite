@@ -3,9 +3,10 @@ import {
   SET_USER_DATA,
   SET_PORTALS,
   SET_BUSINESSES,
-  SET_USER_ITEMS
+  SET_USER_ITEMS,
+  SET_USER_BANK_HISTORY
 } from '../constants/ActionTypes';
-import { Portal, Business, VirtualItem } from '../reducers/types';
+import { Portal, Business, VirtualItem, BankHistory } from '../reducers/types';
 
 interface SetLoginStatus {
   type: typeof SET_LOGIN_STATUS,
@@ -30,7 +31,14 @@ interface SetUserItems {
   }
 }
 
-export type UserStateTypes = SetUserData | SetUserItems;
+interface SetUserBankHistory {
+  type: typeof SET_USER_BANK_HISTORY,
+  payload: {
+    items: BankHistory[],
+  }
+}
+
+export type UserStateTypes = SetUserData | SetUserItems | SetUserBankHistory;
 
 interface SetPortals {
   type: typeof SET_PORTALS,

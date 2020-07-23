@@ -5,6 +5,7 @@ export interface AppState {
 export interface UserState {
   userData: UserData,
   items: VirtualItem[],
+  bankHistory: BankHistory[],
 }
 
 export interface PortalState {
@@ -20,6 +21,21 @@ export interface UserData {
 export interface Portal {
   displayName: string,
   pic?: string,
+}
+
+export interface BankHistory {
+  to: {
+    ds_pk: string;
+    displayName: string;
+    pic?: string;
+  },
+  from: {
+    ds_pk: string;
+    displayName: string;
+    pic?: string;
+  },
+  createdAt: number,
+  item: VirtualItem,
 }
 
 export interface VirtualItem {

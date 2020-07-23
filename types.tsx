@@ -47,7 +47,6 @@ export type PortalsStackParamList = {
     data: Portal,
   },
   AddPortal: undefined,
-  Settings: undefined,
 }
 
 export type StuffStackParamList = {
@@ -87,4 +86,12 @@ export type MainTabNavigatorParamList = {
   Shop: undefined,
   Portals: undefined,
   Discover: undefined,
+  Publisher: undefined,
+}
+
+export type MainStackNavigatorParamList = {
+  Tabs: undefined,
+  Settings: undefined,
+  Cart: undefined,
+  Scanner: undefined,
 }

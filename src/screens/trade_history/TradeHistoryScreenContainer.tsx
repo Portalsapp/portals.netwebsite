@@ -5,7 +5,11 @@ import { setLoginStatus } from '../../actions/appStateActions';
 import { RootState } from '../../reducers/index';
 
 const mapStateToProps = (state: RootState) => ({
+  // App State
   signedIn: state.appState.signedIn,
+  // User State
+  bankHistory: state.userState.bankHistory,
+  userData: state.userState.userData,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => {

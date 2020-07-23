@@ -19,4 +19,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginTop: -50,
   },
+  titleText: {
+    fontSize: 28,
+    fontFamily: 'OpenSans_300Light',
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+  }
 });

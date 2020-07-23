@@ -246,3 +246,28 @@ export const retrieveUserItems = /* GraphQL */ `
     }
   }
 `;
+
+export const retrieveBankHistory = /* GraphWL */ `
+  query retrieveBankHistory($ds_pk: String!) {
+    retrieveBankHistory(partyId: $ds_pk) {
+      items {
+        to {
+          ds_pk
+          displayName
+          pic
+        }
+        from {
+          ds_pk
+          displayName
+          pic
+        }
+        createdAt
+        item {
+          ds_pk
+          displayName
+          pic
+        }
+      }
+    }
+  }
+`

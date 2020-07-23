@@ -6,7 +6,7 @@ import * as mutations from '../src/graphql/mutations';
 import * as queries from '../src/graphql/queries';
 import * as subscriptions from '../src/graphql/subscriptions';
 import { API, graphqlOperation } from 'aws-amplify';
-import { Portal } from '../src/reducers/types.js';
+import { Portal, BankHistory } from '../src/reducers/types.js';
 
 const client = new AWSAppSyncClient({
   url: awsconfig.aws_appsync_graphqlEndpoint,
@@ -118,8 +118,19 @@ export const getUserItems = async (username: string) => {
   })
   .then(({ data }) => {
     /*@ts-ignore*/
-    console.log('item data', data);
     return data.retrieveUserInventory.items;
   })
   ;
+}
+
+export const getBankItems = async (username: string) => {
+  return client.query({
+    query: gql(queries.retrieveBankHistory),
+    variables: {
+      ds_pk: 'USER#' + username,
+    },
+  })
+  .then(({ data }) => {
+    return data.retrieveBankHistory.items as BankHistory[];
+  });
 }

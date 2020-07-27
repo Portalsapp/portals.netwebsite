@@ -9,6 +9,8 @@ import AddPortalScreen from '../screens/add_portal/AddPortalContainer';
 import HomeScreen from '../screens/home_screen/HomeScreenContainer';
 import BankScreen from '../screens/bank/BankScreenContainer';
 import PublisherScreen from '../screens/publisher/PublisherScreenContainer';
+import ManagePortalScreen from '../screens/manage_portal/ManagePortalScreenContainer';
+import CreatePortalScreen from '../screens/create_portal/CreatePortalScreenContainer';
 // Components
 import ConnectedButtons from '../components/connected_buttons/ConnectedButtons';
 
@@ -350,6 +352,14 @@ export default function MobileTabNavigator(props: Props) {
                     </TouchableOpacity>
                   ),
                 }}
+              />
+              <PublisherStack.Screen
+                name="ManagePortal"
+                component={ManagePortalScreen}
+              />
+              <PublisherStack.Screen
+                name="CreatePortal"
+                component={CreatePortalScreen}
               />
             </PublisherStack.Navigator>
           )}

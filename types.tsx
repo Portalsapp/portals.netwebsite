@@ -117,8 +117,10 @@ export type BankStackParamList = {
 
 export type PublisherStackParamList = {
   Publisher: undefined;
+  ManagePortal: {
+    data: Portal,
+  };
   CreatePortal: undefined;
-  ManagePortal: undefined;
 };
 
 export type TradeModalStackParamList = {

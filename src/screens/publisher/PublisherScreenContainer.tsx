@@ -3,7 +3,9 @@ import { Dispatch } from 'redux';
 import PublisherScreen from './PublisherScreen';
 import { RootState } from '../../reducers/index';
 
-const mapStateToProps = (state: RootState) => ({});
+const mapStateToProps = (state: RootState) => ({
+  portals: state.portalState.portals,
+});
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {};

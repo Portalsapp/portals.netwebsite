@@ -27,7 +27,7 @@ import LoginScreen from '../screens/login/LoginScreenContainer'
 import CreateAccountScreen from '../screens/create_account/CreateAccountScreenContainer'
 import LinkingConfiguration from './LinkingConfiguration';
 import RootNavigator from './MainStackContainer'
-import MobileMainTabNavigator from './MobileMainTabNavigatorContainer';
+import MainStackNavigator from './MainStackNavigatorContainer';
 import { Portal } from '../reducers/types';
 
 
@@ -51,7 +51,7 @@ export default function Navigation(props : Props) {
       theme={DefaultTheme}
     >
       {/* {props.signedIn === true ? <RootNavigator /> : <LoginNavigator />} */}
-      {props.signedIn === true ? <MobileMainTabNavigator /> : <LoginNavigator />}
+      {props.signedIn === true ? <MainStackNavigator /> : <LoginNavigator />}
     </NavigationContainer>
   );
 }

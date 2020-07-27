@@ -8,6 +8,10 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
     flex: 1,
   },
+  overline: {
+    borderTopColor: '#a1a1a1',
+    borderTopWidth: 0.5,
+  },
   titleText: {
     fontSize: 14,
     fontFamily: 'OpenSans_300Light',

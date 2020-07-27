@@ -121,23 +121,30 @@ export const queryAmplifyDataStoresByDsPkIndex = /* GraphQL */ `
   }
 `;
 export const listAllUserMetadata = /* GraphQL */ `
-  query listAllUserMetadata($pk:String!, $sk:String!) {
-    listAllUserMetadata(
-      filter: {
-        ds_pk: {
-          contains: $pk
-        }
-        ds_sk: {
-          contains: $sk
-        }
-      }
-    ) {
-      items {
+  query listAllUserMetadata($ds_pk: String! $ds_sk: String!) {
+    getAmplifyDataStore(ds_pk: $ds_pk ds_sk: $ds_sk) {
         ds_pk
         ds_sk
         displayName
         pic
-      }
+        stripeCustomerId
+        dateOfBirth
+        address {
+          address1
+          address2
+          unit
+          city
+          state
+          zip
+          country
+        }
+        phone
+        email
+        uid
+        catalog
+        description
+        splashPic
+        colorTheme
     }
   }
 `;
@@ -268,6 +275,10 @@ export const retrieveBankHistory = /* GraphWL */ `
           displayName
           pic
         }
+        likes
+        tradeSession
+        note
+        ds_pk
       }
     }
   }

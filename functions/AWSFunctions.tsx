@@ -25,19 +25,18 @@ export const getUserMetadata = async (username: string) => {
     .query({
       query: gql(queries.listAllUserMetadata),
       variables: {
-        pk: 'USER#' + username,
-        sk: '#METADATA#' + username,
+        ds_pk: 'USER#' + username,
+        ds_sk: '#METADATA#' + username,
       },
     })
     .then(
       /*@ts-ignore */
-      ({ data: { listAllUserMetadata } }) => {
-        const items = listAllUserMetadata.items;
-        if (Array.isArray(items) && items.length > 0) {
-          return items[0];
-        }
+      ({ data: { getAmplifyDataStore } }) => {
+        const items = getAmplifyDataStore;
+        return items;
       }
-    ).catch((err) => {
+    )
+    .catch((err) => {
       console.log('Get User Metadata Error:', err);
     });
 };

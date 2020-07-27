@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native'
-import mobileStyle from './ShopScreenMobileStyle'
+import mobileStyle from './BankScreenMobileStyle'
 
 const webStyle = StyleSheet.create({
 

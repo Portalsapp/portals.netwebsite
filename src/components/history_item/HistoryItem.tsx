@@ -9,6 +9,7 @@ type Props = {
   data: BankHistory;
   username: string;
   onLikePress?: (item: BankHistory) => void;
+  overline?: boolean;
 };
 
 export default function HistoryItem(props: Props) {
@@ -27,72 +28,57 @@ export default function HistoryItem(props: Props) {
     .slice(0, 7)
     .split(':');
 
+  const recipient = 'USER#' + props.username === data.to.ds_pk;
+  const overlineStyle = props.overline ? style.overline : {};
+
   return (
     <View style={style.container}>
+      <View style={style.overline} />
       <Text style={style.titleText}>
         {dateTraded.toDateString()} at {hour}:{minute}
       </Text>
       <View style={style.body}>
-        <Image style={style.image} source={itemSource} />
-        {'USER#' + props.username !== data.to.ds_pk ? (
-          <>
-            <Ionicons
-              size={50}
-              name='ios-arrow-round-forward'
-              color={'black'}
-            />
-            <Text style={style.bodyText}>Transfered to</Text>
-            <Image
-              style={style.image}
-              source={
-                data.to.pic
-                  ? { uri: data.to.pic }
-                  : require('../../assets/images/fortnite.jpg')
-              }
-            />
-            <TouchableOpacity
-              style={style.likeButtonContainer}
-              onPress={() =>
-                props.onLikePress
-                  ? props.onLikePress({ ...data, liked: true })
-                  : null
-              }
-            >
-              <Ionicons
-                size={50}
-                name='ios-thumbs-up'
-                color={data.liked ? 'green' : 'grey'}
-              />
-            </TouchableOpacity>
-          </>
+        <Image
+          style={style.image}
+          source={
+            data.to.pic
+              ? { uri: data.to.pic }
+              : require('../../assets/images/fortnite.jpg')
+          }
+        />
+        {recipient ? (
+          <Ionicons size={50} name='ios-arrow-round-back' color={'black'} />
         ) : (
-          <>
-            <Ionicons size={50} name='ios-arrow-round-back' color={'black'} />
-            <Text style={style.bodyText}>Recieved from</Text>
-            <Image
-              style={style.image}
-              source={
-                data.from.pic
-                  ? { uri: data.from.pic }
-                  : require('../../assets/images/fortnite.jpg')
-              }
-            />
-            <TouchableOpacity
-              style={style.likeButtonContainer}
-              onPress={() =>
-                props.onLikePress
-                  ? props.onLikePress({ ...data, liked: true })
-                  : null
-              }
-            >
-              <Ionicons
-                size={50}
-                name='ios-thumbs-up'
-                color={data.liked ? 'green' : 'grey'}
-              />
-            </TouchableOpacity>
-          </>
+          <Ionicons size={50} name='ios-arrow-round-forward' color={'black'} />
         )}
+        <Image style={style.image} source={itemSource} />
+        {recipient ? (
+          <Text style={style.bodyText}>from</Text>
+        ) : (
+          <Text style={style.bodyText}>to</Text>
+        )}
+        <Image
+          style={style.image}
+          source={
+            data.from.pic
+              ? { uri: data.from.pic }
+              : require('../../assets/images/fortnite.jpg')
+          }
+        />
+        <TouchableOpacity
+          style={style.likeButtonContainer}
+          onPress={() =>
+            props.onLikePress
+              ? props.onLikePress({ ...data, liked: true })
+              : null
+          }
+        >
+          <Ionicons
+            size={35}
+            name='ios-heart'
+            color={data.liked ? 'red' : 'grey'}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );

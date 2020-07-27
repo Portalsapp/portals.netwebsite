@@ -56,17 +56,17 @@ function PortalSelectScreen({ navigation, route }: Props) {
     ? { uri: route.params.data.pic }
     : require('../../assets/images/fortnite.jpg');
 
-  React.useLayoutEffect(() => {
-    /*@ts-ignore*/
-    navigation.setOptions({
-      headerTitle: () => (
-        <View style={style.headerTitleContainer}>
-          <Text style={style.headerTitleText}>{route.params.title}</Text>
-        </View>
-      ),
-      // headerRight: () => <SocialBar socialMedia={socialMedia}/>,
-    });
-  }, [navigation, route]);
+  // React.useLayoutEffect(() => {
+  //   /*@ts-ignore*/
+  //   navigation.setOptions({
+  //     headerTitle: () => (
+  //       <View style={style.headerTitleContainer}>
+  //         <Text style={style.headerTitleText}>{route.params.title}</Text>
+  //       </View>
+  //     ),
+  //     // headerRight: () => <SocialBar socialMedia={socialMedia}/>,
+  //   });
+  // }, [navigation, route]);
   // props.navigation.setOptions({ headertTitle: props.route.params.title });
   return (
     <View style={{ flex: 1 }}>

@@ -59,8 +59,7 @@ export default function LoginScreen(props: Props) {
       try {
         signIn(contact);
       } catch (error) {
-        console.log(error);
-        console.log('Sign Up Error:', err);
+        console.log('Sign Up Sign in', error);
       }
     }
   };
@@ -71,8 +70,8 @@ export default function LoginScreen(props: Props) {
   ) => {
     try {
       const cognitoUser = await Auth.signIn(contact);
+      const data = await Auth.currentAuthenticatedUser();
       setUserState({ user: cognitoUser, createAccount });
-      console.log('Signed in User:', cognitoUser, formState.needsToCreateAccount);
       setFormState({ ...formState, verification: true });
     } catch (err) {
       console.log('Sign In Error:', err);
@@ -87,10 +86,7 @@ export default function LoginScreen(props: Props) {
   ) => {
     try {
       const cognitoUser = await Auth.sendCustomChallengeAnswer(user, code);
-      console.log('Form State', formState);
       if (!formState.needsToCreateAccount && !createAccount) {
-        console.log('changing with submit verification code');
-        // props.setLoginStatus(true);
         verifyLogin();
       } else {
         navigation.navigate('CreateAccount');
@@ -104,15 +100,13 @@ export default function LoginScreen(props: Props) {
   const verifyLogin = async () => {
     try {
       const data = await Auth.currentAuthenticatedUser();
-      // console.log('login data', data);
       if (!formState.needsToCreateAccount) {
-        console.log('changing with verify login');
         const { displayName, pic } = (await getUserMetadata(data.username));
-        console.log('display name, pic', displayName, pic);
         props.setUserData({ displayName, pic, username: data.username });
         props.setLoginStatus(true);
       }
-    } catch {
+    } catch (error) {
+      console.log('Verify Login Error:', error)
       console.log('Not logged in yet');
     }
   };

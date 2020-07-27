@@ -12,6 +12,7 @@ type Props = {
   items: VirtualItem[],
   horizontal?: boolean,
   onPress: (item: VirtualItem) => void,
+  itemSize?: number,
 }
 
 export default function ItemList(props: Props) {
@@ -19,7 +20,7 @@ export default function ItemList(props: Props) {
   const renderItem = ({ item }) => (
     <VirtualItemButton 
       item={item}
-      size={screenWidth / 3}
+      size={props.itemSize ? props.itemSize : screenWidth / 3}
       pic={item.pic}
       onPress={() => props.onPress(item)}
     />

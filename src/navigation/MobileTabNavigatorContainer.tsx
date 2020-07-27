@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import MobileMainTabNavigator from './MobileMainTabNavigator';
+import MobileTabNavigator from './MobileTabNavigator';
 import { setLoginStatus } from '../actions/appStateActions';
 import { setUserData, setUserItems, setUserBankHistory, setUserTradeHistory } from '../actions/userStateActions';
 import { setPortals } from '../actions/portalStateActions';
@@ -37,4 +37,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MobileMainTabNavigator);
+)(MobileTabNavigator);

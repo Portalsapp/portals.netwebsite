@@ -40,14 +40,6 @@ export type RootDrawerParamList = {
   Publisher: undefined,
 }
 
-export type PortalsStackParamList = {
-  Portals: undefined,
-  Select: {
-    title: string,
-    data: Portal,
-  },
-  AddPortal: undefined,
-}
 
 export type StuffStackParamList = {
   Stuff: undefined,
@@ -71,11 +63,7 @@ export type ShopStackParamList = {
   History: undefined,
 };
 
-export type PublisherStackParamList = {
-  Publisher: undefined,
-  CreatePortal: undefined,
-  ManagePortal: undefined,
-}
+
 
 export type AuthStackParamList = {
   Login: undefined,
@@ -89,9 +77,51 @@ export type MainTabNavigatorParamList = {
   Publisher: undefined,
 }
 
+// Navigation Restructure Types
+
+export type AuthNavigatorParamList = {
+  Login: undefined;
+  CreateAccount: undefined;
+};
+
 export type MainStackNavigatorParamList = {
-  Tabs: undefined,
-  Settings: undefined,
-  Cart: undefined,
-  Scanner: undefined,
+  MobileTabs: undefined,
+  ProfileModal: undefined,
+  CartModal: undefined,
+  TradeModal: undefined,
+}
+
+export type MobileTabNavigatorParamList = {
+  PortalsStack: undefined,
+  HomeStack: undefined,
+  BankStack: undefined,
+  PublisherStack: undefined,
+}
+
+export type PortalsStackParamList = {
+  Portals: undefined;
+  PortalSelect: {
+    title: string;
+    data: Portal;
+  };
+  AddPortal: undefined;
+};
+
+export type HomeStackParamList = {
+  Home: undefined,
+}
+
+export type BankStackParamList = {
+  Bank: undefined,
+}
+
+export type PublisherStackParamList = {
+  Publisher: undefined;
+  CreatePortal: undefined;
+  ManagePortal: undefined;
+};
+
+export type TradeModalStackParamList = {
+  InitiateTrade: undefined,
+  Trade: undefined,
 }

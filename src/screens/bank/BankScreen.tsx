@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { View, Dimensions } from 'react-native'
-import style from './ShopScreenStyle'
+import style from './BankScreenStyle'
 import { FlatList } from 'react-native-gesture-handler'
 import { VirtualItem } from '../../reducers/types'
 import VirtualItemButton from '../../components/virtual_item/VirtualItemButton'
 import ListButton from '../../components/list_button/ListButton'
-import { ShopStackParamList } from '../../../types'
+import { ShopStackParamList, BankStackParamList, MainStackNavigatorParamList } from '../../../types'
 import { StackNavigationProp } from '@react-navigation/stack'
 import ItemList from '../../components/item_list/ItemList'
+import { useNavigation } from '@react-navigation/native';
 
 const screenWidth = Dimensions.get('window').width;
 const initialItems: VirtualItem[] = [
@@ -16,17 +17,17 @@ const initialItems: VirtualItem[] = [
   }
 ]
 
-type ShopScreenNavigationProp = StackNavigationProp<
-  ShopStackParamList,
-  'InitiateTrade'
+type BankScreenNavigationProp = StackNavigationProp<
+  MainStackNavigatorParamList,
+  'TradeModal'
 >;
 
 type Props = {
   items: VirtualItem[],
-  navigation: ShopScreenNavigationProp;
+  navigation: BankScreenNavigationProp;
 }
 
-export default function ShopScreen(props: Props) {
+export default function BankScreen(props: Props) {
   return (
     <View style={style.container}>
       <ItemList
@@ -35,24 +36,12 @@ export default function ShopScreen(props: Props) {
         onPress={(item: VirtualItem) => null}
         items={props.items}
       />
-      {/* <FlatList
-        contentContainerStyle={{
-          flex: 1,
-          alignItems: 'center',
-          marginTop: 20,
-        }}
-        numColumns={3}
-        data={props.items}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        ListHeaderComponent={() => <HeaderComponent navigation={props.navigation}/>}
-      /> */}
     </View>
   );
 }
 
 type HeaderProps = {
-  navigation: ShopScreenNavigationProp,
+  navigation: BankScreenNavigationProp,
 }
 
 const HeaderComponent = (props: HeaderProps) => {
@@ -62,13 +51,13 @@ const HeaderComponent = (props: HeaderProps) => {
         title='Trade'
         width={(screenWidth / 2) - 20}
         height={40}
-        onPress={() => props.navigation.navigate('InitiateTrade')}
+        onPress={() => props.navigation.navigate('TradeModal')}
       />
       <ListButton
-        title='History'
+        title='!'
         width={(screenWidth / 2) - 20}
         height={40}
-        onPress={() => props.navigation.navigate('History')}
+        onPress={() => null}
       />
     </View>
   );

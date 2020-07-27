@@ -13,7 +13,7 @@ import DiscoverScreen from '../screens/discover/DiscoverScreen';
 import SettingsScreen from '../screens/settings/SettingsScreenContainer';
 import DrawerContent from '../components/drawer_content/DrawerContentContainer';
 import TradingScreen from '../screens/trade/TradingScreen';
-import ShopScreen from '../screens/shop/ShopScreen';
+import ShopScreen from '../screens/bank/BankScreen';
 import PublisherScreen from '../screens/publisher/PublisherScreenContainer';
 import CreatePortalScreen from '../screens/create_portal/CreatePortalScreenContainer';
 import ManagePortalScreen from '../screens/manage_portal/ManagePortalScreenContainer';
@@ -125,7 +125,7 @@ export default function RootNavigator(props: Props) {
                     options={{ headerShown: false }}
                   />
                   <PortalStack.Screen
-                    name='Select'
+                    name='PortalSelect'
                     component={PortalSelectScreen}
                     options={{ headerTitle: 'Select' }}
                   />

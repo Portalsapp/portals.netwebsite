@@ -31,7 +31,7 @@ import { UserData, Portal } from '../../reducers/types';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   PortalsStackParamList,
-  'Select'
+  'PortalSelect'
 >;
 
 type Props = {
@@ -57,7 +57,7 @@ export default function PortalsScreen(props: Props) {
    */
   useEffect(() => {
     if (portals !== props.portals) {
-      setPortals([...portalData, ...props.portals]);
+      setPortals(props.portals);
     }
   }, [props.portals]);
 
@@ -81,15 +81,14 @@ export default function PortalsScreen(props: Props) {
         selected={false}
         size={50}
         onPress={(options: { title: string }) =>
-          props.navigation.navigate('Select', {
+          props.navigation.navigate('PortalSelect', {
             // title: options.title,
-            title: '',
+            title: item.displayName,
             data: item,
           })
         }
         pic={item.pic}
-      />
-    );
+      />);
   /*@ts-ignore*/
   const keyExtractor = (item, index) => index.toString();
   return (
@@ -101,7 +100,7 @@ export default function PortalsScreen(props: Props) {
               flex: 1,
               alignItems: 'center',
             }}
-            data={portals}
+            data={[ ...portalData, ...portals]}
             numColumns={3}
             renderItem={renderItem}
             keyExtractor={keyExtractor}

@@ -17,6 +17,7 @@ import client, {
   getUserPortalConnections,
   getUserItems,
   getBankItems,
+  retrieveGlobalFeed,
 } from '../../functions/AWSFunctions';
 import gql from 'graphql-tag';
 import { UserData, Portal, VirtualItem, BankHistory } from '../reducers/types';
@@ -33,6 +34,7 @@ type Props = {
   setUserItems: (items: VirtualItem[]) => void;
   setUserBankHistory: (bankHistory: BankHistory[]) => void;
   setUserTradeHistory: (tradeHistory: BankHistory[]) => void;
+  setGlobalTransactionHistory: (globalTransactions: BankHistory[]) => void;
 };
 
 export default function MobileMainTabNavigator(props: Props) {
@@ -66,6 +68,9 @@ export default function MobileMainTabNavigator(props: Props) {
     updateUserItems();
     // Get users transaction history
     getBankHistory();
+    // Get the global list of transactions
+    getGlobalTransactionFeed();
+
     return () => {
       // Do something when the screen is unfocused
       // Useful for cleanup functions
@@ -90,12 +95,16 @@ export default function MobileMainTabNavigator(props: Props) {
 
   const getBankHistory = async () => {
     const items: BankHistory[] = await getBankItems(props.userData.username);
-    console.log(items);
     props.setUserTradeHistory(
       items.filter((element) => element.transferType === 'TRADE')
     );
     props.setUserBankHistory(items);
   };
+
+  const getGlobalTransactionFeed = async () => {
+    const items: BankHistory[] = await retrieveGlobalFeed(props.userData.username);
+    props.setGlobalTransactionHistory(items);
+  }
 
   return (
     <MainStackNavigator.Navigator mode='modal'>

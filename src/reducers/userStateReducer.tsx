@@ -1,5 +1,5 @@
 import {
-  SET_USER_DATA, SET_USER_ITEMS, SET_USER_BANK_HISTORY, SET_USER_TRADE_HISTORY
+  SET_USER_DATA, SET_USER_ITEMS, SET_USER_BANK_HISTORY, SET_USER_TRADE_HISTORY, SET_GLOBAL_TRANSATION_FEED
 } from '../constants/ActionTypes';
 import { UserState } from './types';
 import { UserStateTypes } from '../actions/types';
@@ -13,6 +13,7 @@ const initialState: UserState = {
   items: [],
   bankHistory: [],
   tradeHistory: [],
+  globalTransactionFeed: [],
 };
 
 export default (state = initialState, action: UserStateTypes) => {
@@ -25,6 +26,8 @@ export default (state = initialState, action: UserStateTypes) => {
       return { ...state, bankHistory: action.payload.items };
     case SET_USER_TRADE_HISTORY:
       return { ...state, tradeHistory: action.payload.items };
+    case SET_GLOBAL_TRANSATION_FEED:
+      return { ...state, globalTransactionFeed: action.payload.items };
     default:
       return { ...state };
   }

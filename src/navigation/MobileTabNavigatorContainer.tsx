@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import MobileTabNavigator from './MobileTabNavigator';
-import { setLoginStatus } from '../actions/appStateActions';
+import { setLoginStatus, setHomeFeedState } from '../actions/appStateActions';
 import { setUserData, setUserItems, setUserBankHistory, setUserTradeHistory } from '../actions/userStateActions';
 import { setPortals } from '../actions/portalStateActions';
 import { RootState } from '../reducers/index';
@@ -24,11 +24,15 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     // App State
     setLoginStatus: (loginStatus: boolean) =>
       dispatch(setLoginStatus(loginStatus)),
+    setHomeFeedState: (state: 'global' | 'friends' | 'you') =>
+      dispatch(setHomeFeedState(state)),
     // User State
     setUserData: (userData: UserData) => dispatch(setUserData(userData)),
     setUserItems: (items: VirtualItem[]) => dispatch(setUserItems(items)),
-    setUserBankHistory: (bankHistory: BankHistory[]) => dispatch(setUserBankHistory(bankHistory)),
-    setUserTradeHistory: (tradeHistory: BankHistory[]) => dispatch(setUserTradeHistory(tradeHistory)),
+    setUserBankHistory: (bankHistory: BankHistory[]) =>
+      dispatch(setUserBankHistory(bankHistory)),
+    setUserTradeHistory: (tradeHistory: BankHistory[]) =>
+      dispatch(setUserTradeHistory(tradeHistory)),
     // Portal State
     setPortals: (portals: Portal[]) => dispatch(setPortals(portals)),
   };

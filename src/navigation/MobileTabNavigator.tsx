@@ -11,6 +11,7 @@ import BankScreen from '../screens/bank/BankScreenContainer';
 import PublisherScreen from '../screens/publisher/PublisherScreenContainer';
 import ManagePortalScreen from '../screens/manage_portal/ManagePortalScreenContainer';
 import CreatePortalScreen from '../screens/create_portal/CreatePortalScreenContainer';
+import ShopScreen from '../screens/shop/ShopScreenContainer';
 // Components
 import ConnectedButtons from '../components/connected_buttons/ConnectedButtons';
 
@@ -40,6 +41,7 @@ const PublisherStack = createStackNavigator<PublisherStackParamList>();
 
 type Props = {
   userData: UserData,
+  setHomeFeedState: (state: 'global' | 'friends' | 'you') => void,
 };
 
 export default function MobileTabNavigator(props: Props) {
@@ -122,6 +124,7 @@ export default function MobileTabNavigator(props: Props) {
               options={({
                 route,
               }: StackScreenProps<PortalsStackParamList>) => ({
+                headerShown: false,
                 headerBackTitle: route.params.title,
                 headerTitle: () => null,
                 headerRight: () => (
@@ -137,6 +140,13 @@ export default function MobileTabNavigator(props: Props) {
             <PortalStack.Screen
               name='AddPortal'
               component={AddPortalScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <PortalStack.Screen
+              name="Shop"
+              component={ShopScreen}
               options={{
                 headerShown: false,
               }}
@@ -193,7 +203,11 @@ export default function MobileTabNavigator(props: Props) {
                 headerTitle: () => (
                   <ConnectedButtons
                     tabs={['global', 'friends', 'you']}
-                    onPress={[() => null, () => null, () => null]}
+                    onPress={[
+                      () => props.setHomeFeedState('global'),
+                      () => props.setHomeFeedState('friends'),
+                      () => props.setHomeFeedState('you'),
+                    ]}
                     initialSelected={1}
                   />
                 ),
@@ -354,11 +368,11 @@ export default function MobileTabNavigator(props: Props) {
                 }}
               />
               <PublisherStack.Screen
-                name="ManagePortal"
+                name='ManagePortal'
                 component={ManagePortalScreen}
               />
               <PublisherStack.Screen
-                name="CreatePortal"
+                name='CreatePortal'
                 component={CreatePortalScreen}
               />
             </PublisherStack.Navigator>

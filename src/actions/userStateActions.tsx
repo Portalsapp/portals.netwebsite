@@ -1,5 +1,5 @@
 import {
-  SET_USER_DATA, SET_USER_ITEMS, SET_USER_BANK_HISTORY, SET_USER_TRADE_HISTORY
+  SET_USER_DATA, SET_USER_ITEMS, SET_USER_BANK_HISTORY, SET_USER_TRADE_HISTORY, SET_GLOBAL_TRANSATION_FEED
 } from '../constants/ActionTypes';
 import { UserStateTypes } from './types';
 import { UserData, VirtualItem, BankHistory } from '../reducers/types'
@@ -34,6 +34,15 @@ export function setUserTradeHistory(items: BankHistory[]): UserStateTypes {
     type: SET_USER_TRADE_HISTORY,
     payload: {
       items,
+    }
+  }
+}
+
+export function setGlobalTransactionHistory(items: BankHistory[]): UserStateTypes {
+  return {
+    type: SET_GLOBAL_TRANSATION_FEED,
+    payload: {
+      items
     }
   }
 }

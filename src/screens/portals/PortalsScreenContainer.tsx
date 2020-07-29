@@ -6,6 +6,7 @@ import { RootState } from '../../reducers/index';
 const mapStateToProps = (state: RootState) => ({
   userData: state.userState.userData,
   portals: state.portalState.portals,
+  homeFeedState: state.appState.homeFeedState,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => {

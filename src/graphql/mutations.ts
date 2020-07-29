@@ -175,3 +175,51 @@ export const createNewPortalMetadata = /* GraphQL */ `
     }
   }
 `
+
+export const startTrade = /* GraphQL */ `
+  mutation startTrade($userId: String! $invite: String $code: String) {
+    startTradeSession(
+      userId: $userId
+      invite: $invite
+      code: $code
+    ) {
+      code
+    }
+  }
+`
+
+export const  updateTrade = /* GraphQL */ `
+  mutation updateTrade(
+    $userId: String!,
+		$roomId: String!,
+		$addItem: String,
+		$removeItem: String,
+		$accepted: Boolean,
+		$reviewed: Boolean,
+		$declined: Boolean
+  ) {
+    updateTradeSession(
+      userId: $userId
+      roomId: $roomId
+      addItem: $addItem
+      removeItem: $removeItem
+      accepted: $accepted
+      reviewed: $reviewed
+      declined: $declined
+    ) {
+      id
+      createdAt
+      user1
+      user2
+      items1
+      items2
+      accepted1
+      accepted2
+      reviewed1
+      reviewed2
+      completed
+      declined
+      error
+    }
+  }
+`

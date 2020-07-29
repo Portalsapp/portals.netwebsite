@@ -105,6 +105,9 @@ export type PortalsStackParamList = {
     data: Portal;
   };
   AddPortal: undefined;
+  Shop: {
+    data: Portal,
+  };
 };
 
 export type HomeStackParamList = {
@@ -125,5 +128,7 @@ export type PublisherStackParamList = {
 
 export type TradeModalStackParamList = {
   InitiateTrade: undefined,
-  Trade: undefined,
+  Trade: {
+    code: string,
+  },
 }

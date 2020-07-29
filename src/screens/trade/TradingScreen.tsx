@@ -1,23 +1,26 @@
 import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { VirtualItem } from '../../reducers/types';
+import { VirtualItem, UserData } from '../../reducers/types';
 import style from './TradingScreenStyle';
 import ItemList from '../../components/item_list/ItemList';
 import { useState } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ShopStackParamList } from '../../../types';
+import { ShopStackParamList, TradeModalStackParamList } from '../../../types';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { input } from 'aws-amplify';
 import { useFocusEffect } from '@react-navigation/native';
+import { updateTradeSession } from '../../../functions/AWSFunctions';
 
 // const screenWidth: number = Dimensions.get('screen').height;
 
-type ShopScreenNavigationProp = StackNavigationProp<ShopStackParamList, 'Shop'>;
+type TradeScreenNavigationProp = StackNavigationProp<TradeModalStackParamList, 'Trade'>;
 
 type Props = {
   items: VirtualItem[];
-  navigation: ShopScreenNavigationProp;
+  navigation: TradeScreenNavigationProp;
+  route: TradeScreenNavigationProp;
+  userData: UserData;
 };
 
 const initialTradeItems: VirtualItem[] = [];
@@ -44,15 +47,45 @@ export default function TradingScreen(props: Props) {
     );
   };
 
-  const addToTrade = (item: VirtualItem) => {
+  const addToTrade = async (item: VirtualItem) => {
     if (!tradeItems.includes(item)) {
       setTradeItems([...tradeItems, item]);
+      await updateTradeSession(props.userData.username, props.route.params.code, item.ds_pk.split('#')[1]);
     }
   };
 
-  const removeFromTrade = (item: VirtualItem) => {
+  const removeFromTrade = async (item: VirtualItem) => {
     setTradeItems(tradeItems.filter((elem) => elem !== item));
+    await updateTradeSession(
+      props.userData.username,
+      props.route.params.code,
+      undefined,
+      item.ds_pk.split('#')[1]
+    );
   };
+
+  const acceptTrade = async () => {
+    await updateTradeSession(
+      props.userData.username,
+      props.route.params.code,
+      undefined,
+      undefined,
+      true,
+    );
+  }
+
+  const declineTrade = async () => {
+    await updateTradeSession(
+      props.userData.username,
+      props.route.params.code,
+      undefined,
+      undefined,
+      undefined,
+      true,
+    );
+  };
+
+  console.log(props.route.params.code);
 
   return (
     <View style={style.container}>
@@ -103,13 +136,19 @@ export default function TradingScreen(props: Props) {
         >
           <TouchableOpacity
             style={style.submitButtonContainer}
-            onPress={() => props.navigation.pop(2)}
+            onPress={() => {
+              acceptTrade();
+              props.navigation.pop(2)
+            }}
           >
             <Text style={style.submitButtonText}>Accept</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={style.submitButtonContainer}
-            onPress={() => props.navigation.pop(2)}
+            onPress={() => {
+              declineTrade();
+              props.navigation.pop(2)
+            }}
           >
             <Text style={style.submitButtonText}>Decline</Text>
           </TouchableOpacity>

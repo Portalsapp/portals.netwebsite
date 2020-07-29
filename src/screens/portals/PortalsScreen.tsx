@@ -40,6 +40,7 @@ type Props = {
   modalVisible: boolean;
   userData: UserData;
   portals: Portal[];
+  homeFeedState: 'global' | 'friends' | 'you',
 };
 
 const portalData: Portal[] = [
@@ -49,17 +50,21 @@ const portalData: Portal[] = [
 ];
 
 export default function PortalsScreen(props: Props) {
+  const [feedState, setFeedState] = useState(props.homeFeedState);
   const [portals, setPortals] = useState(props.portals);
   const [modalVisible, setModalVisible] = useState(false);
 
   /*
-   * Updates state with any portals props changes
+   * Updates state with any portals/feed prop changes
    */
   useEffect(() => {
     if (portals !== props.portals) {
       setPortals(props.portals);
     }
-  }, [props.portals]);
+    if (feedState !== props.homeFeedState) {
+      setFeedState(props.homeFeedState);
+    }
+  }, [props.portals, props.homeFeedState]);
 
   /*@ts-ignore*/
   const renderItem = ({ item }) =>

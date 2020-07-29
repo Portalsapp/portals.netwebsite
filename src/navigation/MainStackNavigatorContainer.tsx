@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import MainStackNavigator from './MainStackNavigator';
-import { setLoginStatus } from '../actions/appStateActions';
+import { setLoginStatus, setHomeFeedState } from '../actions/appStateActions';
 import {
   setUserData,
   setUserItems,
   setUserBankHistory,
   setUserTradeHistory,
+  setGlobalTransactionHistory,
 } from '../actions/userStateActions';
 import { setPortals } from '../actions/portalStateActions';
 import { RootState } from '../reducers/index';
@@ -36,6 +37,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       dispatch(setUserBankHistory(bankHistory)),
     setUserTradeHistory: (tradeHistory: BankHistory[]) =>
       dispatch(setUserTradeHistory(tradeHistory)),
+    setGlobalTransactionHistory: (globalTransactions: BankHistory[]) =>
+      dispatch(setGlobalTransactionHistory(globalTransactions)),
     // Portal State
     setPortals: (portals: Portal[]) => dispatch(setPortals(portals)),
   };

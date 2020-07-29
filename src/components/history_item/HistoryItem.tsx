@@ -33,7 +33,7 @@ export default function HistoryItem(props: Props) {
 
   return (
     <View style={style.container}>
-      <View style={style.overline} />
+      <View style={overlineStyle} />
       <Text style={style.titleText}>
         {dateTraded.toDateString()} at {hour}:{minute}
       </Text>

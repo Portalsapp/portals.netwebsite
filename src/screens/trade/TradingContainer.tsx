@@ -8,6 +8,7 @@ import { RootState } from '../../reducers/index';
 
 const mapStateToProps = (state: RootState) => ({
   items: state.userState.items,
+  userData: state.userState.userData,
 });
 
 /*@ts-ignore*/

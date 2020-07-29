@@ -1,56 +1,92 @@
 import { StyleSheet, Dimensions } from 'react-native';
-const screenHeight = Dimensions.get('window').width;
+const screenWidth = Dimensions.get('window').width;
+const footerHeight = 70;
 
 export default StyleSheet.create({
-  headerTitleContainer: {
-    // flexDirection: 'row',
-    alignItems: 'flex-start',
-  },
-  headerTitleText: {
-    fontSize: 24,
-    fontFamily: 'OpenSans_300Light',
-  },
-  headerSubtitleText: {
-    fontSize: 22,
-    fontFamily: 'OpenSans_300Light',
-  },
-  mainContainer: {
+  container: {
     flex: 1,
   },
-  mainContentContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  backButton: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    zIndex: 10,
   },
   splashContainer: {
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 20,
+    flex: 0.3,
+    justifyContent: 'flex-end',
+  },
+  splashImage: {
+    ...StyleSheet.absoluteFillObject,
+    width: undefined,
+    height: undefined,
+  },
+  splashTitleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // backgroundColor: 'rgba(85,185,243,1)',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   splashTitleText: {
-    fontSize: 36,
-    fontFamily: 'OpenSans_400Regular',
+    fontSize: 30,
+    fontFamily: 'OpenSans_600SemiBold',
+    paddingHorizontal: 10,
   },
-  splashSubtitleText: {
-    fontSize: 22,
+  splashGradient: {
+    height: '100%',
+    justifyContent: 'flex-end',
+  },
+  itemsContainer: {
+    flex: 0.2,
+  },
+  itemsTitle: {
+    fontSize: 16,
     fontFamily: 'OpenSans_300Light',
+    marginBottom: -10,
+    marginLeft: 20,
   },
-  mainImage: {
-    width: 200,
-    height: 200,
-    borderRadius: 200,
+  historyContainer: {
+    flex: 0.5,
   },
-  contentListContainer: {
+  historyContentContainerStyle: {
+    paddingBottom: footerHeight,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    zIndex: 10,
+    height: footerHeight,
     width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
-  listStyle: {
-    paddingLeft: 20,
-    flexGrow: 0,
-    width: '100%',
+  button: {
+    width: screenWidth / 2 - 40,
+    height: '70%',
+    backgroundColor: '#55b9f3',
+    margin: 10,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  listTitleText: {
+  buttonText: {
     fontSize: 24,
     fontFamily: 'OpenSans_300Light',
-    paddingLeft: 10,
-  }
+    color: 'white',
+  },
 });

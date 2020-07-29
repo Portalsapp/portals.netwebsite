@@ -1,5 +1,6 @@
 export interface AppState {
   signedIn: boolean,
+  homeFeedState: 'global' | 'friends' | 'you',
 }
 
 export interface UserState {
@@ -7,6 +8,7 @@ export interface UserState {
   items: VirtualItem[],
   bankHistory: BankHistory[],
   tradeHistory: BankHistory[],
+  globalTransactionFeed: BankHistory[],
 }
 
 export interface PortalState {
@@ -20,8 +22,17 @@ export interface UserData {
 }
 
 export interface Portal {
-  displayName: string,
-  pic?: string,
+  displayName: string;
+  pic?: string;
+  ds_pk: string;
+  ds_sk: string;
+  phone?: string;
+  email?: string;
+  uid?: string;
+  catalog?: string;
+  description?: string;
+  splashPic?: string;
+  colorTheme?: string;
 }
 
 export interface BankHistory {
@@ -53,6 +64,22 @@ export interface VirtualItem {
   description?: string,
   splashPic?: string,
   colorTheme?: string,
+}
+
+export interface TradeSession {
+  id: String;
+  createdAt: number;
+  user1: String;
+  user2: String;
+  items1: String[];
+  items2: String[];
+  accepted1: Boolean;
+  accepted2: Boolean;
+  reviewed1: Boolean;
+  reviewed2: Boolean;
+  completed: Boolean;
+  declined: Boolean;
+  error: String;
 }
 
 export interface Business {

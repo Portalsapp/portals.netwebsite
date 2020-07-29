@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import InitiateTradeScreen from './InitiateTradeScreen';
+import ShopScreen from './ShopScreen';
 import { setLoginStatus } from '../../actions/appStateActions';
 import { setUserData } from '../../actions/userStateActions';
 import { UserData } from '../../reducers/types';
@@ -12,10 +12,9 @@ const mapStateToProps = (state: RootState) => ({
 
 /*@ts-ignore*/
 const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {};
+  return {
+    setUserData: (userData: UserData) => dispatch(setUserData(userData)),
+  };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(InitiateTradeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(ShopScreen);

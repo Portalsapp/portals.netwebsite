@@ -99,3 +99,7 @@ export const onUpdateAmplifyDataStoreUserMetadata = /* GraphQL */ `
     }
   }
 `;
+
+export const onStartTradeSession = /* GraphQL */ `
+  subscription 
+`

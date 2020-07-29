@@ -1,18 +1,25 @@
-import React, { useState } from 'react'
-import { View, Text, Image, Platform } from 'react-native'
+import React, { useState } from 'react';
+import { View, Text, Image, TouchableOpacity, FlatList,
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { PortalsStackParamList } from '../../../types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useFocusEffect } from '@react-navigation/native';
 import SocialBar from '../../components/social_bar/SocialBar';
 import webStyle from './PortalSelectStyle';
 import mobileStyle from './PortalSelectMobileStyle';
 import PortalLink from '../../components/portal_link/PortalLink';
 import PortalAction from '../../components/portal_action/PortalAction';
-import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-handler';
-import { VirtualItem } from '../../reducers/types';
+import ItemList from '../../components/item_list/ItemList';
+import { VirtualItem, Portal, BankHistory } from '../../reducers/types';
 import VirtualItemButton from '../../components/virtual_item/VirtualItemButton';
+import { getPortalBankHistory } from '../../../functions/AWSFunctions';
+import HistoryItem from '../../components/history_item/HistoryItem';
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '../../hooks/useNavigation';
+import { nav } from 'aws-amplify';
 
-type SelectScreenRouteProp = RouteProp<PortalsStackParamList, 'Select'>;
+type SelectScreenRouteProp = RouteProp<PortalsStackParamList, 'PortalSelect'>;
 
 // const style = Platform.OS === 'web' ? webStyle : mobileStyle;
 const style = mobileStyle;
@@ -52,83 +59,100 @@ const itemData: VirtualItem[] = [
 
 function PortalSelectScreen({ navigation, route }: Props) {
   const [orderActive, setOrderActive] = useState(false);
-  const imgSource = route.params.data.pic
-    ? { uri: route.params.data.pic }
+  const [portalData, setPortalData] = useState(route.params.data as Portal);
+  const [transactionHistory, setTransactionHistory] = useState(
+    [] as BankHistory[]
+  );
+
+  const imgSource = portalData.pic
+    ? { uri: portalData.pic }
     : require('../../assets/images/fortnite.jpg');
 
-  // React.useLayoutEffect(() => {
-  //   /*@ts-ignore*/
-  //   navigation.setOptions({
-  //     headerTitle: () => (
-  //       <View style={style.headerTitleContainer}>
-  //         <Text style={style.headerTitleText}>{route.params.title}</Text>
-  //       </View>
-  //     ),
-  //     // headerRight: () => <SocialBar socialMedia={socialMedia}/>,
-  //   });
-  // }, [navigation, route]);
-  // props.navigation.setOptions({ headertTitle: props.route.params.title });
+  React.useEffect(() => {
+    getTransactionHistory();
+    return () => {
+
+    };
+  }, [])
+
+  const getTransactionHistory = async () => {
+    setTransactionHistory(await getPortalBankHistory(portalData.ds_pk.split('#')[1]));
+  }
+
+  const renderItem = ({ item, index }) => (
+    <HistoryItem
+      data={item}
+      username={portalData.ds_pk.split('#')[1]}
+      onLikePress={(updItem: BankHistory) => {
+        const upd = [...transactionHistory];
+        upd[index] = updItem;
+        setTransactionHistory(upd);
+      }}
+      overline={index !== 0}
+    />
+  );
+  /*@ts-ignore*/
+  const keyExtractor = (item, index) => index.toString();
+
   return (
-    <View style={{ flex: 1 }}>
-      <ScrollView
-        style={style.mainContainer}
-        contentContainerStyle={style.mainContentContainer}
+    <View style={style.container}>
+      <TouchableOpacity
+        style={style.backButton}
+        onPress={() => navigation.goBack()}
       >
-        <View style={style.splashContainer}>
-          <Image source={imgSource} style={style.mainImage} />
-          <Text style={style.splashTitleText}>
-            {route.params.data.displayName}
-          </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Image
-              source={require('../../assets/images/profile.png')}
-              style={{ width: 20, height: 20, marginHorizontal: 10 }}
-            />
-            <Text style={style.splashSubtitleText}>10,000,000</Text>
-          </View>
-          <View style={style.contentListContainer}>
-            <Text style={style.listTitleText}>Top Items</Text>
-            <FlatList
-              style={style.listStyle}
-              data={itemData}
-              renderItem={({ item }) => (
-                <VirtualItemButton
-                  size={100}
-                  pic={item.pic ? item.pic : ''}
-                  item={item}
-                  onPress={(item: VirtualItem) => null}
-                />
-              )}
-              keyExtractor={(item, index) => index.toString()}
-              horizontal={true}
-            />
-          </View>
-          <View style={style.contentListContainer}>
-            <Text style={style.listTitleText}>Top Connections</Text>
-            <FlatList
-              style={style.listStyle}
-              data={itemData}
-              renderItem={({ item }) => (
-                <VirtualItemButton
-                  size={100}
-                  pic={item.pic ? item.pic : ''}
-                  item={item}
-                />
-              )}
-              keyExtractor={(item, index) => index.toString()}
-              horizontal={true}
-            />
-          </View>
+        <Ionicons size={40} name='ios-arrow-back' color={'black'} />
+      </TouchableOpacity>
+      <View style={style.splashContainer}>
+        <Image source={imgSource} style={style.splashImage} />
+        {/* <LinearGradient
+          colors={['transparent', 'rgba(85,185,243,1)']}
+          style={style.splashGradient}
+          start={[1, -0.5]}
+          end={[1, 1]}
+        > */}
+        <View style={style.splashTitleContainer}>
+          <Text style={style.splashTitleText}>{portalData.displayName}</Text>
+          <Text style={style.splashTitleText}>10M</Text>
         </View>
-      </ScrollView>
+        {/* </LinearGradient> */}
+      </View>
+      <View style={style.itemsContainer}>
+        {/* <FlatList
+          data={itemData}
+          horizontal
+          renderItem={renderItem}
+          keyExtractor={itemKeyExtractor}
+        /> */}
+        <Text style={style.itemsTitle}>Top Items</Text>
+        <ItemList
+          items={itemData}
+          horizontal
+          onPress={() => null}
+          itemSize={80}
+        />
+      </View>
+      <View style={style.historyContainer}>
+        <FlatList
+          contentContainerStyle={style.historyContentContainerStyle}
+          data={transactionHistory}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+        />
+      </View>
+      <View style={style.buttonContainer}>
+        <TouchableOpacity
+          style={style.button}
+          onPress={() => navigation.navigate('Shop', { data: portalData })}
+          activeOpacity={0.9}
+        >
+          <Text style={style.buttonText}>Shop</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={style.button} onPress={() => null} activeOpacity={0.9}>
+          <Text style={style.buttonText}>Transfer</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
-export default  PortalSelectScreen;
+export default PortalSelectScreen;

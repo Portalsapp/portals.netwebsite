@@ -254,7 +254,7 @@ export const retrieveUserItems = /* GraphQL */ `
   }
 `;
 
-export const retrieveBankHistory = /* GraphWL */ `
+export const retrieveBankHistory = /* GraphQL */ `
   query retrieveBankHistory($ds_pk: String!) {
     retrieveBankHistory(partyId: $ds_pk) {
       items {
@@ -275,10 +275,44 @@ export const retrieveBankHistory = /* GraphWL */ `
           displayName
           pic
         }
+        ds_pk
+        ds_sk
         likes
+        liked
         tradeSession
         note
+      }
+    }
+  }
+`
+
+export const retrieveGlobalFeed = /* GraphQL */ `
+  query retrieveGobalFeed($userID: String) {
+    retrieveGobalFeed(requestFromUser: $userID) {
+      items {
+        to {
+          ds_pk
+          displayName
+          pic
+        }
+        from {
+          ds_pk
+          displayName
+          pic
+        }
+        item {
+          ds_pk
+          displayName
+          pic
+        }
         ds_pk
+        ds_sk
+        transferType
+        createdAt
+        likes
+        liked
+        tradeSession
+        note
       }
     }
   }

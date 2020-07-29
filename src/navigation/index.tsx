@@ -29,7 +29,7 @@ import LinkingConfiguration from './LinkingConfiguration';
 import RootNavigator from './MainStackContainer'
 import MainStackNavigator from './MainStackNavigatorContainer';
 import { Portal } from '../reducers/types';
-
+import TemporaryLanding from '../screens/temporary_page/TemporaryLanding';
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -51,7 +51,8 @@ export default function Navigation(props : Props) {
       theme={DefaultTheme}
     >
       {/* {props.signedIn === true ? <RootNavigator /> : <LoginNavigator />} */}
-      {props.signedIn === true ? <MainStackNavigator /> : <LoginNavigator />}
+      {/* {props.signedIn === true ? <MainStackNavigator /> : <LoginNavigator />} */}
+      <TemporaryLanding />
     </NavigationContainer>
   );
 }

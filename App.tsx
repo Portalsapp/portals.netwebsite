@@ -25,6 +25,8 @@ import Amplify from 'aws-amplify';
 /*@ts-ignore */
 import awsmobile from './aws-exports.js';
 
+import TemporaryLanding from './src/screens/temporary_page/TemporaryLanding';
+
 const store = createStore(reducer);
 Amplify.configure(awsmobile);
 
@@ -50,7 +52,8 @@ function App() {
     return (
       <Provider store={store}>
         <SafeAreaProvider>
-          <Navigation colorScheme={colorScheme} />
+          {/* <Navigation colorScheme={colorScheme} /> */}
+          <TemporaryLanding />
           <StatusBar />
         </SafeAreaProvider>
       </Provider>

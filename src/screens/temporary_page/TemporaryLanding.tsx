@@ -9,7 +9,7 @@ export default function TemporaryLanding() {
         fontFamily: 'OpenSans_300Light',
         fontSize: 36,
         paddingVertical: 20,
-      }}>Coming Soon, PortalVerse Inc.</Text>
+      }}>Coming Soon, Portalverse Inc.</Text>
     </View>
   )
 }

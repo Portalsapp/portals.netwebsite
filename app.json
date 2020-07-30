@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "PortalsMobileApp",
-    "slug": "PortalsMobileApp",
+    "name": "Portals",
+    "slug": "Portals",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/app_icons/2x/Portals@2x.png",

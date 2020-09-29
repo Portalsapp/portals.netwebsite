@@ -21,7 +21,7 @@ import {
   SettingsStackParamList,
   ShopStackParamList,
   AuthStackParamList,
-  PublisherStackParamList
+  PublisherStackParamList, WebStackParamList
 } from '../../types';
 import LoginScreen from '../screens/login/LoginScreenContainer'
 import CreateAccountScreen from '../screens/create_account/CreateAccountScreenContainer'
@@ -30,6 +30,7 @@ import RootNavigator from './MainStackContainer'
 import MainStackNavigator from './MainStackNavigatorContainer';
 import { Portal } from '../reducers/types';
 import TemporaryLanding from '../screens/temporary_page/TemporaryLanding';
+import PrivacyScreen from '../screens/privacy/PrivacyScreen';
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -38,12 +39,10 @@ type Props = {
   signedIn: boolean,
 }
 
+const WebStack = createStackNavigator<WebStackParamList>();
+
 // export default function Navigation({ colorScheme, } : { colorScheme: ColorSchemeName;}, signedIn: boolean) {
 export default function Navigation(props : Props) {
-  if (props.signedIn) {
-    
-  }
-
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
@@ -52,7 +51,20 @@ export default function Navigation(props : Props) {
     >
       {/* {props.signedIn === true ? <RootNavigator /> : <LoginNavigator />} */}
       {/* {props.signedIn === true ? <MainStackNavigator /> : <LoginNavigator />} */}
-      <TemporaryLanding />
+      <WebStack.Navigator>
+        <WebStack.Screen
+          name='Home'
+          component={TemporaryLanding}
+          options={{ headerShown: false }}
+        />
+        <WebStack.Screen
+          name='Privacy'
+          component={PrivacyScreen}
+          options={{ headerShown: false }}
+        />
+      </WebStack.Navigator>
+      {/* <TemporaryLanding />
+      <PrivacyScreen /> */}
     </NavigationContainer>
   );
 }

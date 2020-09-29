@@ -52,9 +52,9 @@ function App() {
     return (
       <Provider store={store}>
         <SafeAreaProvider>
-          {/* <Navigation colorScheme={colorScheme} /> */}
-          <TemporaryLanding />
-          <StatusBar />
+          <Navigation colorScheme={colorScheme} />
+          {/* <TemporaryLanding /> */}
+          {/* <StatusBar /> */}
         </SafeAreaProvider>
       </Provider>
     );

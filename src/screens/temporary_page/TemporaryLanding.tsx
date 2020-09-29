@@ -1,5 +1,8 @@
+import { Link } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { WebStackParamList } from '../../../types';
 
 export default function TemporaryLanding() {
   return (
@@ -15,7 +18,7 @@ export default function TemporaryLanding() {
           paddingVertical: 10,
         }}
       >
-        Mystify, Inc.
+        Portals.net
       </Text>
       <Text
         style={{
@@ -26,6 +29,36 @@ export default function TemporaryLanding() {
       >
         Coming Soon
       </Text>
+      <Link to="/privacy">
+        <Text
+          style={{
+            fontFamily: 'OpenSans_300Light',
+            fontSize: 24,
+            paddingVertical: 5,
+            color: 'blue',
+            borderBottomColor: 'blue',
+            borderBottomWidth: 1,
+          }}
+        >
+          Privacy Policy
+        </Text>
+      </Link>
+      {/* <TouchableOpacity
+        onPress={() => props.navigation.navigate('Privacy')}
+      >
+      <Text
+        style={{
+          fontFamily: 'OpenSans_300Light',
+          fontSize: 24,
+          paddingVertical: 5,
+          color: 'blue',
+          borderBottomColor: 'blue',
+          borderBottomWidth: 1,
+        }}
+        >
+        Privacy Policy
+      </Text>
+        </TouchableOpacity> */}
     </View>
   );
 }

@@ -19,15 +19,45 @@ export default function SupportScreen() {
     <LinearGradient style={style.container} colors={['#5C69AC', '#98A0CC']}>
       <View style={style.inputContainer}>
         <Text style={style.titleText}>Support</Text>
-        <Text style={[style.titleText, { fontSize: 14, width: 200, marginVertical: 10, textAlign: 'center' }]}>
-          If you have a question or problem regarding Portals, please fill out this email form.
+        <Text
+          style={[
+            style.titleText,
+            {
+              fontSize: 14,
+              width: 200,
+              marginVertical: 10,
+              textAlign: 'center',
+            },
+          ]}
+        >
+          If you have a question or problem regarding Portals, please fill out
+          this email form.
         </Text>
-        <TextInput
+        {/* <TextInput
           placeholder='Subject'
           style={style.textInput}
           value={subject}
           onChangeText={(text: string) => setSubject(text)}
-        />
+        /> */}
+        <input
+          type='text'
+          style={{
+            width: 200,
+            borderColor: 'grey',
+            borderWidth: 0,
+            borderBottomWidth: 1,
+            backgroundColor: '#f4f4f4',
+            fontSize: 14,
+            fontFamily: 'OpenSans_300Light',
+            paddingTop: 10,
+            paddingBottom: 10,
+          }}
+          placeholder='Subject'
+          value={subject}
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            setSubject(event.target.value)
+          }
+        ></input>
         {/* <TextInput
           placeholder='Message'
           style={[style.textInput, { fontSize: 12 }]}

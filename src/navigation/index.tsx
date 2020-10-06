@@ -31,6 +31,7 @@ import MainStackNavigator from './MainStackNavigatorContainer';
 import { Portal } from '../reducers/types';
 import TemporaryLanding from '../screens/temporary_page/TemporaryLanding';
 import PrivacyScreen from '../screens/privacy/PrivacyScreen';
+import SupportScreen from '../screens/support/SupportScreen';
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -61,6 +62,13 @@ export default function Navigation(props : Props) {
           name='Privacy'
           component={PrivacyScreen}
           options={{ headerShown: false }}
+        />
+        <WebStack.Screen
+          name='Support'
+          component={SupportScreen}
+          options={{
+            headerShown: false,
+          }}
         />
       </WebStack.Navigator>
       {/* <TemporaryLanding />

@@ -7,6 +7,7 @@ export default {
     screens: {
       Home: '',
       Privacy: 'privacy',
+      Support: 'support',
       // Login: 'login',
       // Main: {
       //   screens: {

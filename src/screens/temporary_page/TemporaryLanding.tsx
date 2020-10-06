@@ -1,26 +1,35 @@
 import { Link } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import LinearGradient from 'expo-linear-gradient/build/LinearGradient';
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { WebStackParamList } from '../../../types';
+import AppStoreIcon from '../../components/app_store_icon/AppStoreIcon';
 
 export default function TemporaryLanding() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <LinearGradient
+      style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+      colors={['#5C69AC', '#98A0CC']}
+    >
       <Image
-        source={require('../../assets/images/app_icons/3x/Portals@3x.png')}
+        source={require('../../assets/images/plain_shadow_logo.png')}
         style={{ width: 300, height: 300 }}
       />
       <Text
         style={{
-          fontFamily: 'OpenSans_300Light',
-          fontSize: 36,
+          fontFamily: 'OpenSans_400Regular_Italic',
+          fontSize: 26,
           paddingVertical: 10,
+          color: 'white',
         }}
       >
-        Portals.net
+        Website Coming Soon
       </Text>
-      <Text
+      <View style={{ padding: 20 }}>
+        <AppStoreIcon scale={2} />
+      </View>
+      {/* <Text
         style={{
           fontFamily: 'OpenSans_300Light',
           fontSize: 24,
@@ -28,21 +37,42 @@ export default function TemporaryLanding() {
         }}
       >
         Coming Soon
-      </Text>
-      <Link to="/privacy">
-        <Text
-          style={{
-            fontFamily: 'OpenSans_300Light',
-            fontSize: 24,
-            paddingVertical: 5,
-            color: 'blue',
-            borderBottomColor: 'blue',
-            borderBottomWidth: 1,
-          }}
-        >
-          Privacy Policy
-        </Text>
-      </Link>
+      </Text> */}
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          width: 300,
+          marginTop: 40,  
+        }}
+      >
+        <Link to='/privacy' style={{ color: 'white' }}>
+          <Text
+            style={{
+              fontFamily: 'OpenSans_400Regular',
+              fontSize: 18,
+              paddingVertical: 5,
+              color: 'white',
+              // borderBottomColor: 'white',
+              // borderBottomWidth: 1,
+            }}
+          >
+            Privacy Policy
+          </Text>
+        </Link>
+        <Link to='/support'>
+          <Text
+            style={{
+              fontFamily: 'OpenSans_400Regular',
+              fontSize: 18,
+              paddingVertical: 5,
+              color: 'white',
+            }}
+          >
+            Support
+          </Text>
+        </Link>
+      </View>
       {/* <TouchableOpacity
         onPress={() => props.navigation.navigate('Privacy')}
       >
@@ -59,6 +89,6 @@ export default function TemporaryLanding() {
         Privacy Policy
       </Text>
         </TouchableOpacity> */}
-    </View>
+    </LinearGradient>
   );
 }

@@ -3,6 +3,7 @@ import { Portal } from "./src/reducers/types";
 export type WebStackParamList = {
   Home: undefined,
   Privacy: undefined,
+  Support: undefined,
 }
 
 export type RootStackParamList = {

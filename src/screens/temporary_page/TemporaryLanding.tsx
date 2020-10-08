@@ -26,9 +26,17 @@ export default function TemporaryLanding() {
       >
         Website Coming Soon
       </Text>
-      <View style={{ padding: 20 }}>
+      <TouchableOpacity
+        style={{ padding: 20 }}
+        onPress={() =>
+          window.open(
+            'https://apps.apple.com/us/app/portals-net/id1530638981',
+            '_blank'
+          )
+        }
+      >
         <AppStoreIcon scale={2} />
-      </View>
+      </TouchableOpacity>
       {/* <Text
         style={{
           fontFamily: 'OpenSans_300Light',
@@ -43,7 +51,7 @@ export default function TemporaryLanding() {
           flexDirection: 'row',
           justifyContent: 'space-between',
           width: 300,
-          marginTop: 40,  
+          marginTop: 40,
         }}
       >
         <Link to='/privacy' style={{ color: 'white' }}>

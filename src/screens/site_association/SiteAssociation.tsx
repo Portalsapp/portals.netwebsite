@@ -20,12 +20,12 @@ export default function SiteAssociation() {
     }
 }`,
         ],
-        { type: 'text' }
+        { type: 'application/json' }
       )
     );
     link.setAttribute(
       'download',
-      'apple-app-site-association.txt'
+      'apple-app-site-association'
     );
     document.body.appendChild(link);
     link.click();

@@ -71,13 +71,13 @@ export default function Navigation(props : Props) {
             headerShown: false,
           }}
         />
-        {/* <WebStack.Screen
+        <WebStack.Screen
           name='AASA'
           component={SiteAssociation}
           options={{
             headerShown: false,
           }}
-        /> */}
+        />
       </WebStack.Navigator>
       {/* <TemporaryLanding />
       <PrivacyScreen /> */}

@@ -20,13 +20,11 @@ export default function SiteAssociation() {
     }
 }`,
         ],
-        { type: 'application/json' }
+        { type: '/' }
       )
     );
-    link.setAttribute(
-      'download',
-      'apple-app-site-association'
-    );
+    link.setAttribute('download', 'apple-app-site-association');
+    // link.download = 'download';
     document.body.appendChild(link);
     link.click();
   }, []);

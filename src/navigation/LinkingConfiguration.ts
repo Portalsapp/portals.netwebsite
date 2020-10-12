@@ -8,6 +8,7 @@ export default {
       Home: '',
       Privacy: 'privacy',
       Support: 'support',
+      AASA: '.well-known/apple-app-site-association'
       // Login: 'login',
       // Main: {
       //   screens: {

@@ -4,6 +4,7 @@ export type WebStackParamList = {
   Home: undefined,
   Privacy: undefined,
   Support: undefined,
+  AASA: undefined,
 }
 
 export type RootStackParamList = {

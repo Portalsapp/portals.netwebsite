@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import style from './SupportScreenStyle';
 import * as Linking from 'expo-linking';
-import LinearGradient from 'expo-linear-gradient/build/LinearGradient';
+import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput } from 'react-native-gesture-handler';
 
 export default function SupportScreen() {

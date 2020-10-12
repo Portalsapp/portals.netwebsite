@@ -1,6 +1,6 @@
 import { Link } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import LinearGradient from 'expo-linear-gradient/build/LinearGradient';
+import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { WebStackParamList } from '../../../types';

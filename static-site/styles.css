@@ -1,0 +1,140 @@
+@font-face {
+  font-family: "OpenSans_400RegularItalic";
+  src: local('fonts/OpenSans_400RegularItalic.ttf') format("truetype");
+}
+
+html {
+    min-height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat:no-repeat;
+    background: -webkit-linear-gradient(180deg, rgba(92,105,172,1), rgba(152,160,204,1));
+    background: -moz-linear-gradient(180deg, rgba(92,105,172,1), rgba(152,160,204,1));
+    background: -ms-linear-gradient(180deg, rgba(92,105,172,1), rgba(152,160,204,1));
+    background: -o-linear-gradient(180deg, rgba(92,105,172,1), rgba(152,160,204,1));
+    background: linear-gradient(180deg, rgba(92,105,172,1), rgba(152,160,204,1));
+}
+
+body {
+  height: 100%;
+  padding-top: 2.5%;
+  /* align-items: center; */
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.mainImg {
+  width: 300px;
+  height: 300px;
+}
+
+.titleText {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400px;
+  font-style: italic;
+  font-size: 26px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: white;
+}
+
+.subtitleText {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300px;
+  color: white;
+  font-size: 24px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.linkContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 300px;
+  margin-top: 40px;
+}
+
+.linkText {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: white;
+}
+
+.supportContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  padding: 20px;
+  -webkit-box-shadow: 0px 5px 40px -20px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 5px 40px -20px rgba(0,0,0,0.75);
+  box-shadow: 0px 5px 40px -20px rgba(0,0,0,0.75);
+}
+
+.supportTitleText {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24pt;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.supportSubtitleText {
+  font-size: 14pt;
+  width: 200px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.textArea {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14pt;
+  width: 300px;
+  border-width: 0px;
+  border-bottom-width: 1px;
+  background-color: #f4f4f4;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.formText {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 12pt;
+}
+
+.button {
+  border-width: 0.5px;
+  border-color: #444444;
+  border-radius: 20px;
+  background-color: #f4f4f4;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: small;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}

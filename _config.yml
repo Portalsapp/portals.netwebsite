@@ -5,4 +5,4 @@ plugins:
 whitelist:
   - jekyll-redirect-from
 title: Portals.net
-  redirect_from: /s/*
+  redirect_from: /s/

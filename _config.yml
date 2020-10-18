@@ -1,8 +1,8 @@
 include: [".well-known"]
 theme: jekyll-theme-cayman
-plugins:
-  - jekyll-redirect-from
-whitelist:
-  - jekyll-redirect-from
-title: Portals.net
-  redirect_from: /s/
+# plugins:
+#   - jekyll-redirect-from
+# whitelist:
+#   - jekyll-redirect-from
+# title: Portals.net
+#   redirect_from: /s/

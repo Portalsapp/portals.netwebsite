@@ -4,5 +4,5 @@ theme: jekyll-theme-cayman
 #   - jekyll-redirect-from
 # whitelist:
 #   - jekyll-redirect-from
-# title: Portals.net
-#   redirect_from: /s/
+ title: Portals.net
+   redirect_from: /s/
